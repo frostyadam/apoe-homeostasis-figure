@@ -1,0 +1,396 @@
+{
+ "ids": {
+  "APOE": "ENSG00000130203",
+  "LDLR": "ENSG00000130164",
+  "LRP1": "ENSG00000123384",
+  "VLDLR": "ENSG00000147852",
+  "LRP8": "ENSG00000157193",
+  "SORL1": "ENSG00000137642",
+  "SCARB1": "ENSG00000073060",
+  "CLTC": "ENSG00000141367",
+  "AP2M1": "ENSG00000161203",
+  "PICALM": "ENSG00000073921",
+  "DNM1": "ENSG00000106976",
+  "DNM2": "ENSG00000079805",
+  "BIN1": "ENSG00000136717",
+  "RAB5A": "ENSG00000144566",
+  "EEA1": "ENSG00000102189",
+  "RAB11A": "ENSG00000103769",
+  "RAB7A": "ENSG00000075785",
+  "NPC1": "ENSG00000141458",
+  "NPC2": "ENSG00000119655",
+  "LIPA": "ENSG00000107798",
+  "HSPA5": "ENSG00000044574",
+  "CANX": "ENSG00000127022",
+  "SEC61A1": "ENSG00000058262",
+  "GOLGA2": "ENSG00000167110",
+  "GORASP1": "ENSG00000114745",
+  "COPA": "ENSG00000122218",
+  "SNAP23": "ENSG00000092531",
+  "STX4": "ENSG00000103496",
+  "VAMP3": "ENSG00000049245",
+  "RAB27A": "ENSG00000069974",
+  "ARL8B": "ENSG00000134108",
+  "SYT7": "ENSG00000011347",
+  "SYT11": "ENSG00000132718",
+  "STARD3": "ENSG00000131748",
+  "VAPA": "ENSG00000101558",
+  "OSBPL1A": "ENSG00000141447",
+  "ATP6V1A": "ENSG00000114573",
+  "ATP6V0D1": "ENSG00000159720",
+  "ATP6V0A1": "ENSG00000033627",
+  "SLC38A9": "ENSG00000177058",
+  "LAMTOR1": "ENSG00000149357",
+  "LAMTOR2": "ENSG00000116586",
+  "LAMTOR3": "ENSG00000109270",
+  "RRAGA": "ENSG00000155876",
+  "RRAGB": "ENSG00000083750",
+  "RRAGC": "ENSG00000116954",
+  "RRAGD": "ENSG00000025039",
+  "FLCN": "ENSG00000154803",
+  "FNIP1": "ENSG00000217128",
+  "RHEB": "ENSG00000106615",
+  "MTOR": "ENSG00000198793",
+  "RPTOR": "ENSG00000141564",
+  "MLST8": "ENSG00000167965",
+  "TM6SF1": "ENSG00000136404",
+  "ABCA1": "ENSG00000165029",
+  "ABCA7": "ENSG00000064687",
+  "CD36": "ENSG00000135218",
+  "GPIHBP1": "ENSG00000277494",
+  "TSC1": "ENSG00000165699",
+  "TSC2": "ENSG00000103197"
+ },
+ "assoc": {
+  "APOE": {
+   "overall": 0.7924918253072119,
+   "genetic_literature": 0.607930797611621,
+   "affected_pathway": 0.363419445759259,
+   "literature": 0.9992580008430367,
+   "genetic_association": 0.9134160797280393,
+   "animal_model": 0.549832690545235
+  },
+  "LDLR": {
+   "overall": 0.3727936823795637,
+   "literature": 0.8063350994133209,
+   "affected_pathway": 0.2240663821679243,
+   "animal_model": 0.49726839284646895,
+   "genetic_association": 0.533066291916461
+  },
+  "LRP1": {
+   "overall": 0.5854520922281504,
+   "literature": 0.957967182953359,
+   "affected_pathway": 0.90686004496282,
+   "animal_model": 0.3719624585186704
+  },
+  "VLDLR": {
+   "overall": 0.7892383027549598,
+   "literature": 0.5886168966610466,
+   "animal_model": 0.6863212803399159,
+   "genetic_association": 0.8570784024517112,
+   "genetic_literature": 0.8462572394726141
+  },
+  "LRP8": {
+   "overall": 0.13161587513883574,
+   "literature": 0.930806367586175,
+   "animal_model": 0.6067369416901996
+  },
+  "SORL1": {
+   "overall": 0.7432212118206101,
+   "genetic_literature": 0.3647584785669727,
+   "affected_pathway": 0.5500807373358241,
+   "literature": 0.9828066368978324,
+   "genetic_association": 0.8112271132470571,
+   "animal_model": 0.3991521634418501
+  },
+  "SCARB1": {
+   "overall": 0.6290348887455857,
+   "literature": 0.22441472296004472,
+   "affected_pathway": 0.8976203719389826,
+   "animal_model": 0.25624283119329827,
+   "genetic_association": 0.5143791452106411
+  },
+  "CLTC": {
+   "overall": 0.5586051411863583,
+   "literature": 0.24403607718399548,
+   "affected_pathway": 0.9066612367713315
+  },
+  "AP2M1": {
+   "overall": 0.697625158192499,
+   "literature": 0.1586622252128175,
+   "affected_pathway": 0.954036210903952,
+   "genetic_literature": 0.7599134970145264
+  },
+  "PICALM": {
+   "overall": 0.5171144946671603,
+   "literature": 0.9397105921653834,
+   "genetic_association": 0.8036285480116656
+  },
+  "DNM1": {
+   "overall": 0.2923352230594056,
+   "literature": 0.30355625604010644,
+   "animal_model": 0.7282675030689227,
+   "genetic_association": 0.4377101742803672
+  },
+  "DNM2": {
+   "overall": 0.8564963039754208,
+   "genetic_literature": 0.9293709569038151,
+   "affected_pathway": 0.7227153097132828,
+   "literature": 0.6520795644353204,
+   "genetic_association": 0.9125252277605513,
+   "animal_model": 0.8953759834499303
+  },
+  "BIN1": {
+   "overall": 0.6243931428679246,
+   "literature": 0.980789926154026,
+   "affected_pathway": 0.541176848230608,
+   "animal_model": 0.6036080747349111,
+   "genetic_association": 0.8624446632255317
+  },
+  "RAB5A": {
+   "overall": 0.1028967292312274,
+   "literature": 0.7291927051265538,
+   "animal_model": 0.4683753058449421
+  },
+  "EEA1": {
+   "overall": 0.1633803059107608,
+   "literature": 0.5882342035574163,
+   "genetic_association": 0.23933648707193675
+  },
+  "RAB11A": {
+   "overall": 0.10001580563144408,
+   "literature": 0.8225920287668956
+  },
+  "RAB7A": {
+   "overall": 0.5850077140293971,
+   "literature": 0.23284460533700527,
+   "affected_pathway": 0.9506510378612295
+  },
+  "NPC1": {
+   "overall": 0.5255078895373677,
+   "literature": 0.8575646005558198,
+   "affected_pathway": 0.5520784405011072,
+   "animal_model": 0.657884507425228,
+   "genetic_association": 0.6991204172533643
+  },
+  "NPC2": {
+   "overall": 0.3381881580389642,
+   "literature": 0.666327773999807,
+   "animal_model": 0.6705320218781197,
+   "genetic_association": 0.50795995533771
+  },
+  "LIPA": {
+   "overall": 0.07417788937067496,
+   "literature": 0.4988262476568297,
+   "animal_model": 0.44503491852345206
+  },
+  "HSPA5": {
+   "overall": 0.4982189030058304,
+   "literature": 0.9183021352368934,
+   "affected_pathway": 0.7596909643075943,
+   "animal_model": 0.6266786880821646
+  },
+  "CANX": {
+   "overall": 0.5282493980424221,
+   "literature": 0.2777542797201454,
+   "affected_pathway": 0.8171058538632618,
+   "animal_model": 0.7947094095432292,
+   "genetic_association": 0.07755205794807886
+  },
+  "SEC61A1": {
+   "overall": 0.07678251332148513,
+   "literature": 0.040466238064353545,
+   "affected_pathway": 0.10694782393935062,
+   "animal_model": 0.36908660810663535
+  },
+  "GOLGA2": {
+   "overall": 0.38824994684299685,
+   "literature": 0.1639457591682899,
+   "affected_pathway": 0.607930797611621,
+   "animal_model": 0.5413528965951815
+  },
+  "GORASP1": {
+   "overall": 0.009298389285849576,
+   "literature": 0.07647572159841363
+  },
+  "COPA": {
+   "overall": 0.5617180100871216,
+   "literature": 0.15425903032878976,
+   "affected_pathway": 0.9066612367713315,
+   "animal_model": 0.277885167588272
+  },
+  "SNAP23": {
+   "overall": 0.535858074238142,
+   "literature": 0.2717076475363618,
+   "affected_pathway": 0.8678604603792467
+  },
+  "STX4": {
+   "overall": 0.31682916454435317,
+   "literature": 0.09028975445310598,
+   "affected_pathway": 0.5045571162944408,
+   "genetic_association": 0.058385450287928936
+  },
+  "VAMP3": {
+   "overall": 0.38172889992043874,
+   "literature": 0.11182116190625803,
+   "affected_pathway": 0.6223239964144073
+  },
+  "RAB27A": {
+   "overall": 0.03589622000312723,
+   "literature": 0.12215884675596216,
+   "animal_model": 0.26469306928009984
+  },
+  "ARL8B": {
+   "overall": 0.08129918744484456,
+   "literature": 0.6686549502364811
+  },
+  "SYT7": {
+   "overall": 0.07840762503324049,
+   "literature": 0.644872947227552
+  },
+  "SYT11": {
+   "overall": 0.5743602598111319,
+   "literature": 0.3328205633149891,
+   "affected_pathway": 0.8831266603689356,
+   "genetic_association": 0.21702536618484713
+  },
+  "STARD3": {
+   "overall": 0.018153955213510688,
+   "literature": 0.14930938920048273
+  },
+  "VAPA": {
+   "overall": 0.03824572362467317,
+   "literature": 0.31455655623081785
+  },
+  "OSBPL1A": {
+   "overall": 0.07428739869089848,
+   "literature": 0.037995674850726316,
+   "animal_model": 0.6014867311569378
+  },
+  "ATP6V1A": {
+   "overall": 0.6047342713692142,
+   "literature": 0.6684849921260513,
+   "affected_pathway": 0.9613177074470906
+  },
+  "ATP6V0D1": {
+   "overall": 0.5284044256134037,
+   "literature": 0.07456236960971595,
+   "affected_pathway": 0.865457038266544
+  },
+  "ATP6V0A1": {
+   "overall": 0.3588484705295865,
+   "literature": 0.032621958034035316,
+   "animal_model": 0.6051443868058752,
+   "genetic_association": 0.5592963338026914
+  },
+  "SLC38A9": {
+   "overall": 0.38440406286165135,
+   "literature": 0.13813538679064055,
+   "affected_pathway": 0.540774737041119,
+   "genetic_association": 0.35388432844584794
+  },
+  "LAMTOR1": {
+   "overall": 0.5507297072091647,
+   "literature": 0.10193782378391915,
+   "affected_pathway": 0.9008116585549815
+  },
+  "LAMTOR2": {
+   "overall": 0.2969275381848101,
+   "literature": 0.08796250336973108,
+   "affected_pathway": 0.48402512851655444
+  },
+  "LAMTOR3": {
+   "overall": 0.5529346873889853,
+   "literature": 0.023874793379536387,
+   "affected_pathway": 0.9083418350400212
+  },
+  "RRAGA": {
+   "overall": 0.33561966603079185,
+   "literature": 0.21419090696517443,
+   "affected_pathway": 0.5413593206301412
+  },
+  "RRAGB": {
+   "overall": 0.0036957985468470188,
+   "literature": 0.030396539880581056
+  },
+  "RRAGC": {
+   "overall": 0.004804538110901123,
+   "literature": 0.03951550184475537
+  },
+  "RRAGD": {
+   "overall": 0.004619748183558772,
+   "literature": 0.037995674850726316
+  },
+  "FLCN": {
+   "overall": 0.509506964999668,
+   "literature": 0.29011946840115727,
+   "affected_pathway": 0.8235942955601764
+  },
+  "FNIP1": {
+   "overall": 0.28429015548438885,
+   "literature": 0.15627027628995144,
+   "affected_pathway": 0.440631673216691,
+   "animal_model": 0.47062745430760394
+  },
+  "RHEB": {
+   "overall": 0.2982455179315307,
+   "literature": 0.5921715856942527,
+   "affected_pathway": 0.46098265100539343
+  },
+  "MTOR": {
+   "overall": 0.6094440190336279,
+   "literature": 0.9823435686058524,
+   "affected_pathway": 0.9433335830445835,
+   "animal_model": 0.2626868976479815,
+   "clinical": 0.06079307976116211
+  },
+  "RPTOR": {
+   "overall": 0.44952433688168053,
+   "literature": 0.33252715665978977,
+   "affected_pathway": 0.72280704256016
+  },
+  "MLST8": {
+   "overall": 0.44530876492380567,
+   "literature": 0.04194384764188179,
+   "affected_pathway": 0.7304019122418057
+  },
+  "TM6SF1": {
+   "overall": 0.3695798546847018,
+   "affected_pathway": 0.607930797611621
+  },
+  "ABCA1": {
+   "overall": 0.5928457601945621,
+   "literature": 0.9526909985422243,
+   "animal_model": 0.5882146958799727,
+   "genetic_association": 0.754412063471787,
+   "clinical": 0.09118961964174316
+  },
+  "ABCA7": {
+   "overall": 0.7433994275783832,
+   "literature": 0.9732886842764222,
+   "genetic_association": 0.8305152954003903,
+   "genetic_literature": 0.607930797611621
+  },
+  "CD36": {
+   "overall": 0.10240310459880908,
+   "literature": 0.722816282331004,
+   "animal_model": 0.47764149626956653
+  },
+  "GPIHBP1": {
+   "overall": 0.008079426267690563,
+   "literature": 0.06645021357227024
+  },
+  "TSC1": {
+   "overall": 0.5326910097992591,
+   "literature": 0.7455311993713462,
+   "affected_pathway": 0.8274613634158176,
+   "animal_model": 0.5174252484634786
+  },
+  "TSC2": {
+   "overall": 0.3912698143166779,
+   "literature": 0.5481424451362478,
+   "affected_pathway": 0.6104536885327476,
+   "animal_model": 0.25867455438374476
+  }
+ }
+}

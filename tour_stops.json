@@ -1,0 +1,177 @@
+{
+ "viewBox": [
+  0.0,
+  -36.0,
+  1100.0,
+  766.0
+ ],
+ "stops": [
+  {
+   "t": "APOE homeostasis",
+   "s": "The whole cell. Synthesis and secretion on the left, uptake and lysosomal traffic on the right. Gene names appear only where there is disease or APOE-dependent evidence.",
+   "box": [
+    0,
+    -36,
+    1100,
+    766
+   ],
+   "side": "right",
+   "glyphs": [
+    "apoe",
+    "particle",
+    "chol"
+   ]
+  },
+  {
+   "t": "Lipoparticle biogenesis",
+   "s": "APOE is inserted into the ER as it is translated. Alongside it the mevalonate enzymes end at DHCR24, which makes cholesterol from desmosterol. The first particle forms at the Golgi with ABCA1.",
+   "box": [
+    102,
+    330,
+    367,
+    256
+   ],
+   "side": "right",
+   "glyphs": [
+    "apoe",
+    "particle",
+    "chol"
+   ]
+  },
+  {
+   "t": "Lipoparticle secretion and maturation",
+   "s": "The vesicle fuses with the membrane and ABCA1 and ABCA7 lipidate APOE. Outside, particles carry APOC1, APOC2 and CLU/APOJ, and PLTP remodels them.",
+   "box": [
+    10,
+    -36,
+    482,
+    145
+   ],
+   "side": "right",
+   "glyphs": [
+    "apoe",
+    "particle",
+    "chol"
+   ]
+  },
+  {
+   "t": "Lipoparticle receptors",
+   "s": "HSPG captures the particle and hands it to a receptor. Each receptor is filled with its evidence colour.",
+   "box": [
+    470,
+    -36,
+    414,
+    288
+   ],
+   "side": "right",
+   "glyphs": [
+    "particle"
+   ],
+   "notes": [
+    "<b>Therapeutic hypothesis 1</b> \u2014 the antibody gripping the particle is an <b>anti-APOE4 mAb</b>, drawn to block uptake sterically at the moment HSPG hands the particle to the receptors. APOE4 binds LDLR most tightly of the three isoforms (K<sub>d</sub> 9 nM vs 16 and 800 nM), so uptake is where the isoform difference is largest.",
+    "It is a <b>hypothesis, not a result</b>: nothing in our data speaks to it, it must cross the blood-brain barrier, and E4 and E3 particles differ by one buried residue.",
+    "The series above ranks the isoforms by LDLR affinity. <b>APOE3</b> is the reference (Cys112, Arg158).",
+    "<b>APOE2</b> is <b>R158C</b> (Arg158\u2192Cys). <b>APOE4</b> is <b>C112R</b> (Cys112\u2192Arg).",
+    "<b>E3-Cc</b> is <b>APOE3-Christchurch</b>, <b>R136S</b> (Arg136\u2192Ser), on an APOE3 backbone \u2014 a protective variant.",
+    "Residue numbers are for the mature protein; add 18 for precursor numbering."
+   ]
+  },
+  {
+   "t": "Receptor-mediated endocytosis",
+   "s": "PICALM and BIN1 drive internalisation. The neck undergoes scission, then the coat uncoats. Cargo legend at top right.",
+   "box": [
+    626.4,
+    -10.4,
+    473.66,
+    329.91
+   ],
+   "side": "right",
+   "glyphs": [
+    "particle",
+    "abeta"
+   ],
+   "notes": [
+    "<b>Second interception, top right</b> \u2014 the same anti-APOE4 antibody drawn ENGAGED rather than approaching: both paratopes on the particle surface, the Fc trailing, and the route to the clathrin pit dashed and barred. It asserts only that <b>uptake is the step being targeted</b>; isoform selectivity is the unsolved part, since APOE3 and APOE4 differ by C112R, which is not surface-exposed on the lipidated particle.",
+    "<b>E3-Cc</b> is <b>APOE3-Christchurch</b>, <b>R136S</b> (Arg136\u2192Ser), on an APOE3 backbone. APOE2 is R158C, APOE4 is C112R.",
+    "<b>LDLR K<sub>d</sub></b> on lipidated nanodiscs by SPR: E2 <b>800 nM</b> \u00b7 E3 <b>16 nM</b> \u00b7 E4 <b>9 nM</b>.",
+    "E3-Cc has <b>no published K<sub>d</sub></b>; it binds at <b>41%</b> of E3 in a fibroblast assay.",
+    "The E4 step is ~<b>1.8-fold</b> by SPR, but runs with our finding that <b>APOE4 lipoparticles accumulate intracellularly</b> more than APOE3 \u2014 plausibly extra receptor engagement or slower recycling."
+   ]
+  },
+  {
+   "t": "Early endosome",
+   "s": "Mildly acidic, and still holding APOE. A vesicle buds off to recycle receptors; the rest matures onward.",
+   "box": [
+    680.4,
+    169,
+    419.6,
+    292.2
+   ],
+   "side": "right",
+   "glyphs": [
+    "apoe",
+    "particle"
+   ]
+  },
+  {
+   "t": "Lipid and sterol catabolism, mTORC1 activation",
+   "s": "LIPA frees cholesterol from cholesteryl ester, and NPC2 with NPC1 export it at ER contact sites. TM6SF1 and SLC38A9 sense it and recruit mTORC1. Cholesterol and BMP rise here in APOE4. At left, a lysosome carrying undigested amyloid-\u03b2 and tau heads for exocytosis.",
+   "box": [
+    505,
+    315.7,
+    595,
+    414.3
+   ],
+   "side": "right",
+   "glyphs": [
+    "chol",
+    "bmp",
+    "whorl",
+    "particle",
+    "abeta",
+    "tau"
+   ],
+   "notes": [
+    "<b>Therapeutic hypothesis 2</b> \u2014 the <b>rapalog</b> at right inhibits mTORC1 where cholesterol activates it on the lysosome. APOE4 glia hold 3\u00d7 more lysosomal cholesterol, and TM6SF1 engages Ragulator cholesterol-dependently. But every gene in this module is transcriptionally <b>flat</b>, so the inhibitory bar is drawn on the pathway, not on our measurements.",
+    "<b>LIPA carries a \u2020</b> because its blue comes from one ancestry stratum and reverses in the other: African-ancestry \u22120.61, European-ancestry <b>+0.16</b>, pooled \u22120.25 (between-stratum q 8.7e\u22128). \u201cLower in APOE4\u201d is not supportable for LIPA as a general claim.",
+    "The lysosomal cholesterol machinery drawn here \u2014 NPC1, NPC2, TM6SF1, Ragulator, the Rag GTPases, mTORC1 \u2014 is transcriptionally <b>flat</b>: a lipid phenotype without a transcriptional signature."
+   ]
+  },
+  {
+   "t": "Transcriptional consequences and targets",
+   "s": "Less desmosterol leaves LXR/RXR on the LXR response element under-agonised, so the efflux programme falls.",
+   "box": [
+    0,
+    429,
+    380.5,
+    265
+   ],
+   "side": "right",
+   "glyphs": [
+    "chol"
+   ],
+   "notes": [
+    "<b>Therapeutic hypothesis 3</b> \u2014 the <b>LXR/RXR agonist</b> above the receptor pair supplies the agonism this arm argues is missing. It is the only one of the three with a direct test behind it: GW3965 and T0901317 restore APOE4 cholesterol efflux to untreated-APOE3 levels, though the rescue is incomplete and systemic LXR agonism drives hepatic lipogenesis.",
+    "<b>Direct LXR/RXR targets down in human spatial transcriptomics data:</b> PLTP <b>\u22120.51</b>, the APOE/APOC1/APOC2 cluster (\u22120.18, \u22120.75, \u22120.41), CD36 <b>\u22120.92</b>.",
+    "APOD is drawn uncoloured: it does NOT move in this pooled contrast, but within European-ancestry donors it is <b>up +0.66</b>, the 99.4th percentile of all genes.",
+    "ABCA1 and ABCA7 are <b>flat in the spatial transcript data</b> (FDR 0.13 and 0.70) but are decreased in isogenic APOE4 astrocytes."
+   ]
+  },
+  {
+   "t": "The whole route",
+   "s": "Synthesis to secretion to uptake to the lysosome, cholesterol back to the ER, and the response in the nucleus.",
+   "box": [
+    0,
+    -36,
+    1100,
+    766
+   ],
+   "side": "right",
+   "glyphs": [
+    "apoe",
+    "particle",
+    "chol"
+   ]
+  }
+ ]
+}

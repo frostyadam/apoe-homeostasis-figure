@@ -1,0 +1,12 @@
+# Scratch probes and one-off patches (underscore prefix = disposable by convention here)
+_*
+
+# Generated video: 19 MB, regenerable via 04_render_tour_mp4.py, and it bloats history on
+# every re-render. NOTE: as of 2026-09-30 the renderer still uses the retired overlay-caption
+# layout, so the last export does not match the current figure. Fix the script before trusting it.
+*.mp4
+
+__pycache__/
+*.pyc
+.venv/
+.DS_Store

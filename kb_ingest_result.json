@@ -1,0 +1,169 @@
+[
+ {
+  "label": "TM6SF1 2026 PNAS",
+  "doi": "10.1073/pnas.2622424123",
+  "ingest": {
+   "success": true,
+   "paper_id": "scilit-paper-87c7bcae1cdc",
+   "title": "Structure and function of TM6SF1 reveals role in mTORC1 signaling",
+   "doi": "10.1073/pnas.2622424123",
+   "status": "inserted"
+  },
+  "paper_id": "scilit-paper-87c7bcae1cdc",
+  "verified_title": ""
+ },
+ {
+  "label": "Castellano 2017",
+  "doi": "10.1126/science.aag1417",
+  "ingest": {
+   "success": true,
+   "paper_id": "scilit-paper-7d4531e7a0ef",
+   "title": "Lysosomal cholesterol activates mTORC1 via an SLC38A9\u2013Niemann-Pick C1 signaling complex",
+   "doi": "10.1126/science.aag1417",
+   "status": "inserted"
+  },
+  "paper_id": "scilit-paper-7d4531e7a0ef",
+  "verified_title": ""
+ },
+ {
+  "label": "Lim 2019",
+  "doi": "10.1038/s41556-019-0391-5",
+  "ingest": {
+   "success": true,
+   "paper_id": "scilit-paper-2debbf7f6b3d",
+   "title": "ER\u2013lysosome contacts enable cholesterol sensing by mTORC1 and drive aberrant growth signalling in Niemann\u2013Pick type C",
+   "doi": "10.1038/s41556-019-0391-5",
+   "status": "inserted"
+  },
+  "paper_id": "scilit-paper-2debbf7f6b3d",
+  "verified_title": ""
+ },
+ {
+  "label": "Wilhelm 2017",
+  "doi": "10.15252/embj.201695917",
+  "ingest": {
+   "success": true,
+   "paper_id": "scilit-paper-802b7097766a",
+   "title": "STARD3 mediates endoplasmic reticulum\u2010to\u2010endosome cholesterol transport at membrane contact sites",
+   "doi": "10.15252/embj.201695917",
+   "status": "inserted"
+  },
+  "paper_id": "scilit-paper-802b7097766a",
+  "verified_title": ""
+ },
+ {
+  "label": "Rocha 2009",
+  "doi": "10.1083/jcb.200811005",
+  "ingest": {
+   "success": true,
+   "paper_id": "scilit-paper-dbfca83a2410",
+   "title": "Cholesterol sensor ORP1L contacts the ER protein VAP to control Rab7\u2013RILP\u2013p150Glued and late endosome positioning",
+   "doi": "10.1083/jcb.200811005",
+   "status": "inserted"
+  },
+  "paper_id": "scilit-paper-dbfca83a2410",
+  "verified_title": ""
+ },
+ {
+  "label": "Sancak 2010",
+  "doi": "10.1016/j.cell.2010.02.024",
+  "ingest": {
+   "success": true,
+   "paper_id": "scilit-paper-7e6f1978ebd4",
+   "title": "Ragulator-Rag Complex Targets mTORC1 to the Lysosomal Surface and Is Necessary for Its Activation by Amino Acids",
+   "doi": "10.1016/j.cell.2010.02.024",
+   "status": "inserted"
+  },
+  "paper_id": "scilit-paper-7e6f1978ebd4",
+  "verified_title": ""
+ },
+ {
+  "label": "Zoncu 2011",
+  "doi": "10.1126/science.1207056",
+  "ingest": {
+   "success": true,
+   "paper_id": "scilit-paper-d892dc4defd3",
+   "title": "mTORC1 Senses Lysosomal Amino Acids Through an Inside-Out Mechanism That Requires the Vacuolar H + -ATPase",
+   "doi": "10.1126/science.1207056",
+   "status": "inserted"
+  },
+  "paper_id": "scilit-paper-d892dc4defd3",
+  "verified_title": ""
+ },
+ {
+  "label": "Tsun 2013",
+  "doi": "10.1016/j.molcel.2013.09.016",
+  "ingest": {
+   "success": true,
+   "paper_id": "scilit-paper-957cbea39c3c",
+   "title": "The Folliculin Tumor Suppressor Is a GAP for the RagC/D GTPases That Signal Amino Acid Levels to mTORC1",
+   "doi": "10.1016/j.molcel.2013.09.016",
+   "status": "inserted"
+  },
+  "paper_id": "scilit-paper-957cbea39c3c",
+  "verified_title": ""
+ },
+ {
+  "label": "Reddy 2001",
+  "doi": "10.1016/s0092-8674(01)00421-4",
+  "ingest": {
+   "success": true,
+   "paper_id": "scilit-paper-cb8a178e6a5c",
+   "title": "Plasma Membrane Repair Is Mediated by Ca2+-Regulated Exocytosis of Lysosomes",
+   "doi": "10.1016/s0092-8674(01)00421-4",
+   "status": "inserted"
+  },
+  "paper_id": "scilit-paper-cb8a178e6a5c",
+  "verified_title": ""
+ },
+ {
+  "label": "Wahrle 2004",
+  "doi": "10.1074/jbc.m407963200",
+  "ingest": {
+   "success": true,
+   "paper_id": "scilit-paper-08583491041f",
+   "title": "ABCA1 Is Required for Normal Central Nervous System ApoE Levels and for Lipidation of Astrocyte-secreted apoE",
+   "doi": "10.1074/jbc.m407963200",
+   "status": "inserted"
+  },
+  "paper_id": "scilit-paper-08583491041f",
+  "verified_title": ""
+ },
+ {
+  "label": "Infante 2008",
+  "doi": "10.1073/pnas.0807328105",
+  "ingest": {
+   "success": true,
+   "paper_id": "scilit-paper-4b2f6cbb999e",
+   "title": "NPC2 facilitates bidirectional transfer of cholesterol between NPC1 and lipid bilayers, a step in cholesterol egress from lysosomes",
+   "doi": "10.1073/pnas.0807328105",
+   "status": "inserted"
+  },
+  "paper_id": "scilit-paper-4b2f6cbb999e",
+  "verified_title": ""
+ },
+ {
+  "label": "Pu 2015",
+  "doi": "10.1016/j.devcel.2015.02.011",
+  "ingest": {
+   "success": true,
+   "paper_id": "scilit-paper-a2dc8a376e7e",
+   "title": "BORC, a Multisubunit Complex that Regulates Lysosome Positioning",
+   "doi": "10.1016/j.devcel.2015.02.011",
+   "status": "inserted"
+  },
+  "paper_id": "scilit-paper-a2dc8a376e7e",
+  "verified_title": ""
+ },
+ {
+  "label": "E2 signature 2025",
+  "doi": "10.1002/advs.202509764",
+  "ingest": {
+   "success": true,
+   "paper_id": "scilit-paper-250d968ed0cb",
+   "status": "existing"
+  },
+  "paper_id": "scilit-paper-250d968ed0cb",
+  "verified_title": ""
+ }
+]

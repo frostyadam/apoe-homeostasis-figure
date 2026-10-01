@@ -1,0 +1,908 @@
+<title>APOE Endocytosis Atlas</title>
+<meta name="description" content="E4- vs E2-carrier transcriptomic effects mapped onto each step of APOE-lipoprotein endocytosis in locus coeruleus and entorhinal cortex.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;500&family=IBM+Plex+Sans+Condensed:wght@500;600&family=IBM+Plex+Sans:ital,wght@0,400;0,500;0,600;1,400&display=swap">
+<style>
+:root{
+  --page:#f6f6f3; --surf:#fcfcfb; --ink:#0b0b0b; --ink2:#52514e; --muted:#8a8984;
+  --rule:#d8d7d2; --grid:#ececE8; --neutral:#f0efec; --band:#ecebe6;
+  --up:#e34948; --down:#2a78d6; --focus:#2a78d6;
+  --cyto:#f6f2ea; --mem:#d8ccb6; --mem-in:#f1ebdf; --nuc:#ece6dc; --lipid:#f7ecc6; --lipid-edge:#d9c79a; --apoe:#86b83a; --lumen:#fbf8f2; --lyso:#eadfd6; --rec:#dfb21b; --tether:#6c5f4d; --chol:#c9a227; --vatp:#7f93b8; --slc:#b58bb0; --lamtor:#a8997f; --rag1:#e59a4a; --rag2:#c47a3a; --flcn:#9bb3a0; --rheb:#6ea86b; --mtor:#3f6e8c; --on-mtor:#ffffff; --tm6:#c96f8a; --gpi:#4f93b8; --cd36:#b8694c; --oxldl:#c9a47a; --oxldl-edge:#9c7a52; --abeta:#6b6790; --abca7:#6a579c; --tau:#2f7f96; --bmp:#c2185b; --ribo:#8a7fa6; --sort1:#6f8f2e; --tsc:#8c8c8c; --c-gwas:#8a3a9e; --c-ot:#008a78; --c-up:#d03b3b; --c-dn:#3987e5; --clath:#5aaeae; --abca:#8f7ab8; --hspg:#9a8f7c; --drug:#6e7b87;
+  --sans:"IBM Plex Sans",system-ui,-apple-system,"Segoe UI",sans-serif;
+  --cond:"IBM Plex Sans Condensed","IBM Plex Sans",system-ui,sans-serif;
+  --mono:"IBM Plex Mono",ui-monospace,"SFMono-Regular",Menlo,monospace;
+}
+@media (prefers-color-scheme: dark){
+  :root:not([data-theme="light"]){
+    color-scheme:dark;
+    --page:#0d0d0d; --surf:#1a1a19; --ink:#ededea; --ink2:#b4b3ad; --muted:#8a8984;
+    --rule:#3a3a37; --grid:#2a2a28; --neutral:#383835; --band:#262624;
+    --up:#e85a58; --down:#3d87e0; --focus:#6ea5ec;
+    --cyto:#1f1e1b; --mem:#6e6554; --mem-in:#48423a; --nuc:#2a2824; --lipid:#bda977; --lipid-edge:#8f7d52; --apoe:#9ccb4c; --lumen:#2b2925; --lyso:#3a322d; --rec:#e6c23c; --tether:#b7aa92; --chol:#e0c250; --vatp:#8fa3c8; --slc:#c49bc0; --lamtor:#9c8f78; --rag1:#eaa55a; --rag2:#d08a4a; --flcn:#8aa590; --rheb:#7cb879; --mtor:#5b8fb0; --on-mtor:#0d0d0d; --tm6:#d8849d; --gpi:#62a8cc; --cd36:#c97b5d; --oxldl:#a88a64; --oxldl-edge:#7d6547; --abeta:#9a96c0; --abca7:#8a78bc; --tau:#4fa3bc; --bmp:#e0558a; --ribo:#a79cc4; --sort1:#8aab45; --tsc:#a3a3a3; --c-gwas:#b25ec8; --c-ot:#199e70; --c-up:#d03b3b; --c-dn:#3987e5; --clath:#4f9f9f; --abca:#9a86c4; --hspg:#8a806d; --drug:#9fb0bd;
+  }
+}
+:root[data-theme="dark"]{
+  color-scheme:dark;
+  --page:#0d0d0d; --surf:#1a1a19; --ink:#ededea; --ink2:#b4b3ad; --muted:#8a8984;
+  --rule:#3a3a37; --grid:#2a2a28; --neutral:#383835; --band:#262624;
+  --up:#e85a58; --down:#3d87e0; --focus:#6ea5ec;
+    --cyto:#1f1e1b; --mem:#6e6554; --mem-in:#48423a; --nuc:#2a2824; --lipid:#bda977; --lipid-edge:#8f7d52; --apoe:#9ccb4c; --lumen:#2b2925; --lyso:#3a322d; --rec:#e6c23c; --tether:#b7aa92; --chol:#e0c250; --vatp:#8fa3c8; --slc:#c49bc0; --lamtor:#9c8f78; --rag1:#eaa55a; --rag2:#d08a4a; --flcn:#8aa590; --rheb:#7cb879; --mtor:#5b8fb0; --on-mtor:#0d0d0d; --tm6:#d8849d; --gpi:#62a8cc; --cd36:#c97b5d; --oxldl:#a88a64; --oxldl-edge:#7d6547; --abeta:#9a96c0; --abca7:#8a78bc; --tau:#4fa3bc; --bmp:#e0558a; --ribo:#a79cc4; --sort1:#8aab45; --tsc:#a3a3a3; --c-gwas:#b25ec8; --c-ot:#199e70; --c-up:#d03b3b; --c-dn:#3987e5; --clath:#4f9f9f; --abca:#9a86c4; --hspg:#8a806d; --drug:#9fb0bd;
+}
+*{box-sizing:border-box}
+body{background:var(--page);color:var(--ink);font:18.2px/1.55 var(--sans);margin:0}
+.wrap{max-width:1120px;margin:0 auto;padding-inline:20px;padding-block:28px 64px;display:flex;flex-direction:column;gap:28px}
+h1,h2{font-family:var(--cond);font-weight:600;text-wrap:balance;margin:0;letter-spacing:.005em}
+h1{font-size:38.7px;line-height:1.15}
+h2{font-size:23px;line-height:1.25;display:flex;gap:10px;align-items:baseline}
+h2 .tag{font-family:var(--mono);font-weight:500;font-size:14.5px;color:var(--ink2);border:1px solid var(--rule);border-radius:3px;padding:1px 6px}
+p{margin:0;max-width:72ch}
+.eyebrow{font:500 14.5px/1 var(--mono);letter-spacing:.08em;text-transform:uppercase;color:var(--ink2)}
+header{display:flex;flex-direction:column;gap:12px}
+.lede{font-size:20px;color:var(--ink2);max-width:70ch}
+.lede b{color:var(--ink);font-weight:600}
+.facts{display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:1px;background:var(--rule);border:1px solid var(--rule);border-radius:6px;overflow:hidden}
+.fact{background:var(--surf);padding:12px 14px;display:flex;flex-direction:column;gap:3px}
+.fact .v{font:500 24.2px/1.2 var(--mono);font-variant-numeric:tabular-nums}
+.fact .k{font-size:15.7px;color:var(--ink2)}
+section.panel{background:var(--surf);border:1px solid var(--rule);border-radius:6px;padding:18px 18px 16px;display:flex;flex-direction:column;gap:12px}
+.controls{display:flex;flex-wrap:wrap;gap:10px 18px;align-items:center;font-size:15.7px;color:var(--ink2)}
+.controls label{display:flex;gap:6px;align-items:center}
+select{font:15.7px var(--sans);color:var(--ink);background:var(--surf);border:1px solid var(--rule);border-radius:4px;padding:4px 6px;max-width:100%}
+.seg{display:inline-flex;border:1px solid var(--rule);border-radius:4px;overflow:hidden}
+.seg button{font:15.7px var(--sans);color:var(--ink2);background:var(--surf);border:0;border-right:1px solid var(--rule);padding:4px 10px;cursor:pointer}
+.seg button:last-child{border-right:0}
+.seg button[aria-pressed="true"]{background:var(--ink);color:var(--surf)}
+.seg button:disabled{opacity:.4;cursor:not-allowed}
+button:focus-visible,select:focus-visible,[tabindex]:focus-visible{outline:2px solid var(--focus);outline-offset:2px}
+.scroll{overflow-x:auto}
+.heatscroll{overflow:auto;max-height:620px;border-top:1px solid var(--grid)}
+svg{display:block;max-width:100%;height:auto}
+svg text{fill:var(--ink);font-family:var(--sans)}
+svg .mono{font-family:var(--mono)}
+svg .ink2{fill:var(--ink2)}
+svg .muted{fill:var(--muted)}
+figcaption,.cap{font-size:15.7px;color:var(--ink2);max-width:90ch;line-height:1.5}
+figure{margin:0;display:flex;flex-direction:column;gap:10px}
+.legend{display:flex;flex-wrap:wrap;gap:6px 18px;align-items:center;font-size:15.2px;color:var(--ink2)}
+.ramp{display:inline-block;width:140px;height:10px;border-radius:2px;vertical-align:middle}
+.sw{display:inline-block;width:10px;height:10px;border-radius:50%;vertical-align:-1px;margin-right:5px}
+.caveats{border:1px solid var(--rule);border-radius:6px;background:var(--surf);padding:14px 16px;display:grid;grid-template-columns:repeat(auto-fit,minmax(240px,1fr));gap:10px 22px;font-size:16.4px;color:var(--ink2)}
+.caveats b{color:var(--ink);font-weight:600;display:block;font-size:16.4px}
+.refs{font-size:15.7px;color:var(--ink2);display:flex;flex-direction:column;gap:4px}
+.refs a{color:var(--ink2)}
+details{font-size:15.7px;color:var(--ink2)}
+details summary{cursor:pointer}
+table{border-collapse:collapse;font:14.5px var(--mono);font-variant-numeric:tabular-nums;margin-top:8px}
+th,td{padding:3px 8px;border-bottom:1px solid var(--grid);text-align:right;white-space:nowrap}
+th:first-child,td:first-child,th:nth-child(2),td:nth-child(2){text-align:left}
+th{color:var(--ink2);font-weight:500}
+#tip{position:fixed;z-index:10;pointer-events:none;background:var(--surf);color:var(--ink);border:1px solid var(--rule);border-radius:5px;box-shadow:0 4px 16px rgba(0,0,0,.14);padding:8px 10px;font-size:15.2px;line-height:1.45;max-width:320px}
+#tip .t{font-weight:600;margin-bottom:2px}
+#tip .m{font-family:var(--mono);font-variant-numeric:tabular-nums}
+#tip table{margin-top:4px}
+#tip td{padding:1px 6px 1px 0;border:0}
+.hit{cursor:pointer}
+@media (max-width:560px){h1{font-size:31.5px}.wrap{padding-inline:16px}}
+@media (prefers-reduced-motion:no-preference){.node rect{transition:fill .2s}}
+</style>
+
+<div class="wrap">
+<header>
+  <div class="eyebrow">APOE · locus coeruleus &amp; entorhinal cortex · E4 vs E2 carriers</div>
+  <h1>APOE Endocytosis Atlas</h1>
+  <p class="lede" id="lede"></p>
+  <div class="facts" id="facts"></div>
+</header>
+
+<section class="panel" id="pA">
+  <h2>APOE Homeostasis</h2>
+  <div class="legend" id="catLegend">
+    <span><span class="sw" style="background:var(--c-gwas)"></span>AD GWAS locus (consensus Tier 1/2)</span>
+    <span><span class="sw" style="background:var(--c-ot)"></span>Open Targets AD genetic association</span>
+    <span><span class="sw" style="background:var(--c-up)"></span>Higher in APOE4 carriers</span>
+    <span><span class="sw" style="background:var(--c-dn)"></span>Lower in APOE4 carriers</span>
+  </div>
+  <figure>
+    <div class="scroll"><svg id="schem" viewBox="0 -36 1100 766" style="min-width:760px" role="img" aria-label="APOE lipoparticle secretion and endocytosis, cell cartoon, no data shown. Left: APOE is made in the ER, passes the Golgi, and leaves by exocytosis, then ABCA1 lipidates it. Right: APOE-lipoprotein binds HSPG and lipoprotein receptors, enters through a clathrin-coated pit and vesicle, reaches the early endosome, and either recycles its receptor to the membrane or proceeds to late endosome and lysosome, where cholesterol is exported back to the ER. A lysosome-derived vesicle also fuses with the plasma membrane, which is endo-lysosomal exocytosis."></svg></div>
+    <figcaption>The APOE route through the cell, drawn without data while the graphic is refined. On the left, APOE is translated on a rough-ER ribosome and inserted co-translationally into the ER lumen, passes through the Golgi, meets ABCA1 in a trans-Golgi bud where the first lipoparticle forms, leaves by exocytosis and is lipidated by ABCA1. Outside the cell, mature lipoparticles carry APOC1, APOC2 and CLU, and PLTP remodels them. On the right, APOE-lipoprotein is captured by HSPG and handed to lipoprotein receptors, then enters through a clathrin-coated pit. From the early endosome, receptors recycle to the surface in a vesicle budded from a short tubule, and cargo continues to the late endosome and lysosome, whose lumens hold lipoparticles, free APOE and whorls of undigested membrane. Each receptor drawing is filled with its evidence colour; the internalised receptors are drawn as LDLR. The plasma membrane also carries SORL1 and SORT1 (Vps10p-domain receptors and AD GWAS loci); GPIHBP1, a GPI-anchored lipoprotein-lipase carrier; CD36, a scavenger receptor that binds and internalises oxLDL and amyloid-β; and ABCA7, an ABCA1 homologue and AD risk gene, drawn effluxing cholesterol onto a lipoparticle. ABCA1 is also drawn in the Golgi and on the lysosome. In the spatial data, GPIHBP1 and CD36 are among the largest effects (GPIHBP1 up, CD36 down), but the cartoon itself shows no data. The early endosome is mildly acidic (pH ≈ 6.0–6.5). APOE4 has the highest isoelectric point of the three isoforms (computed from sequence: E2 5.41, E3 5.52, E4 5.65), so it carries the least charge there; Xian et al. 2018 (eLife) propose this traps APOE4 and its receptors in early endosomes and slows recycling. APOD is drawn on the same mature lipoparticle as APOC1, APOC2 and CLU, because CSF fractionation puts the bulk of APOD on APOE-containing particles &mdash; though, despite its name, APOD is not structurally an apolipoprotein and does not bind APOE. It is the one gene here whose effect is ancestry-restricted: it does not move in the pooled contrast and therefore carries no red or blue, but within European-ancestry donors it is the 99.4th percentile of all tested genes (5-domain mean +0.66). Receptors sit with their ligand-binding heads facing the lumen of every endocytic compartment; one on the recycling tubule still holds lipid-poor APOE. The recycling tubule grows out of the early endosome, and its lumen is continuous with the endosome's. APOE4 cells also behave as if sterol-depleted at the ER while storing cholesterol in the lysosome. That paradox is now measured rather than inferred: isogenic APOE4 astrocytes hold 20% more total cholesterol, all of it free rather than esterified, with three-fold more cholesterol in the lysosome, and NPC1, NPC2, SMPD1 and LAMP1/2 are all lower in those cells [7]. The sub-panel below sets the argument out in full. In the cytosol ACAT2 (acetoacetyl-CoA thiolase, not SOAT2) enters the mevalonate pathway and MVK continues it, and DHCR24 in the ER membrane completes it. Both are SREBP2 targets that rise when too little cholesterol reaches the ER, and both are higher in APOE4 carriers — and the whole SREBP2 arm reads sterol-DEPLETED rather than sterol-loaded (LDLR +0.11, HMGCS1 +0.10, HMGCR +0.10, INSIG1 +0.08 all mildly positive), while the flux-setting enzymes HMGCR (FDR 0.14) and SQLE (0.91) do not move and MVK's immediate downstream partner PMVK is DOWN (−0.15, FDR 0.011), so higher sterol OUTPUT is not implied. The sub-panel below follows the one consequence these enzymes do predict for a specific metabolite. Lysosomal cholesterol leaves through NPC2 and NPC1 at membrane contact sites, where peripheral ER tubules are tethered to the lysosome (GO:7770088; STARD3, VAPA and OSBPL1A/ORP1L), and passes directly into the ER. The ER tubules are part of the ER network, so their lumens open into the ER lumen. On the lysosome surface, magnified at lower right, lysosomal amino acids and cholesterol are sensed by the v-ATPase and SLC38A9. These signal through Ragulator (LAMTOR1–5) to the Rag GTPases. The RagA/B-GTP with RagC/D-GDP state, which FLCN–FNIP maintains, recruits mTORC1 to the lysosome, where RHEB-GTP activates it; the TSC complex (TSC1/TSC2, GO:0033596) is the GAP that turns RHEB off. TM6SF1, a lysosomal cholesterol-binding membrane protein (orange dots mark cholesterol, here, in SLC38A9, at the ER contacts and inside every lipoparticle), engages LAMTOR1 of Ragulator in a cholesterol-dependent manner and is needed for normal mTORC1 signalling [3]. GO sets: TORC1 complex GO:0031931, Ragulator GO:0071986, Rag GTPase complex GO:1990131, V-type ATPase GO:0016471, and positive regulation of TORC1 signalling GO:1904263. <b>BMP (bis(monoacylglycero)phosphate, also lysobisphosphatidic acid) is drawn in the lumens of the late endosome, the lysosome and the lysosome bound for exocytosis, because it is the lipid that reports this compartment's condition.</b> It is essentially confined to the internal membranes of late endosomes and lysosomes, which are also the membranes that hold most of this compartment's cholesterol — the pool NPC2 must extract from before NPC1 exports it. So BMP marks the source pool for the export step drawn at the contact site. Antibody against BMP, internalised into late endosomes, raises free cholesterol and reduces cholesterol efflux to HDL [5], so BMP-rich domains are needed for normal export; but unlike the classic NPC-mimetic U18666A that antibody leaves ACAT esterification unchanged, so it impairs export without reproducing Niemann-Pick type C in full, and whether BMP mediates the export step or only marks its failure is still unsettled. Cholesterol and BMP do move together: across 16 mice, regardless of genotype, free cholesterol tracks BMP at r = +0.725. <b>Its link to neurodegeneration is that BMP accumulation is the lipid signature of a lysosome that has taken in material it cannot clear.</b> It rises across lysosomal storage disorders — 51-fold in the urine of Niemann-Pick type C patients, in the gangliosidoses GM1 and GM2 where it accumulates as a secondary storage lipid and falls again after gene therapy, and in drug-induced phospholipidosis, for which di-22:6-BMP is the clinical biomarker — and in human late-onset Alzheimer's disease the entorhinal cortex is specifically enriched in BMP alongside sphingomyelin, GM3 and cholesteryl esters, a combination the authors read as endolysosomal storage [6] — the same region and the same lipids that rise with APOE4 allele dose in mouse entorhinal cortex (dose trend p = 0.007). BMP is also raised in APOE4 mouse forebrain and, independently, in mTORC1-hyperactive mouse cortex (+50%, q = 0.023), where it persists after Raptor deletion. <b>Two cautions follow.</b> Because BMP rises in both an APOE lesion and an unrelated mTORC1 lesion, and across storage disorders caused by mutations in NPC1, NPC2, GLB1, HEXA and HEXB, it marks lysosomal overload rather than anything specific to APOE; and BMP is a structural isomer of phosphatidylglycerol that mass spectrometry cannot separate without extra chromatography, so every value above should be read as BMP and PG combined. <b>A third caution matters most: none of this has been confirmed in humans.</b> Every BMP number here is mouse or cell-line, and the single APOE-stratified human measurement — cerebral vessels from 89 AD brains across five genotypes — trends the opposite way, with BMP falling per E4 allele (sum −3.51, adjusted p = 0.26) and no species reaching significance [9]. That is a failed prediction rather than a refutation, since the intervals are wide and vessels are a different cell pool; but di-22:6-BMP, the species the clinical assay measures, has never been measured in any APOE-stratified sample, and storage shifts BMP away from polyunsaturated species, so the measured and unmeasured pools could move in opposite directions. Consistent with the storage reading, LIPA, the lysosomal enzyme that hydrolyses cholesteryl esters, is lower in APOE4 in the pooled data (&minus;0.25, FDR 0.003) &mdash; but <b>that blue belongs to one ancestry stratum only, and the two strata have opposite signs</b>: within African-ancestry donors LIPA is &minus;0.61, within European-ancestry donors it is <b>+0.16</b>, and the between-stratum difference is highly significant (+0.75, q 8.7&times;10<sup>&minus;8</sup>, the third largest ancestry heterogeneity among the labelled genes). &ldquo;Lower in APOE4&rdquo; is therefore not supportable for LIPA as a general statement, and its &dagger; marks that, while the lysosomal cholesterol machinery drawn here (NPC1, NPC2, TM6SF1, Ragulator, the Rag GTPases, mTORC1) is transcriptionally flat — a lipid phenotype without a transcriptional signature. Lysosomes carrying undigested amyloid-β and tau aggregates can also fuse with the plasma membrane and release those aggregates into the extracellular space; this is endo-lysosomal exocytosis, GO:1990927, which is Ca²⁺-triggered, with ARL8B positioning the lysosome and SYT7/SYT11 as the calcium sensors. Gene names are shown only where there is disease or APOE-dependent evidence. Plum marks AD GWAS consensus loci (Nature Genetics 2026, Tier 1 or 2). Teal marks Open Targets AD genetic-association scores. Red and blue mark genes higher or lower in APOE4 than APOE2 carriers in the pooled LC contrast (FDR < 0.05), matching the companion spatial-transcript figures. ‡ marks genes within 1 Mb of APOE, whose expression difference can follow the APOE haplotype itself. † marks a gene whose pooled colour is generated by a single ancestry stratum and reverses in the other; LIPA is the only coloured gene here for which that is true, although 25 further labelled genes have significant ancestry heterogeneity (BH q &lt; 0.05) while carrying no pooled colour at all. APOC1 and APOC2 get no Open Targets credit, because their credible sets are the APOE signal. A dot adds each further category. Grey marks genes kept for Open Targets neurodegeneration genetics (score ≥ 0.1, MONDO_0005559), or for the mTORC1 and NPC pathway. APOE's expression difference falls in the APOE cis window. Removed: AP2M1, DNM1, DNM2, EEA1, SYT11 and HSPA5 (at review), and in the first pass LRP8, CLTC, RAB5A, RAB11A, RAB7A, CANX, SEC61A1, GOLGA2, GORASP1, COPA, SNAP23, STX4, VAMP3, RAB27A, ARL8B, SYT7, STARD3, VAPA and OSBPL1A; the clathrin coat and contact-site tethers stay drawn as structures. Each gene name is a member of that organelle's downloaded GO set. Hover or tap an organelle for its GO term. Notes: [1] APOE2 binds HSPG, LDLR and LRP1 weakly, so particles clear more slowly and plasma APOE and APOC rise. [2] APOE3 R136S (Christchurch) is cargo-selective: in microglia it raises Aβ uptake and lowers tau uptake, and blocking LRP-family receptors with RAP reduces tau entry.</figcaption>
+  </figure>
+  <figure>
+    <div class="scroll"><svg id="sterolnr" viewBox="0 0 1000 596" style="min-width:760px" role="img" aria-label="Sterol and LXR evidence. Band 1: DHCR24 is higher in APOE4 in five independent datasets. Band 2: the consequence is now measured rather than inferred — isogenic APOE4 astrocytes hold 20 percent more total cholesterol, entirely as free cholesterol with cholesteryl ester unchanged, and three times more lysosomal cholesterol, so the endoplasmic reticulum reads sterol-depleted while the lysosome is loaded, which predicts weaker LXR agonism. Band 3: the hypothesis tested pharmacologically — LXR agonists restore APOE4 cholesterol efflux to APOE3 levels whereas 25-hydroxycholesterol does not. Band 4: the disposal route differs by cell type, astrocytes storing free cholesterol and oligodendroglia esterifying it. Band 5: the opposing 24S-hydroxycholesterol arm is withdrawn because CYP46A1 is down in human oligodendroglia."><defs><marker id="ah4" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse"><path d="M 0 1 L 9 5 L 0 9 z" fill="var(--ink2)"/></marker></defs><text x="0" y="14" font-size="11" text-anchor="start" class="mono muted" font-weight="600">THE REPLICATED OBSERVATION — DHCR24 higher in APOE4, five datasets, three platforms, two species</text><rect x="0" y="24" width="1000" height="146" rx="4" fill="var(--surf)" stroke="var(--rule)" stroke-width="1"/><text x="12" y="42" font-size="9.5" text-anchor="start" class="mono muted">dataset</text><text x="470" y="42" font-size="9.5" text-anchor="end" class="mono muted">log₂FC</text><text x="486" y="42" font-size="9.5" text-anchor="start" class="mono muted">significance</text><text x="660" y="42" font-size="9.5" text-anchor="start" class="mono muted">what it controls for</text><text x="12" y="64" font-size="10.5" text-anchor="start" class="mono">our LC Visium · 5-domain pool</text><rect x="300" y="55" width="58.0" height="10" rx="1.5" fill="var(--c-up)"/><text x="470" y="64" font-size="10.5" text-anchor="end" class="mono" font-weight="500" fill="var(--c-up)">+0.276</text><text x="486" y="64" font-size="10" text-anchor="start" class="mono" fill="var(--ink2)">FDR 5.7×10⁻⁷</text><text x="660" y="64" font-size="10" text-anchor="start" class="mono" fill="var(--ink2)">spot-level, E4 vs E2 carriers</text><text x="12" y="83" font-size="10.5" text-anchor="start" class="mono" fill="var(--ink2)">our ERC snRNA · oligodendrocytes</text><rect x="300" y="74" width="42.2" height="10" rx="1.5" fill="var(--c-up)"/><rect x="300" y="74" width="42.2" height="10" rx="1.5" fill="var(--surf)" opacity="0.45"/><text x="470" y="83" font-size="10.5" text-anchor="end" class="mono" font-weight="500" fill="var(--c-up)">+0.201</text><text x="486" y="83" font-size="10" text-anchor="start" class="mono" fill="var(--ink2)">n.s. (underpowered)</text><text x="660" y="83" font-size="10" text-anchor="start" class="mono" fill="var(--ink2)">cell-type resolved, same direction</text><text x="12" y="102" font-size="10.5" text-anchor="start" class="mono">isogenic iPSC oligodendroglia</text><rect x="300" y="93" width="128.9" height="10" rx="1.5" fill="var(--c-up)"/><text x="470" y="102" font-size="10.5" text-anchor="end" class="mono" font-weight="500" fill="var(--c-up)">+0.614</text><text x="486" y="102" font-size="10" text-anchor="start" class="mono" fill="var(--ink2)">q 1.7×10⁻⁴</text><text x="660" y="102" font-size="10" text-anchor="start" class="mono" fill="var(--ink2)">genotype is the ONLY variable</text><text x="12" y="121" font-size="10.5" text-anchor="start" class="mono">post-mortem oligodendrocytes · Nebula</text><rect x="300" y="112" width="115.7" height="10" rx="1.5" fill="var(--c-up)"/><text x="470" y="121" font-size="10.5" text-anchor="end" class="mono" font-weight="500" fill="var(--c-up)">+0.551</text><text x="486" y="121" font-size="10" text-anchor="start" class="mono" fill="var(--ink2)">padj 0.024</text><text x="660" y="121" font-size="10" text-anchor="start" class="mono" fill="var(--ink2)">human tissue, per-nucleus</text><text x="12" y="140" font-size="10.5" text-anchor="start" class="mono">post-mortem oligodendrocytes · Wilcoxon</text><rect x="300" y="131" width="24.8" height="10" rx="1.5" fill="var(--c-up)"/><text x="470" y="140" font-size="10.5" text-anchor="end" class="mono" font-weight="500" fill="var(--c-up)">+0.118</text><text x="486" y="140" font-size="10" text-anchor="start" class="mono" fill="var(--ink2)">top-ranked, up in AD + non-AD</text><text x="660" y="140" font-size="10" text-anchor="start" class="mono" fill="var(--ink2)">~10⁵ nuclei, both strata</text><text x="12" y="164" font-size="9.5" text-anchor="start" class="mono muted">DHCR24 = 24-dehydrocholesterol reductase: converts desmosterol → cholesterol. Also seladin-1, reduced in vulnerable neurons in AD.</text><text x="0" y="194" font-size="11" text-anchor="start" class="mono muted" font-weight="600">NOW MEASURED, NOT INFERRED — APOE4 glia hoard FREE cholesterol in lysosomes while the ER reads "depleted"</text><rect x="0" y="204" width="1000" height="124" rx="4" fill="var(--surf)" stroke="var(--rule)" stroke-width="1"/><rect x="10" y="214" width="274" height="104" rx="4" fill="var(--band)" stroke="var(--rule)" stroke-width="1"/><text x="22" y="232" font-size="10" text-anchor="start" class="mono" font-weight="600">isogenic APOE4 vs APOE3 astrocytes</text><text x="22" y="245" font-size="9" text-anchor="start" class="mono muted">GC-MS · n = 6, 4 experiments</text><text x="22" y="266" font-size="10.5" text-anchor="start" class="mono">total cholesterol</text><text x="274" y="266" font-size="11" text-anchor="end" class="mono" font-weight="600" fill="var(--c-up)">+20%</text><text x="22" y="283" font-size="10" text-anchor="start" class="mono" fill="var(--ink2)">…entirely FREE cholesterol</text><text x="22" y="300" font-size="10.5" text-anchor="start" class="mono">cholesteryl ester</text><text x="274" y="300" font-size="10.5" text-anchor="end" class="mono" fill="var(--ink2)">unchanged</text><text x="22" y="313" font-size="9.5" text-anchor="start" class="mono" font-weight="600" fill="var(--c-up)">lysosomal cholesterol 3× (p&lt;0.001, filipin)</text><circle cx="318" cy="252" r="8" fill="var(--chol)"/><text x="318" y="274" font-size="9.5" text-anchor="middle" class="mono" font-weight="600">desmosterol</text><path d="M 334 252 L 372 252" stroke="var(--ink2)" stroke-width="1.8" fill="none" marker-end="url(#ah4)"/><text x="353" y="245" font-size="9" text-anchor="middle" class="mono" fill="var(--c-up)">DHCR24 ↑</text><circle cx="396" cy="252" r="8" fill="none" stroke="var(--c-dn)" stroke-width="1.6" stroke-dasharray="2.5 2.5"/><circle cx="396" cy="252" r="3" fill="var(--chol)" opacity="0.3"/><text x="396" y="274" font-size="9.5" text-anchor="middle" class="mono" font-weight="600" fill="var(--c-dn)">↓ predicted</text><path d="M 414 252 L 452 252" stroke="var(--c-dn)" stroke-width="2.2" fill="none"/><path d="M 452 242 L 452 262" stroke="var(--c-dn)" stroke-width="3"/><text x="433" y="243" font-size="9" text-anchor="middle" class="mono" font-weight="600" fill="var(--c-dn)">LESS</text><rect x="462" y="224" width="132" height="60" rx="6" fill="var(--neutral)" stroke="var(--ink)" stroke-width="1.6"/><text x="528" y="248" font-size="14" text-anchor="middle" font-weight="600">LXR / RXR</text><text x="528" y="266" font-size="9.5" text-anchor="middle" class="mono" font-weight="600" fill="var(--c-dn)">hypo-agonised</text><text x="528" y="300" font-size="9.5" text-anchor="middle" class="mono" fill="var(--ink2)">efflux ↓ · our PLTP −0.505</text><text x="528" y="313" font-size="9" text-anchor="middle" class="mono" fill="var(--ink2)">ABCA1, ABCA7, APOE protein ↓ (TCW)</text><rect x="606" y="214" width="384" height="104" rx="4" fill="var(--band)" stroke="var(--rule)" stroke-width="1"/><text x="618" y="232" font-size="9.5" text-anchor="start" class="mono muted" font-weight="600">the authors' own mechanism</text><text x="618" y="252" font-size="10.5" text-anchor="start" fill="var(--ink)">"lysosomal sequestration of free cholesterol away</text><text x="618" y="267" font-size="10.5" text-anchor="start" fill="var(--ink)">from ER that misinforms APOE4 cells to respond</text><text x="618" y="282" font-size="10.5" text-anchor="start" fill="var(--ink)">as if intracellular cholesterol levels are low,</text><text x="618" y="297" font-size="10.5" text-anchor="start" fill="var(--ink)">leading to upregulated de novo synthesis"</text><text x="618" y="313" font-size="9" text-anchor="start" class="mono muted">TCW et al. 2022 · independently reached from the sterol side</text><text x="0" y="350" font-size="11" text-anchor="start" class="mono muted" font-weight="600">THE HYPOTHESIS TESTED PHARMACOLOGICALLY</text><rect x="0" y="360" width="490" height="112" rx="4" fill="var(--surf)" stroke="var(--rule)" stroke-width="1"/><path d="M 14 382 l 3.5 4 l 6 -9" stroke="var(--c-up)" stroke-width="2.4" fill="none" stroke-linecap="round" stroke-linejoin="round"/><text x="34" y="386" font-size="10.5" text-anchor="start" class="mono" font-weight="600">LXR agonists GW3965 · T0901317</text><text x="34" y="400" font-size="10" text-anchor="start" class="mono" fill="var(--c-up)">restore APOE4 efflux to untreated APOE3 level</text><path d="M 14 412 l 8 8 M 22 412 l -8 8" stroke="var(--ink2)" stroke-width="2.2" fill="none" stroke-linecap="round"/><text x="34" y="420" font-size="10.5" text-anchor="start" class="mono" font-weight="600">25-hydroxycholesterol</text><text x="34" y="434" font-size="10" text-anchor="start" class="mono" fill="var(--ink2)">no rescue of efflux (it suppresses SREBF2 instead)</text><text x="14" y="450" font-size="9" text-anchor="start" class="mono muted">Incomplete: the APOE4-vs-APOE3 baseline gap persists under treatment; in microglia the</text><text x="14" y="462" font-size="9" text-anchor="start" class="mono muted">agonists raise APOE in APOE3 but NOT in APOE4 — the response is cell-type specific.</text><text x="510" y="350" font-size="11" text-anchor="start" class="mono muted" font-weight="600">THE DISPOSAL ROUTE DIFFERS BY CELL TYPE</text><rect x="510" y="360" width="490" height="112" rx="4" fill="var(--band)" stroke="var(--rule)" stroke-width="1"/><text x="522" y="380" font-size="11" text-anchor="start" class="mono" font-weight="600">astrocytes</text><text x="988" y="380" font-size="10.5" text-anchor="end" class="mono" fill="var(--c-up)">store it FREE · CE unchanged</text><text x="522" y="402" font-size="11" text-anchor="start" class="mono" font-weight="600">oligodendroglia</text><text x="988" y="402" font-size="10.5" text-anchor="end" class="mono" fill="var(--c-up)">esterify it · 35/35 CE ↑ ≈9×</text><text x="522" y="424" font-size="11" text-anchor="start" class="mono" font-weight="600">both compartments</text><text x="988" y="424" font-size="10.5" text-anchor="end" class="mono" fill="var(--c-up)">BMP ↑ in 3 cohorts</text><text x="522" y="446" font-size="10.5" text-anchor="start" class="mono">LIPA (lysosomal CE hydrolase)</text><text x="988" y="446" font-size="10.5" text-anchor="end" class="mono" font-weight="600" fill="var(--c-dn)">−0.249 pooled · AA −0.61 / EA +0.16</text><text x="522" y="462" font-size="9" text-anchor="start" class="mono muted">so cholesteryl ester is NOT a universal APOE4 readout</text><text x="0" y="496" font-size="11" text-anchor="start" class="mono muted" font-weight="600">WITHDRAWN IN REVISION — the opposing 24S-OHC arm</text><rect x="0" y="506" width="1000" height="46" rx="4" fill="var(--surf)" stroke="var(--rule)" stroke-width="1" stroke-dasharray="4 3"/><text x="12" y="525" font-size="11" text-anchor="start" class="mono" font-weight="600">CYP46A1</text><text x="96" y="525" font-size="10" text-anchor="start" class="mono" fill="var(--ink2)">our LC pool +0.180 (FDR 0.037)  ·  isogenic iPSC oligodendroglia −0.707 (q 1.7e-04, OPPOSITE)  ·  post-mortem null (p 0.44)</text><text x="12" y="542" font-size="9.5" text-anchor="start" class="mono muted">Cell-type rescue FAILS — our ERC oligodendrocytes lean +0.310, opposite sign in the same cell type. 24S-OHC is unmeasured in all 5 datasets.</text><rect x="0" y="560" width="1000" height="32" rx="4" fill="var(--band)" stroke="var(--rule)" stroke-width="1"/><text x="14" y="574" font-size="10" text-anchor="start" class="mono" font-weight="600">Still unmeasured:</text><text x="126" y="574" font-size="10" text-anchor="start" class="mono" fill="var(--ink2)">desmosterol, lathosterol, 24S-/25-/27-OHC — 0 of 5 APOE datasets. The sterol labels above remain inferred from enzyme transcripts.</text><text x="14" y="587" font-size="10" text-anchor="start" class="mono" font-weight="600">Decisive test, possibly already run:</text><text x="238" y="587" font-size="10" text-anchor="start" class="mono" fill="var(--ink2)">TCW's GC-MS protocol (Müller 2019) resolves 23 distal sterol intermediates, desmosterol among them — only FC/TC/CE were reported.</text></svg></div>
+    <figcaption><b>The sterol argument, and what is now measured rather than inferred.</b> <b>DHCR24 is higher in APOE4 in five independent datasets</b> across three platforms and two species, including isogenic human iPSC oligodendroglia where genotype is the only variable (+0.614, q 1.7&times;10<sup>&minus;4</sup>) and two analyses of post-mortem human oligodendrocytes. DHCR24 consumes desmosterol, one of the dominant endogenous LXR agonists, and that axis is causally proven &mdash; inhibiting DHCR24 raises desmosterol and every downstream effect is abolished in LXR&alpha;-null mice &mdash; so the replicated rise predicts less desmosterol and weaker LXR/RXR agonism. <b>The consequence is no longer an inference.</b> In isogenic APOE4 astrocytes measured by GC-MS, total cholesterol is 20% higher and the increase is entirely in the free-cholesterol pool with cholesteryl ester unchanged, while filipin shows a three-fold rise in <em>lysosomal</em> cholesterol; TCW et al. 2022 conclude from those measurements that lysosomal sequestration of free cholesterol away from the ER makes APOE4 cells respond as if cholesterol were low and upregulate synthesis [7]. That is the same paradox this figure had drawn from transcripts alone, reached independently from the sterol side. <b>The hypothesis has also been tested pharmacologically, and it passes in the permissive direction.</b> The LXR agonists GW3965 and T0901317 restore APOE4 cholesterol efflux to the level of untreated APOE3 cells, whereas 25-hydroxycholesterol does not. Neither result identifies desmosterol as the missing ligand, and the baseline APOE4-versus-APOE3 gap persists under treatment, so agonism is not a complete rescue &mdash; but the LXR axis is intact and pharmacologically responsive in APOE4 glia, which the hypothesis requires. <b>The disposal route differs by cell type</b>, which matters because it stops cholesteryl ester being read as a universal APOE4 marker: astrocytes store the excess as free cholesterol with CE unchanged, whereas APOE4 oligodendroglia esterify it, with 35 of 35 CE species rising about nine-fold. <b>In humans, though, the cholesteryl-ester effect belongs to E2 and not to E4.</b> The only APOE dataset carrying all three allele arms (3545 people, plasma) finds polyunsaturated CE depleted in E2 carriers (CE 22:6 &minus;0.243, FDR 3.6&times;10<sup>&minus;5</sup>; CE 20:4 &minus;0.169, FDR 5.1&times;10<sup>&minus;5</sup>) while the E4 arm yields nothing at all &mdash; 0 of 553 metabolites at FDR &lt; 0.10, with CE estimates near zero and mostly of opposite sign [8]. Since every contrast in this figure is E4 against E2, a CE difference here cannot be read as APOE4 pathology; plasma and brain CE are nonetheless different pools, so the isogenic and ROSMAP results above still stand. Both compartments show raised BMP, and LIPA, the lysosomal CE hydrolase, is lower in the pooled data &mdash; though only in African-ancestry donors (&minus;0.61); in European-ancestry donors it is +0.16, so the CE-hydrolysis deficit is an ancestry-restricted observation, not a general APOE4 one. <b>The opposing 24S-hydroxycholesterol arm remains withdrawn:</b> CYP46A1 rises in our locus coeruleus pool (+0.180, FDR 0.037) but falls in isogenic human oligodendroglia (&minus;0.707) and is null post-mortem, and the cell-type rescue fails because our own ERC oligodendrocytes lean the opposite way. <b>What would settle Arm A may already exist.</b> TCW used the GC-MS protocol of M&uuml;ller et al. 2019, a whole-cell assay for distal cholesterol biosynthesis that resolves 23 sterol intermediates and identifies enzymes from marker sterols &mdash; desmosterol is DHCR24's marker sterol &mdash; yet only free, total and esterified cholesterol were reported. The desmosterol channel should be in those chromatograms. Two cautions stand: the pathway is not moving as a block, since LSS falls and HMGCR is flat or down, so higher sterol output is not implied; and DHCR7 is flat in our LC but up in oligodendrocytes, so the Bloch-branch specificity claimed earlier does not hold outside the LC. Recorded as <span class="mono">scsynth-5d088562d194</span>, <span class="mono">scsynth-0211304e448e</span> and <span class="mono">scsynth-7d77f7a0c04c</span>.</figcaption>
+  </figure>
+</section>
+
+<section class="panel" id="pB">
+  <h2><span class="tag">B</span>Every step gene that moves, in every domain</h2>
+  <div class="controls">
+    <span>Order rows</span>
+    <span class="seg" id="sortB"><button type="button" data-v="step" aria-pressed="true">by pathway step</button><button type="button" data-v="abs" aria-pressed="false">by strongest |t|</button></span>
+    <span class="legend"><span>t −5</span><span class="ramp" id="rampB"></span><span>t +5</span><span><span class="sw" style="background:var(--ink);width:6px;height:6px"></span>FDR &lt; 0.05</span></span>
+  </div>
+  <figure>
+    <div class="heatscroll"><svg id="heat" role="img" aria-label="Heatmap of limma t statistics for endocytic-step genes across 22 tissue domains and cell types."></svg></div>
+    <figcaption id="capB"></figcaption>
+  </figure>
+</section>
+
+<section class="panel" id="pC">
+  <h2><span class="tag">C</span>Is any step unusual among real pathways?</h2>
+  <figure>
+    <div class="scroll"><svg id="pct" viewBox="0 0 960 400" role="img" aria-label="Strip plot of the percentile of each endocytic step's absolute M-score among 60 real GO pathways, one dot per tissue domain or cell type."></svg></div>
+    <div class="legend"><span><span class="sw" style="background:var(--up)"></span>M &gt; 0 (higher in E4)</span><span><span class="sw" style="background:var(--down)"></span>M &lt; 0 (lower in E4)</span><span>▎ median</span><span>lanes, top to bottom: LC Visium · ERC Visium · ERC snRNA broad · ERC snRNA fine</span></div>
+    <figcaption id="capC"></figcaption>
+  </figure>
+  <details><summary>Show every step × domain score as a table</summary><div class="scroll" id="tblC"></div></details>
+</section>
+
+<section class="panel" id="pD">
+  <h2><span class="tag">D</span>The APOE receptors, gene by gene</h2>
+  <div class="controls">
+    <span>Dataset</span>
+    <span class="seg" id="dsD"><button type="button" data-v="LC_Visium" aria-pressed="true">LC Visium</button><button type="button" data-v="ERC_Visium" aria-pressed="false">ERC Visium</button><button type="button" data-v="ERC_snBroad" aria-pressed="false">ERC snRNA</button></span>
+    <span>Donors</span>
+    <span class="seg" id="stD"><button type="button" data-v="all" aria-pressed="true">all</button><button type="button" data-v="EA" aria-pressed="false">European ancestry</button><button type="button" data-v="AA" aria-pressed="false">African ancestry</button></span>
+  </div>
+  <figure>
+    <div class="scroll"><svg id="forest" role="img" aria-label="Forest plot of E4-versus-E2 log fold-change with 95% confidence intervals for LDLR, LRP1, VLDLR, LRP8, SORL1 and SCARB1."></svg></div>
+    <figcaption>Points show log2 fold-change (E4 minus E2 carriers) with a 95% CI. A filled point has FDR &lt; 0.05 and a hollow point does not. Ancestry strata exist only for LC, from the re-analysis contrasts; ERC published no ancestry-stratified effects. ERC intervals come from the limma t, with SE = logFC / t.</figcaption>
+  </figure>
+</section>
+
+<div class="caveats" id="cav">
+  <div><b>No E3/E3 reference</b>Every contrast compares E4 carriers with E2 carriers. A shift can come from either allele.</div>
+  <div><b>The LXR target evidence is not brain evidence</b>Of the eight genes lower in APOE4 carriers, five are direct LXR targets, but the mapping was done elsewhere. APOE, APOC1 and APOC2 respond through the ME.1 and ME.2 multienhancers, which were defined as macrophage- and adipose-specific enhancers, and CD36's element is a mouse liver DR-7. No LXR response element has been mapped in brain; astrocyte and in-vivo brain APOE do respond to LXR agonists, but the element is unknown [12]. LRP1 rests on one protein-level study, and CLU/APOJ and LIPA have no credible evidence at all. LIPA in fact sits upstream: it generates the oxysterol ligands that activate LXR.</div>
+  <div><b>CE is E2's shift, not E4's</b>The one dataset with all three allele arms (3545 people, plasma) finds polyunsaturated CE depleted in E2 (CE 22:6 FDR 3.6×10⁻⁵) and nothing at all in E4 (0 of 553 at FDR &lt; 0.10) — so a CE difference in an E4-vs-E2 contrast is attributable to E2 [8]. Plasma is not brain, so the isogenic and ROSMAP CE results still stand.</div>
+  <div><b>BMP unconfirmed in humans</b>Every BMP number here is mouse or cell-line. The only APOE-stratified human data (89 AD brains, five genotypes) trend the opposite way, and di-22:6-BMP has never been measured in any APOE-stratified sample [9]. Treat it as a failed prediction, not an established human APOE4 feature.</div>
+  <div><b>Genotype tracks ancestry</b>About 59% of LC E4 carriers are of African ancestry, against about 33% of E2 carriers. Group differences cannot be attributed to genotype alone. Panel D's EA/AA split is the check for receptors.</div>
+  <div><b>Density, not state</b>Microglial signal in Visium is compartment size, not per-cell change: Xenium per-cell expression is flat. It is also African-ancestry-specific (AA −0.91 vs EA −0.12). Read glial rows as abundance.</div>
+  <div><b>cis window</b>Genes within 1 Mb of APOE (‡) are dropped from every step score. The cis window is enriched for DE (29.4% vs 11.7% background), which fits linkage rather than pathway biology.</div>
+  <div><b>Excluded</b>ERC Oligo.3 (a handling artefact) is left out. An "E4 endosomal trapping" callout was omitted because nothing in the curated corpus supports it.</div>
+</div>
+
+<div class="refs">
+  <div class="eyebrow">Sources</div>
+  <div>[1] Serum proteomic signature of the APOE-ε2 allele (2025). The authors attribute the raised APOE and APOC1–APOC4 to weaker APOE2 binding of LDLR, LRP1 and HSPG. Curated in <span class="mono">curation/q1_e2sig.json</span>.</div>
+  <div>[2] Chen et al. 2025, <i>Neuron</i>: APOE3 R136S binds Tau and blocks its propagation. <a href="https://doi.org/10.1016/j.neuron.2024.12.015">doi:10.1016/j.neuron.2024.12.015</a> · PMID 39814008. Curated in <span class="mono">curation/r136s_tau.json</span>.</div>
+  <div>[3] Hong S, Jia L, Wang R, Elghobashi-Meinhardt N, Hobbs HH, Li X. Structure and function of TM6SF1 reveals role in mTORC1 signaling. <i>PNAS</i> 2026. <a href="https://doi.org/10.1073/pnas.2622424123">doi:10.1073/pnas.2622424123</a> · PMID 42735304 (preprint: <a href="https://www.biorxiv.org/content/10.64898/2026.04.01.715928v2.full">bioRxiv 10.64898/2026.04.01.715928</a>).</div>
+  <div>[4] Xian X, et al. Reversal of APOE4-induced recycling block as a novel prevention approach for Alzheimer's disease. <i>eLife</i> 2018;7:e40048. <a href="https://doi.org/10.7554/eLife.40048">doi:10.7554/eLife.40048</a> · PMID 30375977.</div>
+  <div>[5] Kobayashi T, et al. Late endosomal membranes rich in lysobisphosphatidic acid regulate cholesterol transport. <i>Nature Cell Biology</i> 1999. <a href="https://doi.org/10.1038/10084">doi:10.1038/10084</a> — the authors describe the BMP-rich network as "presumably" a collection and distribution device. Anti-BMP antibody in macrophages: Delton-Vandenbroucke et al., <i>JLR</i> 2007, <a href="https://doi.org/10.1194/jlr.M600266-JLR200">doi:10.1194/jlr.M600266-JLR200</a>. BMP in storage disease: Meikle et al., <i>Biochem J</i> 2008, <a href="https://doi.org/10.1042/BJ20071043">doi:10.1042/BJ20071043</a>; Akgoc et al., <i>JLR</i> 2015, <a href="https://doi.org/10.1194/jlr.M057851">doi:10.1194/jlr.M057851</a>; NPC urinary di-22:6-BMP, Liu et al., <i>Toxicol Appl Pharmacol</i> 2014, <a href="https://doi.org/10.1016/j.taap.2014.06.014">doi:10.1016/j.taap.2014.06.014</a>.</div>
+  <div>[6] Chan RB, et al. Comparative lipidomic analysis of mouse and human brain with Alzheimer disease. <i>JBC</i> 2012;287:2678. <a href="https://doi.org/10.1074/jbc.M111.274142">doi:10.1074/jbc.M111.274142</a> · PMID 22134919. Human LOAD entorhinal cortex enriched in BMP, sphingomyelin, GM3 and cholesteryl esters.</div>
+  <div>[7] TCW J, Qian L, Pipalia NH, et al. Cholesterol and matrisome pathways dysregulated in astrocytes and microglia. <i>Cell</i> 2022;185:2213. <a href="https://doi.org/10.1016/j.cell.2022.05.017">doi:10.1016/j.cell.2022.05.017</a> · PMID 35750033. Free cholesterol by GC-MS, filipin, and the LXR-agonist rescue are in its Figure 6.</div>
+  <div>[8] Sebastiani P, Song Z, Ellis D, et al. A metabolomic signature of the APOE2 allele. <i>GeroScience</i> 2023;45(1):415&ndash;426. <a href="https://doi.org/10.1007/s11357-022-00646-9">doi:10.1007/s11357-022-00646-9</a> &middot; PMID 35997888. Five cohorts, 3545 people: E2 (&epsilon;2&epsilon;2+&epsilon;2&epsilon;3) n=544, E3 (&epsilon;3&epsilon;3) n=2299, E4 (&epsilon;3&epsilon;4+&epsilon;4&epsilon;4) n=702; 553 metabolites meta-analysed against the E3 reference with BH FDR. Cholesteryl-ester estimates read from supplementary sheets <span class="mono">Meta.E2.red</span> and <span class="mono">Meta.E4.red</span> (n behind CE = BLSA + LLFS: E2 402, E3 1650). Free cholesterol is nominally covered but weak &mdash; E2 p 0.557, E4 p 0.053, both FDR-null, from two cohorts on untargeted reverse-phase LC-MS, which ionises free cholesterol poorly. Desmosterol, lathosterol and the 24S/25/27-oxysterols are absent from the panel. Recorded as <span class="mono">scsynth-b66cb5e22122</span>.</div>
+  <div>[9] Inoue Y, Wang H, Heckman M, et al. Impact of APOE on cerebrovascular lipid profile in Alzheimer's disease. <i>Acta Neuropathologica</i> 2025;150. <a href="https://doi.org/10.1007/s00401-025-02949-5">doi:10.1007/s00401-025-02949-5</a>. Isolated cerebral vessels from 89 APOE-genotyped AD brains spanning five genotypes with a genuine &epsilon;2 arm; BMP species measured, no sterol on the panel. Recorded as <span class="mono">scsynth-5b50fd2362cc</span>.</div>
+  <div>[10] Guo JL, Braun D, Fitzgerald GA, et al. Structural basis of APOE isoform-specific binding to the LDL receptor. <i>Cell</i> 2025;188(1):187&ndash;206.e26. <a href="https://doi.org/10.1016/j.cell.2024.10.027">doi:10.1016/j.cell.2024.10.027</a> &middot; PMID 39532095. The only modern head-to-head SPR: on POPC-lipidated nanodiscs against the LDLR ectodomain, K<sub>d</sub> is 800 nM for APOE2, 16 nM for APOE3 and 9 nM for APOE4. The ordering drawn here follows those measured values; note that the same authors call E3 and E4 "a comparable binding affinity" and their HTRF EC<sub>50</sub> is ~13 nM for both, so the E3-to-E4 step is roughly 1.8-fold rather than large. It is drawn because it runs in the same direction as the greater intracellular accumulation of APOE4 lipoparticles, which would follow from additional receptor engagement or slower recycling. Christchurch nanodiscs give "greatly right-shifted" competition curves but no published K<sub>d</sub> or IC<sub>50</sub>.</div>
+  <div>[11] APOE2 and Christchurch percentages come from fibroblast &sup1;&sup2;&#8309;I-LDL competition on APOE&middot;DMPC complexes, a different preparation from [10] and not interconvertible with it: Rall SC Jr, Weisgraber KH, Innerarity TL, Mahley RW. <i>J Clin Invest</i> 1983;71(4):1023&ndash;1031 (<a href="https://doi.org/10.1172/JCI110829">doi:10.1172/JCI110829</a>, PMID 6300187) places APOE2 below 2% of APOE3; Lalazar A, et al. <i>J Biol Chem</i> 1988;263(8):3542&ndash;3545 (<a href="https://doi.org/10.1016/S0021-9258(18)68957-4">doi</a>, PMID 2831187) measures a site-directed R136S-on-APOE3 mutant at 41% of APOE3, the source of the widely quoted "60% reduction". Native APOE2-Christchurch protein has never been assayed. Lipid-free APOE binds LDLR essentially not at all, so every number here is for lipidated APOE.</div>
+  <div>[12] LXR target assignment for the genes lower in APOE4 carriers. Direct, with a mapped response element: APOE (Laffitte et al. <i>PNAS</i> 2001;98:507, <a href="https://doi.org/10.1073/pnas.98.2.507">doi</a>), APOC2 and APOC1 (Mak et al. <i>JBC</i> 2002;277:31900, <a href="https://doi.org/10.1074/jbc.M202993200">doi</a>; APOC1 also by human LXR&alpha; ChIP-seq, Feldmann et al. <i>NAR</i> 2013;41:3518), PLTP (Mak et al. <i>J Lipid Res</i> 2002;43:2037 and Laffitte et al. <i>Mol Cell Biol</i> 2003;23:2182) and CD36 (Zhou et al. <i>Gastroenterology</i> 2008;134:556 &mdash; a mouse liver DR-7, stated by the authors to be liver-specific, and weaker than a canonical DR-4). The ME.1/ME.2 enhancers are macrophage- and adipose-specific (Shih et al. <i>JBC</i> 2000;275:31567); the astrocyte response is Liang et al. <i>J Neurochem</i> 2004;88:623, agonist-level only. Not established: CLU/APOJ and LIPA. The PTGDS assignment is withdrawn: Fujimori et al. (<i>JBC</i> 2007;282:18458) did map two SREs at &minus;194 with SREBP-1c binding by EMSA, ChIP and siRNA, but in <i>murine</i> 3T3-L1 adipocytes, and the mechanism has never been replicated in any other cell type. Decisively, the same group dissected the <i>human</i> L-PGDS promoter from &minus;730 to +75 in human brain-derived TE671 cells &mdash; a window that contains &minus;194 &mdash; and found activity attributable to Hes-1 at &minus;337 and AP-2&beta; at &minus;98, with no functional SRE (Fujimori, Kadoyama &amp; Urade, <i>JBC</i> 2005, PMID 15743775). &ldquo;Indirect LXR target via SREBP-1c&rdquo; is therefore not a defensible label for PTGDS in human brain. <b>PTGDS was itself removed from this figure</b> (2026-09-29) and replaced by APOD. PTGDS passed every artefact and composition check &mdash; its standard error is the 3rd percentile of all genes, it is not restricted to any compartment, it is ancestry-invariant, and it is <i>anti</i>-correlated with a leptomeningeal module (r = &minus;0.74) &mdash; so the decrease is real. It was cut because it has no lipoparticle function (no cholesterol binding, no APOE or apoE-receptor interaction in IntAct across 100 records, no ligand-bound structure in 25 PDB entries), no AD genetic association (Open Targets rank 734/13,006, 73 of 74 evidence records text-mining), and because the APOE-genotype evidence that exists has no consistent sign: PTGDS falls in isogenic APOE4/4 iPSC oligodendroglia (Blanchard 2022 Table S12, &minus;1.35) but rises in the same paper's post-mortem oligodendrocytes under a subject-aware mixed model (Table S14, +0.55, padj 0.0096), rises in isogenic mural cells (Schuldt 2025, +0.64, adj.P 7.9e-3), and flips sign between APOE3/3 and APOE3/4 across five entorhinal cell types (Belonwu 2022). Our own decrease matches the in-vitro direction and contradicts the best human post-mortem measurement in the matching cell type. Its PGD2 arm also fails locally: the receptors PTGDR and PTGDR2 are effectively unexpressed in brain parenchyma (ERC snRNA AveExpr &minus;0.07 to &minus;1.82 outside the vasculature), and the AD-associated prostaglandin D synthase is the unrelated gene HPGDS, which is the one well expressed in microglia here (6.59). <b>AGT was removed from this figure</b> (2026-09-28): it is a <i>non-inhibitory</i> serpin whose inhibitory activity was lost in jawed vertebrates (human AGT is a serpin scaffold repurposed as a conformationally regulated prohormone; Carrell &amp; Read <i>Front Cardiovasc Med</i> 2021, PMID 33816576), so its serpin classification affords no mechanistic link to APOE or lipoprotein biology; and the APOE-genotype evidence that does exist does not support a drawn edge. <b>Corrected 2026-09-28:</b> an earlier version of this note claimed that no study reports AGT as a function of APOE genotype. That was false, and it came from a full-text search that cannot see genes appearing only in unindexed supplementary spreadsheets. The corrected position is that AGT <i>is</i> reported in APOE-stratified supplementary DEG tables, but does not survive FDR correction, donor-level modelling or the AD-only stratum, and is null in the one genome-wide test performed in the lineage it actually occupies. Specifically: Sun et al. <i>Nat Neurosci</i> 2023 (PMID 37264161) Supplementary Table 14 lists AGT among APOE3-vs-APOE4 DEGs in fibroblast cluster Fib3 (p 2.2&times;10<sup>&minus;4</sup>, coef +0.67) and the authors' own gene set labels it <span class="mono">Fib3.E4up</span> &mdash; but that table's inclusion rule is p&lt;0.01 rather than FDR-controlled, and AGT's FDR is 0.074, so it does not clear 0.05; the same paper's Table 16 does place AGT as an APOE4-specific pericyte cognitive-decline gene (<span class="mono">Per1.APOE4</span>, FDR 0.044, absent from <span class="mono">Per1.APOE3</span>). Blanchard et al. <i>Nature</i> 2022 (PMID 36385529) Table S12 reports AGT up 0.671 &rarr; 12.185 FPKM (log2FC +4.18) in isogenic APOE3/3-vs-APOE4/4 iPSC oligodendroglia, ranking 129 of 15,100 by test statistic &mdash; but its q value is the cuffdiff permutation floor shared by 4,516 genes, the rise is off a near-zero baseline, and by that paper's own annotation (Table S2) AGT is expressed in astrocytes, pericytes and smooth muscle and <i>not</i> in oligodendrocytes, while the APOE4/4 culture gained astrocytic and mural identity wholesale (GFAP +43&times;, AQP4 +125&times;, ALDH1L1 +54&times;, DCN +38&times;, LUM +32&times;, ACTA2 +14&times;). The rise therefore tracks the contaminating lineage AGT belongs to. Both of that paper's donor-level APOE4 models are null &mdash; NEBULA &minus;0.186, padj 0.64, sign opposite; pseudo-bulk limma adj.P 1.00 &mdash; the AD-only stratum loses significance and flips sign (padj 0.76), and a donor-level re-test of its per-individual averages is null in every cell type (min BH q 0.71). Most directly, Schuldt et al. (bioRxiv 2025, PMID 40964350) run a genome-wide isogenic APOE4/4-vs-APOE3/3 comparison in <i>mural</i> cells, the lineage where AGT is genuinely expressed, and AGT is null (&minus;0.226, adj.P 0.988); it is likewise null in APOE4/4-vs-APOE3/3 iPSC microglia (Haney et al. <i>Nature</i> 2024, PMID 38480892, padj 0.92). The astrocyte case specifically is <b>untested rather than negative</b>: TCW et al. <i>Cell</i> 2022 published no gene-level DEG table, and AGT is robustly expressed in their public isogenic featureCounts (GSE190185), so that question remains open. The earlier &ldquo;indirect LXR via SREBP-1c&rdquo; assignment was wrong on two counts: no sterol regulatory element has been mapped in the AGT promoter, and the published AGT&ndash;SREBP-1c relationship runs the other way (hepatocyte <i>Agt</i> deletion <i>suppresses</i> SREBP1, Tao et al. <i>J Lipid Res</i> 2019, PMID 31604805). AGT is oxysterol-inducible in neurons and astrocytes in an LXR-dependent manner (Mateos et al. <i>JBC</i> 2011;286:25574, sign inconsistent between endogenous oxysterols and T0901317), which is a testable hypothesis rather than a target assignment. AGT is a member of the QIAGEN/IPA &ldquo;LXR/RXR Activation&rdquo; canonical pathway and PTGDS is not, which is the likely provenance of the error. TRRUST, the only purely literature-curated TF&ndash;target resource, returns none of the eight for human LXR; database hits for the remaining three resolve to peak proximity, motif-only matches, co-expression or IPA pathway membership.</div>
+  <div>Data: LC Visium, Mulvey ST12 (ALLE4_ALLE2) and re-analysis strata. ERC SuppTables S9, S11 and S13 (carrier contrast). Reference pathways and M-score method: <span class="mono">mito/null_test.py</span>. Built by <span class="mono">~/apoe-research/endocytosis/</span>.</div>
+</div>
+</div>
+<div id="tip" hidden></div>
+
+<script>
+const D=/*__DATA__*/null;
+const $=s=>document.querySelector(s);
+const NS="http://www.w3.org/2000/svg";
+const css=v=>getComputedStyle(document.documentElement).getPropertyValue(v).trim();
+const FONT_SCALE=1.21;
+function el(tag,attrs={},parent){const e=document.createElementNS(NS,tag);
+  if((tag==="text"||tag==="tspan")&&typeof attrs["font-size"]==="number")attrs={...attrs,"font-size":+(attrs["font-size"]*FONT_SCALE).toFixed(2)};
+  for(const k in attrs)e.setAttribute(k,attrs[k]);if(parent)parent.appendChild(e);return e}
+function txt(parent,x,y,s,attrs={}){const t=el("text",{x,y,...attrs},parent);t.textContent=s;return t}
+const hex=h=>[1,3,5].map(i=>parseInt(h.slice(i,i+2),16));
+const mix=(a,b,f)=>{const A=hex(a),B=hex(b);return"#"+A.map((v,i)=>Math.round(v+(B[i]-v)*f).toString(16).padStart(2,"0")).join("")};
+function divColor(v,lim,maxf=1){const f=Math.min(Math.abs(v)/lim,1)*maxf;return mix(css("--neutral"),v>=0?css("--up"):css("--down"),f)}
+const DSL={LC_Visium:"LC · Visium",ERC_Visium:"ERC · Visium",ERC_snBroad:"ERC · snRNA",ERC_snFine:"ERC · snRNA fine"};
+const domL=d=>d.split("~")[0].replace(/_/g," ");
+const ck=(ds,dom)=>ds+"|"+dom;
+const fmt=(v,d=2)=>(v>=0?"+":"−")+Math.abs(v).toFixed(d);
+const fdrF=v=>v<0.001?v.toExponential(1):v.toFixed(3);
+const ord=p=>{const n=Math.round(p);const s=(n%100>10&&n%100<14)?"th":({1:"st",2:"nd",3:"rd"}[n%10]||"th");return n+s};
+const STEP=Object.fromEntries(D.steps.map(s=>[s.k,s]));
+const SC={};D.scores.forEach(s=>{SC[s.step+"@"+ck(s.ds,s.dom)]=s});
+const GENE=Object.fromEntries(D.genes.map(g=>[g.g,g]));
+const DSO=["LC_Visium","ERC_Visium","ERC_snBroad","ERC_snFine"];
+const HEAT=D.cells.filter(c=>c.heat).sort((a,b)=>DSO.indexOf(a.ds)-DSO.indexOf(b.ds));
+const median=a=>{const b=[...a].sort((x,y)=>x-y),n=b.length;return n?(n%2?b[(n-1)/2]:(b[n/2-1]+b[n/2])/2):NaN};
+
+/* tooltip */
+const tip=$("#tip");
+function showTip(ev,html){tip.innerHTML=html;tip.hidden=false;const w=tip.offsetWidth,h=tip.offsetHeight;let x=ev.clientX+14,y=ev.clientY+14;if(x+w>innerWidth-8)x=ev.clientX-w-14;if(y+h>innerHeight-8)y=ev.clientY-h-14;tip.style.left=Math.max(8,x)+"px";tip.style.top=Math.max(8,y)+"px"}
+function hideTip(){tip.hidden=true}
+function bindTip(node,fn){node.addEventListener("pointermove",e=>showTip(e,fn()));node.addEventListener("pointerleave",hideTip);node.addEventListener("focus",()=>{const r=node.getBoundingClientRect();showTip({clientX:r.right,clientY:r.top},fn())});node.addEventListener("blur",hideTip)}
+
+/* header */
+(function(){
+  const core=["receptors","pit","early","recycling","late","lysosome"];
+  const meds=core.map(k=>median(D.scores.filter(s=>s.step===k&&s.pct!=null).map(s=>s.pct)));
+  const smeds=["er","golgi","exo"].map(k=>median(D.scores.filter(s=>s.step===k&&s.pct!=null).map(s=>s.pct)));
+  const lyso=D.scores.filter(s=>s.step==="lysosome"&&s.ds==="ERC_Visium").map(s=>s.pct);
+  const lrp1=D.forest.filter(f=>f.g==="LRP1"&&f.ds==="LC_Visium"&&f.stratum==="all");
+  $("#lede").innerHTML=`Six downloaded GO steps of APOE-lipoprotein uptake were scored in ${D.cells.length} LC and ERC tissue domains and cell types. <b>No step changes more than a typical real pathway.</b> Against 60 real GO pathways, each step's median percentile falls between ${ord(Math.min(...meds))} and ${ord(Math.max(...meds))}, where the 50th is typical. The one local exception is the lysosome in ERC Visium. The secretory arm (ER, Golgi, exocytosis) ranks a little higher, at the ${ord(Math.min(...smeds))} to ${ord(Math.max(...smeds))} percentile, which is still inside the range of real pathways.`;
+  const facts=[[`${Math.round(Math.min(...meds))}–${Math.round(Math.max(...meds))}`,"median percentile of the six steps vs 60 real pathways"],
+    [ord(median(lyso)),"median lysosome percentile in ERC Visium, the only step × dataset median above the 80th"],
+    [`FDR ≥ ${Math.min(...lrp1.map(f=>f.fdr)).toFixed(2)}`,"LRP1 in every LC domain, so the principal APOE receptor is flat"],
+    [`${D.genes.length}`,"step genes shown in B: FDR < 0.05 somewhere, plus the schematic labels"]];
+  $("#facts").innerHTML=facts.map(([v,k])=>`<div class="fact"><span class="v">${v}</span><span class="k">${k}</span></div>`).join("");
+})();
+
+/* ramps */
+function paintRamps(){
+  $("#rampB").style.background=`linear-gradient(90deg,${css("--down")},${css("--neutral")},${css("--up")})`;
+}
+
+/* ---------- A: schematic ---------- */
+const ARROW_OPTS={stroke:"currentColor","stroke-width":1.6,fill:"none","marker-end":"url(#ah)"};
+function carrow(g,d,label,lx,ly,anchor="middle"){el("path",{d,...ARROW_OPTS},g);if(label)txt(g,lx,ly,label,{class:"ink2","font-size":11.5,"text-anchor":anchor,"font-style":"italic"})}
+function memCircle(g,cx,cy,r,lumen,w=9){el("circle",{cx,cy,r,fill:lumen,stroke:css("--mem"),"stroke-width":w},g);el("circle",{cx,cy,r,fill:"none",stroke:css("--mem-in"),"stroke-width":w/3},g)}
+function particle(g,x,y,r=12){
+  el("circle",{cx:x,cy:y,r,fill:css("--lipid"),stroke:css("--lipid-edge"),"stroke-width":1.2},g);
+  // surface APOE, same four-helix glyph as the free protein, laid tangentially
+  [[-0.6,-0.8],[0.85,-0.45],[0.1,0.95]].forEach(([a,b])=>apoeBundle(g,x+a*r,y+b*r,Math.atan2(b,a)*57.3+90,r*0.0955));
+  const cr=Math.max(1.2,r*.17);[[-0.3,0.15],[0.3,-0.12]].forEach(([a,b])=>el("circle",{cx:x+a*r,cy:y+b*r,r:cr,fill:css("--chol")},g));
+}
+function fibAbeta(g,x,y,len=16,rot=0,w=2.6){const n=Math.max(2,Math.round(len/5)),h=4;let d=`M ${-len/2} ${h/2}`;
+  for(let i=1;i<=n*2;i++)d+=` L ${(-len/2+i*len/(n*2)).toFixed(1)} ${i%2?-h/2:h/2}`;
+  el("path",{d,transform:`translate(${x} ${y}) rotate(${rot})`,stroke:css("--abeta"),"stroke-width":w,fill:"none","stroke-linecap":"round","stroke-linejoin":"round"},g)}
+function bmpGlyph(g,x,y,rot=0,sc=1){
+  const q=el("g",{transform:`translate(${x} ${y}) rotate(${rot}) scale(${sc})`},g);
+  el("circle",{cx:0,cy:-3.4,r:2.7,fill:css("--bmp")},q);
+  el("path",{d:"M -1.4 -1.2 q -2.2 3.4 -1.2 6.4 M 1.4 -1.2 q 2.2 3.4 1.2 6.4",stroke:css("--bmp"),"stroke-width":1.5,fill:"none","stroke-linecap":"round"},q);
+}
+function fibTau(g,x,y,len=16,rot=0,w=2.6){const n=Math.max(2,Math.round(len/6)),h=3.2;let d=`M ${-len/2} 0`;
+  for(let i=0;i<n;i++){const x0=-len/2+i*len/n;d+=` q ${len/n/4} ${i%2?h:-h} ${len/n/2} 0 t ${len/n/2} 0`}
+  el("path",{d,transform:`translate(${x} ${y}) rotate(${rot})`,stroke:css("--tau"),"stroke-width":w,fill:"none","stroke-linecap":"round"},g)}
+function apoeBundle(g,x,y,rot=0,s=1){
+  // APOE's N-terminal domain is a four-helix bundle, so draw four stacked capsules
+  // rather than a filled ellipse - an ellipse read as another cholesterol dot.
+  // Same footprint as the old glyph (~8.6 x 5.4 at s=1) so every call site still fits.
+  const gg=el("g",{transform:`rotate(${rot} ${x} ${y})`},g);
+  const col=css("--apoe"), edge=mix(col,"#14330a",0.42);
+  // [offset across the bundle, helix length, stagger along it]
+  [[-1.98,6.2,-0.40],[-0.66,8.2,0.25],[0.66,8.2,-0.25],[1.98,6.2,0.40]].forEach(([dy,len,dx])=>{
+    el("rect",{x:x+(dx-len/2)*s,y:y+(dy-0.63)*s,width:len*s,height:1.26*s,
+      rx:0.63*s,ry:0.63*s,fill:col,stroke:edge,"stroke-width":0.28*s},gg);
+  });
+  return gg;
+}
+function apoeFree(g,x,y,rot=0,s=1){return apoeBundle(g,x,y,rot,s)}
+function whorl(g,cx,cy,R=10,turns=2.6){
+  // multilamellar body: a spiral of undigested bilayer
+  const pts=[];for(let i=0;i<=120;i++){const t=i/120*turns*2*Math.PI,r=1.5+(R-1.5)*i/120;pts.push(`${(cx+r*Math.cos(t)).toFixed(1)},${(cy+r*Math.sin(t)).toFixed(1)}`)}
+  const d="M "+pts.join(" L ");
+  el("path",{d,stroke:css("--mem"),"stroke-width":2.6,fill:"none","stroke-linecap":"round"},g);
+  el("path",{d,stroke:css("--mem-in"),"stroke-width":0.9,fill:"none","stroke-linecap":"round"},g);
+  [[1.25,-0.45],[-0.75,1.2]].forEach(([a,b])=>el("circle",{cx:cx+a*R,cy:cy+b*R,r:2.3,fill:css("--chol")},g));
+}
+function recY(g,x,y,ang,col,sc=1){const q=el("g",{transform:`translate(${x} ${y}) rotate(${ang}) scale(${sc})`},g);el("path",{d:"M0,0 V-11 M0,-11 L-6.5,-19 M0,-11 L6.5,-19",stroke:col,"stroke-width":4.2,"stroke-linecap":"round",fill:"none"},q)}
+function clathrin(g,cx,cy,r,a0,a1,step=20){for(let a=a0;a<=a1;a+=step){const t=a*Math.PI/180,x=cx+r*Math.cos(t),y=cy+r*Math.sin(t);el("rect",{x:x-6,y:y-2.6,width:12,height:5.2,rx:2.6,fill:css("--clath"),transform:`rotate(${a+90} ${x} ${y})`},g)}}
+// Bilayer ribbon: outer leaflet, core, inner leaflet, lumen. Drawing each layer across every
+// path before the next layer makes the lumens of joined paths continuous.
+function ribbonLayers(g,paths,L,lumen,a=2.2,b=2){return [[css("--mem"),L+2*(2*a+b)],[css("--mem-in"),L+2*(a+b)],[css("--mem"),L+2*a],[lumen,L]]}
+function ribbon(g,paths,L,lumen,a,b,from=0,to=4){
+  ribbonLayers(g,paths,L,lumen,a,b).slice(from,to).forEach(([c,w])=>paths.forEach(d=>el("path",{d,stroke:c,"stroke-width":w,fill:"none","stroke-linecap":"round","stroke-linejoin":"round"},g)));
+}
+function protTip(g,title,body){g.setAttribute("class","hit");g.setAttribute("tabindex",0);g.setAttribute("role","button");g.setAttribute("aria-label",title);bindTip(g,()=>`<div class="t">${title}</div><div>${body}</div>`)}
+function abcGlyph(g,x,y,ang=0,sc=1,col){const q=el("g",{transform:`translate(${x} ${y}) rotate(${ang}) scale(${sc})`},g);
+  el("rect",{x:-12,y:-15,width:11,height:30,rx:4,fill:col},q);el("rect",{x:1,y:-15,width:11,height:30,rx:4,fill:col},q);}
+const ABCA1_TIP="ATP-binding cassette transporter A1. At the plasma membrane it effluxes phospholipid and cholesterol onto lipid-poor APOE, forming nascent lipoparticles; ABCA1 is required for normal brain APOE levels and lipidation (Wahrle 2004). It also traffics through the Golgi and endo-lysosomal compartments, where it moves lysosomal cholesterol toward efflux.";
+// Evidence colour code for gene labels: first matching category colours the name, the rest add dots.
+const CAT_ORDER=["gwas","ot","up","dn"], CAT_VAR={gwas:"--c-gwas",ot:"--c-ot",up:"--c-up",dn:"--c-dn"};
+// Genes whose pooled colour is produced by ONE ancestry stratum and would reverse in the other.
+// LIPA is the only COLOURED gene in this figure whose two strata have opposite signs.
+const HET=new Set(["LIPA"]);
+const GC=g=>(D.genecat||{})[g]||{cats:[],keep:true};
+const keepG=g=>GC(g).keep!==false;
+const ALIAS={CLU:"CLU/APOJ"};
+function geneSpans(t,sym,base){
+  const c=GC(sym).cats||[];
+  const s0=el("tspan",{style:`fill:${c.length?css(CAT_VAR[c[0]]):base}`,"font-weight":c.length?600:400},t);s0.textContent=(ALIAS[sym]||sym)+(GC(sym).cis?"‡":"")+(HET.has(sym)?"†":"");
+  c.slice(1).forEach(k=>{const d=el("tspan",{style:`fill:${css(CAT_VAR[k])}`,"font-size":"0.95em"},t);d.textContent="●"});
+}
+const catCol=g=>{const c=GC(g).cats||[];return c.length?css(CAT_VAR[c[0]]):css("--muted")};
+function geneTxt(g,x,y,sym,attrs={}){const t=el("text",{x,y,class:"mono","font-size":10.5,...attrs},g);geneSpans(t,sym,css("--ink"));return t}
+function lab(g,x,y,k,anchor="start"){
+  const st=STEP[k];
+  const over=(n,px)=>anchor==="start"&&x+n*px*FONT_SCALE>1095;
+  const LINES={mcs:["ER–lysosome","contact site"],lysexo:["Lysosome","exocytosis"],exo:["Secretory vesicle /","exocytosis"],
+               late:["Late endosome →","lysosome"],pit:["Clathrin pit /","internalisation"],early:["Early","endosome"],
+               recycling:["Recycling","endosome"],golgi:["Golgi","apparatus"],
+               er:["Endoplasmic","reticulum"]};
+  let tl=LINES[k]||[st.label];if(!LINES[k]&&over(st.label.length,6.9)){const i=st.label.indexOf(" / ");tl=i>0?[st.label.slice(0,i+2),st.label.slice(i+3)]:[st.label]}
+  tl.forEach((t,j)=>txt(g,x,y+j*15*FONT_SCALE,t,{"font-size":12.5,"font-weight":600,"text-anchor":anchor}));
+  const y0=y+(tl.length-1)*15*FONT_SCALE;
+  const nodes=st.nodes.filter(keepG);
+  const h=Math.ceil(nodes.length/2);
+  const FORCE={lysosome:[["NPC1","NPC2"],["LIPA"]]};
+  const rows=FORCE[k]?FORCE[k].map(r=>r.filter(keepG)):
+    ((nodes.length>5||over(nodes.join(" · ").length,6.1))&&nodes.length>1?[nodes.slice(0,h),nodes.slice(h)]:[nodes]);
+  rows.filter(r=>r.length).forEach((r,j)=>{const t=el("text",{x,y:y0+(15+j*13)*FONT_SCALE,class:"mono","font-size":10,"text-anchor":anchor},g);
+    r.forEach((sym,i)=>{if(i){const sp=el("tspan",{style:`fill:${css("--muted")}`},t);sp.textContent=" · "}geneSpans(t,sym,css("--muted"))})});
+}
+function hitGroup(svg,k){const g=el("g",{class:"hit",tabindex:0,role:"button","aria-label":STEP[k].label},svg);bindTip(g,()=>nodeTip(k));return g}
+const badge=(g,x,y,n)=>{el("circle",{cx:x,cy:y,r:9,fill:css("--ink")},g);txt(g,x,y+4,n,{"font-size":11,"font-weight":600,"text-anchor":"middle",style:`fill:${css("--surf")}`})};
+function drawA(){
+  const svg=$("#schem");svg.innerHTML="";svg.style.color=css("--ink2");
+  const defs=el("defs",{},svg);const m=el("marker",{id:"ah",viewBox:"0 0 10 10",refX:8,refY:5,markerWidth:6.5,markerHeight:6.5,orient:"auto-start-reverse"},defs);el("path",{d:"M0,0 L10,5 L0,10 z",fill:"currentColor"},m);
+  const LUM=css("--lumen"),LYS=css("--lyso"),recCol=catCol("LDLR");
+  el("rect",{x:0,y:-36,width:1100,height:766,fill:css("--surf")},svg);
+  el("rect",{x:0,y:130,width:1100,height:600,fill:css("--cyto")},svg);
+  txt(svg,20,160,"CYTOPLASM",{class:"mono muted","font-size":11,"letter-spacing":".08em"});
+  txt(svg,16,101,"Secretion",{"font-size":22,"font-family":"var(--cond)",class:"muted"});
+  txt(svg,1045,101,"Uptake",{"font-size":22,"font-family":"var(--cond)",class:"muted","text-anchor":"middle"});
+  // key: one row per symbol, stacked
+  el("circle",{cx:990,cy:0,r:3.4,fill:css("--chol"),stroke:css("--surf"),"stroke-width":1},svg);
+  txt(svg,1004,5,"cholesterol",{class:"ink2","font-size":11.5});
+  fibAbeta(svg,990,20,18,0,2.6);txt(svg,1004,25,"amyloid-β",{class:"ink2","font-size":11.5});
+  fibTau(svg,990,40,18,0,2.6);txt(svg,1004,45,"tau",{class:"ink2","font-size":11.5});
+  bmpGlyph(svg,990,58,0,1.25);txt(svg,1004,65,"BMP",{class:"ink2","font-size":11.5});
+  // nucleus + ER
+  el("circle",{cx:40,cy:720,r:228,fill:css("--nuc")},svg);
+  ribbon(svg,["M -188 720 A 228 228 0 1 1 268 720 A 228 228 0 1 1 -188 720"],4,LUM,1.8,1.6);
+  for(let a=-80;a<=-5;a+=15){const t=a*Math.PI/180,x=40+228*Math.cos(t),y=720+228*Math.sin(t);
+    el("rect",{x:x-2.5,y:y-8,width:5,height:16,rx:2.5,fill:css("--cyto"),transform:`rotate(${a+90} ${x} ${y})`},svg)}
+  txt(svg,16,548,"Nucleus",{class:"muted","font-size":12.5,"font-weight":600});
+
+  { // LXR/RXR on its response element. Ligand supply is drawn as an open question: the enzymes predict
+    // less desmosterol (DHCR24 up) and more 24S-OHC (CYP46A1 up), and the target genes do not resolve it.
+    const gNR=el("g",{},svg);
+    el("circle",{cx:62,cy:592,r:5.5,fill:"none",stroke:css("--c-dn"),"stroke-width":1.6,"stroke-dasharray":"2 2"},gNR);
+    el("circle",{cx:62,cy:592,r:2.6,fill:css("--chol"),opacity:.3},gNR);
+    txt(gNR,74,596,"desmosterol ↓",{class:"mono","font-size":9,fill:css("--c-dn"),"font-weight":600});
+    el("path",{d:"M 62 602 L 62 610",stroke:css("--c-dn"),"stroke-width":1.8,fill:"none"},gNR);
+    el("path",{d:"M 55 610 L 69 610",stroke:css("--c-dn"),"stroke-width":2.6},gNR);
+    const lobe=(cx,lbl,col)=>{
+      el("ellipse",{cx,cy:622,rx:15,ry:11,fill:css(col),stroke:css("--surf"),"stroke-width":1.2},gNR);
+      txt(gNR,cx,626,lbl,{class:"mono","font-size":8.5,"text-anchor":"middle",fill:css("--surf"),"font-weight":600});
+      el("rect",{x:cx-3,y:631,width:6,height:8,rx:1.5,fill:css(col)},gNR);
+    };
+    lobe(78,"LXR","--abca"); lobe(110,"RXR","--slc");
+    const y0=642,xA=34,xB=172,AMP=4;
+    const strand=ph=>{let d=`M ${xA} ${(y0+AMP*Math.sin(ph)).toFixed(1)}`;
+      for(let x=xA+3;x<=xB;x+=3) d+=` L ${x} ${(y0+AMP*Math.sin((x-xA)/11+ph)).toFixed(1)}`;
+      return d};
+    el("path",{d:strand(0),stroke:css("--ink2"),"stroke-width":1.4,fill:"none"},gNR);
+    el("path",{d:strand(Math.PI),stroke:css("--ink2"),"stroke-width":1.4,fill:"none"},gNR);
+    for(let x=xA+5;x<xB;x+=11){const u=y0+AMP*Math.sin((x-xA)/11),v=y0+AMP*Math.sin((x-xA)/11+Math.PI);
+      el("path",{d:`M ${x} ${u.toFixed(1)} L ${x} ${v.toFixed(1)}`,stroke:css("--rule"),"stroke-width":.9},gNR)}
+    txt(gNR,34,662,"LXR/RXR on LXRE",{class:"mono muted","font-size":9});
+    txt(gNR,34,677,"hypo-agonised · efflux ↓",{class:"mono","font-size":9,fill:css("--c-dn"),"font-weight":600});
+    protTip(gNR,"LXR/RXR — ligand supply unresolved",
+      "LXRα/β (NR1H3/NR1H2) heterodimerise with RXR on DR4 response elements (LXREs) and drive cholesterol-efflux genes. Desmosterol (dashed dot) is one of the dominant endogenous agonists and is consumed by DHCR24, which is higher in APOE4 in five independent datasets including isogenic human oligodendroglia. The hypothesis drawn here is therefore a DEFICIT of LXR/RXR agonism: less desmosterol, less efflux, more storage. Consistent measured output: PLTP −0.505 (FDR 9.7e-05), and an efflux-down/accumulation-up transcriptional signature in isogenic APOE4 glia. ABCA1 is n.s. (−0.221); APOE, APOC1 and APOC2 fall but are cis. No sterol is measured, so this is a testable prediction, not a finding. See the sub-panel below.");
+  }
+  const gER=hitGroup(svg,"er");
+  // ER sheets plus the two peripheral tubules that reach the lysosome, drawn layer by layer
+  // as one network so the tubule lumens open into the ER lumen
+  const erSheets=[262,287,312].map(r=>`M ${40+r*Math.cos(-1.5)} ${720+r*Math.sin(-1.5)} A ${r} ${r} 0 0 1 ${40+r*Math.cos(-0.05)} ${720+r*Math.sin(-0.05)}`);
+  const tubA="M 329 603 C 400 585 480 540 547 519", tubB="M 346 660 C 430 650 510 600 565 560";
+  // free tubules (no contact): one to an ER exit site facing the Golgi, one toward the exocytic lysosome
+  const tubC="M 136 423 C 142 416 150 410 158 405", tubD="M 261 499 C 296 482 334 464 372 450";
+  ribbon(gER,[...erSheets,tubA,tubB,tubC,tubD],6,LUM);
+  lab(gER,388,682,"er");
+  { // sterol synthesis: MVK (cytosolic mevalonate pathway) feeds DHCR24 (ER membrane, desmosterol -> cholesterol)
+    const P=(r,deg)=>[40+r*Math.cos(deg*Math.PI/180),720+r*Math.sin(deg*Math.PI/180)];
+    const [dx,dy]=P(312,-33),[cx2,cy2]=P(312,-30);
+    const gD=el("g",{},svg);
+    el("ellipse",{cx:dx,cy:dy,rx:9,ry:5.5,transform:`rotate(${-33+90} ${dx} ${dy})`,fill:catCol("DHCR24"),stroke:css("--surf"),"stroke-width":1},gD);
+    el("circle",{cx:cx2,cy:cy2,r:2.4,fill:css("--chol")},gD);
+    geneTxt(gD,dx+12,dy-12,"DHCR24",{"font-size":10});
+    protTip(gD,"DHCR24 (seladin-1)","24-dehydrocholesterol reductase, an ER-membrane enzyme that performs the last step of cholesterol synthesis (desmosterol → cholesterol). It is an SREBP2 target, so its expression rises when too little cholesterol reaches the ER. As seladin-1 (selective AD indicator-1) it is reduced in vulnerable neurons in AD brain. Higher in APOE4 carriers here (pooled LC +0.28, FDR 5.7e-7; robust to the sex imbalance). CONSEQUENCE: desmosterol is itself an endogenous LXR agonist, so raising DHCR24 predicts LOWER desmosterol and therefore LESS LXR/RXR agonism — and every measured LXR target here is lower in APOE4 (PLTP −0.51, ABCA1 −0.22, APOE −0.18). DHCR7, the terminal enzyme of the parallel Kandutsch–Russell branch, is flat (−0.02, FDR 0.89), so this is Bloch-branch specific. Not measured: desmosterol itself. Seladin-1 also has cholesterol-independent antioxidant and anti-apoptotic roles, so the elevation need not be a sterol-flux signal.");
+    const gM2=el("g",{},svg);
+    el("circle",{cx:340,cy:556,r:7,fill:catCol("MVK")},gM2);el("circle",{cx:347,cy:562,r:4.5,fill:catCol("MVK")},gM2);
+    geneTxt(gM2,356,562,"MVK",{"font-size":10});
+    el("path",{d:`M 332 554 Q ${dx+18} ${dy-2} ${dx+9} ${dy+1}`,stroke:css("--ink2"),"stroke-width":1.3,fill:"none","marker-end":"url(#ah)"},gM2);
+    const gA2=el("g",{},svg);
+    el("circle",{cx:392,cy:534,r:6,fill:catCol("ACAT2")},gA2);
+    geneTxt(gA2,402,531,"ACAT2",{"font-size":10});
+    el("path",{d:"M 386 538 Q 368 546 350 552",stroke:css("--ink2"),"stroke-width":1.3,fill:"none","marker-end":"url(#ah)"},gA2);
+    protTip(gA2,"ACAT2 (acetoacetyl-CoA thiolase)","Acetyl-CoA acetyltransferase 2, the cytosolic thiolase at the entry of the mevalonate pathway: it condenses two acetyl-CoA into acetoacetyl-CoA immediately upstream of HMG-CoA synthase. Not the cholesterol-esterifying enzyme often called \"ACAT2\" (gene SOAT2), which is not measured here. Higher in APOE4 carriers (pooled LC +0.16, FDR 0.026), directionally consistent with MVK and DHCR24; the effect comes mainly from the Oligo–Astro domain, and about a quarter of it reflects the sex imbalance.");
+    protTip(gM2,"MVK (mevalonate kinase)","Cytosolic and peroxisomal enzyme of the early mevalonate pathway, which supplies the sterol precursors that ER enzymes such as DHCR24 finish into cholesterol. An SREBP2 target. Higher in APOE4 carriers here (pooled LC +0.31, FDR 1.6e-4).");
+  }
+  { const P=(r,deg)=>[40+r*Math.cos(deg*Math.PI/180),720+r*Math.sin(deg*Math.PI/180)];
+    // folded APOE in the ER lumen (tangent to the sheets)
+    [[287,-72],[287,-44],[262,-58],[312,-17],[262,-24]].forEach(([r,a])=>{const [x,y]=P(r,a);apoeFree(gER,x,y,a+90,.72)});
+    // ribosome on the cytosolic face of the outer sheet; nascent APOE threads through the translocon into the lumen
+    const a=-58,[mx,my]=P(312,a),[lx,ly]=P(329,a),[sx,sy]=P(343,a),[t1x,t1y]=P(305,a+3);
+    const gRb=el("g",{},svg);
+    el("ellipse",{cx:lx,cy:ly,rx:10,ry:7,transform:`rotate(${a+90} ${lx} ${ly})`,fill:css("--ribo")},gRb);
+    el("ellipse",{cx:sx,cy:sy,rx:7,ry:4.5,transform:`rotate(${a+90} ${sx} ${sy})`,fill:css("--ribo")},gRb);
+    { const r=337,m0=P(r,a-6),m1=P(r,a),m2=P(r,a+6),[tx,ty]=P(r,a+7.2);
+      el("path",{d:`M ${m0[0]} ${m0[1]} Q ${P(r+1,a-3.5)[0]} ${P(r+1,a-3.5)[1]} ${m1[0]} ${m1[1]} T ${m2[0]} ${m2[1]}`,stroke:css("--ink2"),"stroke-width":1.3,fill:"none","stroke-linecap":"round"},gRb);
+      txt(gRb,tx,ty,"AAAAA",{class:"mono ink2","font-size":6.5,transform:`rotate(${a+90} ${tx} ${ty})`,"dominant-baseline":"middle"});
+      txt(gRb,m0[0],m0[1],"5′",{class:"mono ink2","font-size":6.5,"text-anchor":"end",transform:`rotate(${a+90} ${m0[0]} ${m0[1]}) translate(-2 0)`,"dominant-baseline":"middle"}); }
+    el("path",{d:`M ${lx} ${ly} L ${mx} ${my} Q ${t1x} ${t1y} ${P(311,a+4)[0]} ${P(311,a+4)[1]}`,stroke:css("--apoe"),"stroke-width":2.2,fill:"none","stroke-linecap":"round"},gRb);
+    txt(gRb,P(347,a)[0]+10,P(347,a)[1]-4,"ribosome",{class:"mono ink2","font-size":9.5});
+    protTip(gRb,"Ribosome on rough ER","APOE is translated on ER-bound ribosomes. Its signal peptide directs co-translational insertion through the Sec61 translocon into the ER lumen, the entry point of the secretory pathway.");
+  }
+  // Golgi
+  const gG=hitGroup(svg,"golgi");
+  [0,1,2,3].forEach(i=>{const y=398-i*19,w=62-i*4;const d=`M ${250-w} ${y} Q 250 ${y-26} ${250+w} ${y}`;
+    ribbon(gG,[d],6.5,LUM,1.8,1.6)});
+  [[178,392],[186,342],[314,342]].forEach(([x,y])=>memCircle(gG,x,y,6,LUM,4));
+  // APOE sits in the cisternal lumen: a point on each cisterna's centreline, rotated to its tangent
+  [[0,.28],[0,.72],[1,.4],[2,.62],[3,.35]].forEach(([i,t])=>{const y=398-i*19,w=62-i*4,x=250+w*(2*t-1),yy=y-52*t*(1-t);
+    apoeFree(gG,x,yy,Math.atan2(-52*(1-2*t),2*w)*57.2958,.62)});
+  memCircle(gG,330,398,13,LUM,6);
+  lab(gG,172,368,"golgi","end");
+  let gAG=el("g",{},svg);abcGlyph(gAG,317.5,398,90,.36,css("--abca"));apoeFree(gAG,326,396,-70,.7);particle(gAG,334,401,5);
+  geneTxt(gAG,332,426,"ABCA1",{"font-size":9.5,"text-anchor":"middle"});
+  protTip(gAG,"ABCA1 in a trans-Golgi bud",ABCA1_TIP+" Here lipid-poor APOE docks on ABCA1 and the first nascent lipoparticle forms before secretion.");
+  carrow(svg,"M 164 402 Q 178 396 190 395","",0,0);
+  // secretory vesicle + pore
+  const gX=hitGroup(svg,"exo");
+  memCircle(gX,205,262,24,LUM);particle(gX,198,258,8);particle(gX,214,268,6);
+  lab(gX,240,258,"exo");
+  carrow(svg,"M 244 322 Q 232 305 220 294","",0,0);
+  carrow(svg,"M 214 234 Q 222 210 236 196","exocytosis",150,205,"end");
+  // plasma membrane: secretory pore (x≈250), lysosomal pore (x≈430), clathrin pit (x≈700)
+  const memD="M -10 130 H 222 C 227 130 229 134 227 141 A 30 30 0 1 0 273 141 C 271 134 273 130 278 130 "+
+             "H 402 C 406 130 406 136 406 150 A 24 24 0 0 0 454 150 C 454 136 454 130 458 130 "+
+             "H 818 C 822 130 822 136 822 150 A 28 28 0 0 0 878 150 C 878 136 878 130 882 130 H 1110";
+  el("path",{d:"M 227 141 A 30 30 0 1 0 273 141 Z",fill:LUM},svg);
+  el("path",{d:"M 406 128 V 150 A 24 24 0 0 0 454 150 V 128 Z",fill:LYS,opacity:.55},svg);
+  el("path",{d:memD,stroke:css("--mem"),"stroke-width":14,fill:"none"},svg);
+  el("path",{d:memD,stroke:css("--mem-in"),"stroke-width":4.5,fill:"none"},svg);
+  particle(svg,250,112,9);
+  // ABCA1
+  let gAB=el("g",{},svg);abcGlyph(gAB,350,131,0,1,css("--abca"));geneTxt(gAB,350,166,"ABCA1",{"text-anchor":"middle"});protTip(gAB,"ABCA1",ABCA1_TIP);
+  carrow(svg,"M 344 110 Q 330 90 316 84","lipidates",345,92,"start");
+  // mature lipoparticle carrying APOC1, APOC2 and CLU; PLTP moves phospholipid to a second particle
+  { const gLp=el("g",{},svg);
+    particle(gLp,200,22,15);
+    el("ellipse",{cx:187,cy:9,rx:4.6,ry:2.9,transform:"rotate(-45 187 9)",fill:catCol("APOC1")},gLp);
+    el("ellipse",{cx:186,cy:34,rx:4.6,ry:2.9,transform:"rotate(45 186 34)",fill:catCol("APOC2")},gLp);
+    [[210,6],[216,10]].forEach(([x,y])=>el("circle",{cx:x,cy:y,r:3.4,fill:catCol("CLU")},gLp));
+    const tA=el("g",{},svg);geneTxt(tA,181,-2,"APOC1",{"font-size":10,"text-anchor":"end"});
+    protTip(tA,"APOC1 ‡","Apolipoprotein C-I, a small exchangeable apolipoprotein on APOE lipoparticles; it modulates lipid transfer and receptor binding. Lower in APOE4 carriers (pooled LC −0.76). ‡ APOC1 lies next to APOE in the APOE/C1/C4/C2 cluster, so its expression difference follows the APOE haplotype that defines the groups. Its Open Targets score is that same APOE signal and is not credited.");
+    const tB=el("g",{},svg);geneTxt(tB,180,48,"APOC2",{"font-size":10,"text-anchor":"end"});
+    protTip(tB,"APOC2 ‡","Apolipoprotein C-II, the lipoprotein-lipase cofactor carried on lipoparticles. Lower in APOE4 carriers (pooled LC −0.41, FDR 0.004). ‡ In the APOE cluster, so cis-confounded; Open Targets score not credited.");
+    // APOD rides on this same particle. Drawn in the APOC idiom - a small tangential
+    // ellipse on the rim - but with a ligand dot inside, because APOD is a lipocalin and
+    // the bound lipophilic cargo is the thing that distinguishes it from the APOCs.
+    { const gAd=el("g",{},gLp);
+      el("ellipse",{cx:212,cy:30,rx:4.8,ry:3.0,transform:"rotate(45 212 30)",
+        fill:catCol("APOD")},gAd);
+      el("circle",{cx:212,cy:30,r:1.35,fill:css("--chol")},gAd); }
+    const tD=el("g",{},svg);geneTxt(tD,200,54,"APOD",{"font-size":10,"text-anchor":"middle"});
+    protTip(tD,"APOD (apolipoprotein D)","A secreted lipocalin. CORRECTED 2026-09-30: despite the name, APOD is NOT structurally an apolipoprotein - it has no amphipathic alpha-helices and attaches to lipoparticles through hydrophobic surface loops and a disulfide, not through the helical bundle APOE and APOB use. It earns its place here anyway because it genuinely co-resides on APOE-containing lipoparticles: two independent CSF fractionation studies six years apart put the bulk of CSF APOD on apoE-plus-apoA-I particles, though it is also found on APOE-free particles, so the association is real but not obligate. It does NOT bind APOE - absent from APOE among 179 IntAct partners, zero IMEx pair records, and STRING's 0.715 edge is text-mining 0.667 with experimental support 0.000 - and no APOD binding to LDLR or LRP1 exists in any source. Its one well-evidenced receptor is CD36, drawn elsewhere on this figure, which it inhibits and for which it competes with long-chain fatty acids (Circulation 2026). In human brain it is a perivascular-fibroblast and mural-cell gene first (Human Protein Atlas single-nuclei fibroblast 2,810 nCPM, rank 1 of 34 brain cell types) and is reported absent from astrocytes. Our entorhinal values (vascular 7.97, OPC 6.94, oligodendrocyte 6.64, microglia 3.31, astrocyte 2.45) are Huuki-Myers Supplementary Table 11, so they are internal consistency rather than an independent dataset. IT CARRIES NO RED OR BLUE HERE ON PURPOSE: in the pooled LC contrast APOD does not move (+0.10, FDR 0.4-0.98), because its effect is ANCESTRY-RESTRICTED and pooling cancels it. Within European-ancestry donors it is strongly UP (5-domain mean +0.66; ACHE_SERT_LC_WM +0.96 FDR 1.7e-6, Astro +0.70 FDR 8.1e-5, Oligo_Astro +0.63 FDR 3.9e-4, Npep +0.65 FDR 1e-3), the 99.4th percentile of all 8,151 tested genes, while within African-ancestry donors it is flat to slightly down (mean -0.13). Formal between-stratum heterogeneity is significant in all five domains (p 1e-5 to 0.018) and is not a power artefact, since the African-ancestry stratum has the TIGHTER standard errors. It is not compositional either: across domains APOD is uncorrelated with a leptomeningeal/VLMC module (r = -0.05) and moves opposite to it in sign, and it ranks 1st of 83 astrocyte-specific, 1st of 116 vascular-specific and 1st of 17 VLMC-specific genes in the European-ancestry stratum. Not replicated in the ERC spatial data, but ERC publishes no ancestry-stratified contrast, so its null is the diluted pooled estimate rather than a refutation.");
+    const tC=el("g",{},svg);geneTxt(tC,222,-2,"CLU",{"font-size":10});
+    protTip(tC,"CLU (APOJ)","Clusterin, a secreted chaperone and lipoparticle apolipoprotein that binds amyloid-β. AD GWAS consensus locus (CLU/PTK2B, OR 0.91, protective); Open Targets 0.66. Lower in APOE4 carriers (pooled LC −0.19, FDR 2e-4).");
+    particle(svg,268,40,10);
+    const tP=el("g",{},svg);
+    el("path",{d:"M 228 30 q 6 -9 13 0 q 6 9 13 0",stroke:catCol("PLTP"),"stroke-width":5,fill:"none","stroke-linecap":"round"},tP);
+    geneTxt(tP,241,52,"PLTP",{"font-size":10,"text-anchor":"middle"});
+    protTip(tP,"PLTP","Phospholipid transfer protein, secreted, which moves phospholipid between lipoparticles and remodels them. Lower in APOE4 carriers (pooled LC −0.51, FDR 1e-4).");
+  }
+  // particle journey
+  particle(svg,298,78,12);particle(svg,396,56,13);
+  txt(svg,396,-14,"APOE lipoparticles",{"font-size":12,"font-weight":600,"text-anchor":"middle"});
+  carrow(svg,"M 313 74 L 378 60","",0,0);
+  for(let i=0;i<4;i++)el("path",{d:`M ${490+i*11} 123 q 5 -10 0 -20 q -5 -10 0 -20`,stroke:css("--hspg"),"stroke-width":2,fill:"none","stroke-linecap":"round"},svg);
+  txt(svg,506,158,"HSPG",{class:"mono","font-size":10.5,"text-anchor":"middle"});
+  particle(svg,506,72,12);
+  carrow(svg,"M 412 58 Q 460 56 490 66","binds",440,48);
+  // receptors
+  const gR=hitGroup(svg,"receptors");
+  const rT=(g,sym,body)=>protTip(g,sym,body);
+  let gL1=el("g",{},svg);recY(gL1,560,123,0,catCol("LDLR"));rT(gL1,"LDLR","Low-density lipoprotein receptor, the prototype APOE-lipoprotein receptor. It recycles from endosomes to the surface.");
+  let gL2=el("g",{},svg);recY(gL2,592,123,0,catCol("LRP1"));rT(gL2,"LRP1","LDL receptor-related protein 1, a major brain APOE receptor that also internalises amyloid-β and tau.");
+  let gS2=el("g",{},svg);
+  el("rect",{x:621,y:117,width:6,height:14,rx:2.5,fill:catCol("SORL1")},gS2);
+  [112,106].forEach(y=>el("circle",{cx:624,cy:y,r:3,fill:catCol("SORL1")},gS2));
+  el("circle",{cx:624,cy:94,r:9,fill:catCol("SORL1")},gS2);el("circle",{cx:624,cy:94,r:3.2,fill:css("--surf")},gS2);
+  rT(gS2,"SORL1 (SORLA)","Mosaic Vps10p-domain receptor with a β-propeller, LDLR class-A repeats and one membrane span. It binds APOE and APP and retromer-recycles APP away from amyloidogenic processing. SORL1 is an AD GWAS consensus locus.");
+  recY(gR,850,176,0,recCol);
+  particle(svg,850,141,11);
+  carrow(svg,"M 522 88 Q 548 66 578 100","hands off",566,70,"start");
+  lab(gR,730,-14,"receptors","middle");
+  // SORT1 (sortilin): Vps10p-domain receptor, single TM, beta-propeller head
+  let gS1=el("g",{},svg);
+  el("rect",{x:655,y:117,width:6,height:14,rx:2.5,fill:catCol("SORT1")},gS1);
+  el("line",{x1:658,y1:117,x2:658,y2:110,stroke:catCol("SORT1"),"stroke-width":3},gS1);
+  el("circle",{cx:658,cy:100,r:10,fill:catCol("SORT1")},gS1);el("circle",{cx:658,cy:100,r:3.6,fill:css("--surf")},gS1);
+  protTip(gS1,"SORT1 (sortilin)","Vps10p-domain sorting receptor with a ten-bladed β-propeller and one membrane span. It is a neuronal receptor for APOE-lipoproteins and APOE-bound amyloid-β, and for progranulin, and routes cargo from the Golgi and plasma membrane to endosomes. SORT1 is an AD GWAS consensus locus (Tier 1).");
+  // GPIHBP1: GPI-anchored to the outer leaflet
+  let gGP=el("g",{},svg);
+  el("path",{d:"M 698 124 L 698 112",stroke:catCol("GPIHBP1"),"stroke-width":1.6,"stroke-dasharray":"2 1.5"},gGP);
+  el("ellipse",{cx:698,cy:104,rx:8,ry:7,fill:catCol("GPIHBP1")},gGP);el("ellipse",{cx:695,cy:95,rx:4,ry:3.4,fill:catCol("GPIHBP1")},gGP);
+  protTip(gGP,"GPIHBP1","Glycosylphosphatidylinositol-anchored high-density lipoprotein-binding protein 1. A Ly6 protein held on the outer leaflet by a GPI anchor, chiefly in capillary endothelium. It binds lipoprotein lipase, carries it across the endothelium and holds it at the luminal surface, where triglyceride-rich lipoproteins are processed. The acidic N-terminal domain binds LPL.");
+  // CD36: two TM segments, large extracellular loop; binds oxLDL and amyloid-β and mediates their uptake
+  let gCD=el("g",{},svg);
+  el("rect",{x:731,y:117,width:7,height:15,rx:3,fill:catCol("CD36")},gCD);el("rect",{x:756,y:117,width:7,height:15,rx:3,fill:catCol("CD36")},gCD);
+  el("path",{d:"M 734.5 118 C 727 104 733 88 747 88 C 761 88 767 104 759.5 118",fill:catCol("CD36"),stroke:"none"},gCD);
+  protTip(gCD,"CD36","Class B scavenger receptor with two membrane spans and a large extracellular loop. It binds oxidised LDL and fibrillar amyloid-β and mediates their endocytosis. In microglia it is part of the Aβ-sensing complex.");
+  // oxLDL and Abeta cargo glyphs removed from the receptor row at review;
+  // CD36 keeps both in its tooltip, and the cargo legend keeps amyloid-beta.
+  // ABCA7 on the plasma membrane
+  let gA7=el("g",{},svg);abcGlyph(gA7,150,131,0,.85,css("--abca7"));
+  // ABCA7 effluxes cholesterol onto a docked lipoparticle
+  particle(gA7,150,93,11);
+  [[146,113],[153,107]].forEach(([x,y])=>el("circle",{cx:x,cy:y,r:2.4,fill:css("--chol")},gA7));
+  el("path",{d:"M 163 116 Q 169 108 164 101",stroke:css("--ink2"),"stroke-width":1.4,fill:"none","marker-end":"url(#ah)"},gA7);
+  geneTxt(gA7,150,164,"ABCA7",{"text-anchor":"middle"});
+  protTip(gA7,"ABCA7","ATP-binding cassette transporter A7, a close homologue of ABCA1 that effluxes phospholipid and cholesterol onto APOE-containing lipoparticles. It is enriched in microglia and needed for phagocytic clearance, including of amyloid-β. ABCA7 loss-of-function variants are among the strongest AD risk factors after APOE.");
+  clathrin(svg,850,150,40,15,165,25);
+  // amyloid-beta carried on the particle captured in the membrane coat: APOE-lipoparticles
+  // deliver Abeta to LDLR-family receptors, and CD36 takes fibrillar Abeta up directly
+  fibAbeta(svg,836,132,15,-22,2.4);
+  // Isoform ranking for LDLR binding. Drawn above the pit because receptor affinity is
+  // what sets how fast each isoform's particles are cleared at this step.
+  // Sits up and to the RIGHT of the pit: centring it over the pit would collide with
+  // the Abeta glyph at x 782-800, so a short leader ties it to the coat instead.
+  const gAff=el("g",{},svg);
+  // x 640..838 is the one band that is fully inside BOTH the receptor frame and the
+  // endocytosis frame, and clear of the BMP legend glyph at x 986. Placing it right of
+  // that straddles the receptor frame's edge, which no reframing can resolve cleanly.
+  el("path",{d:"M 832 74 Q 844 94 850 114",stroke:css("--rule"),"stroke-width":1.2,
+             fill:"none"},gAff);
+  el("rect",{x:640,y:38,width:198,height:36,rx:4,fill:css("--band"),
+             stroke:css("--rule"),"stroke-width":1},gAff);
+  txt(gAff,739,52,"Receptor-mediated Endocytosis",{class:"mono","font-size":8.5,
+      "text-anchor":"middle",fill:css("--muted")});
+  txt(gAff,739,68,"E2 \u226a E3-Cc < E3 < E4",{class:"mono","font-size":10,
+      "font-weight":600,"text-anchor":"middle"});
+  // coated vesicle
+  const gP=hitGroup(svg,"pit");
+  memCircle(gP,928,246,27,LUM);clathrin(gP,928,246,39,0,340,30);particle(gP,928,246,10);recY(gP,928,273,0,recCol);
+  lab(gP,972,226,"pit");
+  carrow(svg,"M 884 184 Q 896 198 900 212","scission",880,212,"end");
+  // early endosome
+  // recycling tubule: outer wall first, then the endosome, then one lumen stroke that runs
+  // from inside the endosome out along the tubule, so the two lumens are continuous
+  const tub="M 858 361 L 836 350 C 818 340 800 331 780 321";
+  const gC=hitGroup(svg,"recycling");
+  ribbon(gC,[tub],11,LUM,2.6,2.4,0,1);
+  const gE=hitGroup(svg,"early");
+  memCircle(gE,880,372,48,LUM);
+  const gC2=hitGroup(svg,"recycling");
+  ribbon(gC2,[tub],11,LUM,2.6,2.4,1,4);
+  recY(gC2,805.8,344.3,26.6,recCol,.5);apoeFree(gC2,811.5,333.6,-26.6,.8);
+  const gE2=hitGroup(svg,"early");
+  el("circle",{cx:880,cy:372,r:43.5,fill:LUM},gE2);
+  particle(gE2,882,386,9);
+  [-75,-30,70].forEach(ph=>{const t=ph*Math.PI/180;recY(gE2,880+48*Math.cos(t),372+48*Math.sin(t),ph-90,recCol)});
+  lab(gE2,938,362,"early");
+  carrow(svg,"M 916 292 Q 908 306 898 318","uncoats",922,312,"start");
+  // recycling: short tubule, budded vesicle, return to membrane
+  memCircle(gC,640,222,19,LUM);recY(gC,640,240,0,recCol);
+  lab(gC,612,270,"recycling","end");
+  carrow(svg,"M 764 312 Q 712 282 664 236","buds",716,300,"middle");
+  carrow(svg,"M 626 202 Q 606 182 598 150","receptor returns",600,198,"end");
+  // late endosome
+  const gL=hitGroup(svg,"late");gL.setAttribute("transform","translate(-5 -46)");
+  memCircle(gL,760,524,46,LUM);
+  [[740,508],[744,544]].forEach(([x,y])=>memCircle(gL,x,y,7,css("--cyto"),3));
+  particle(gL,779,507,7);whorl(gL,778,542,10);apoeFree(gL,758,520,30);apoeFree(gL,762,534,-40);
+  bmpGlyph(gL,729,522,-20);bmpGlyph(gL,752,557,10);bmpGlyph(gL,764,492,-8);
+  lab(gL,818,524,"late");
+  carrow(svg,"M 874 424 Q 852 452 798 460","matures",872,452,"start");
+  // lysosome
+  const gY=hitGroup(svg,"lysosome");gY.setAttribute("transform","translate(50 -51)");
+  memCircle(gY,560,566,42,LYS);
+  whorl(gY,548,579,11,2.8);particle(gY,576,551,7);apoeFree(gY,550,552,20);apoeFree(gY,579,579,-35);
+  [[538,560],[590,566]].forEach(([x,y])=>el("circle",{cx:x,cy:y,r:2.4,fill:css("--ink2"),opacity:.5},gY));
+  bmpGlyph(gY,534,585,-15);bmpGlyph(gY,594,545,12);
+  fibAbeta(gY,561,539,16,-8);fibTau(gY,573,596,16,-22);
+  lab(gY,560,652,"lysosome","middle");
+  let gAL=el("g",{transform:"translate(50 -51)"},svg);abcGlyph(gAL,583.3,525.7,30,.45,css("--abca"));geneTxt(gAL,592,516,"ABCA1",{"font-size":9.5});protTip(gAL,"ABCA1 on the lysosome",ABCA1_TIP);
+  carrow(svg,"M 708 488 Q 684 508 658 513","",0,0);
+  // ER tubules reaching out from the peripheral ER to two contact sites on the lysosome
+  const gM=hitGroup(svg,"mcs");gM.setAttribute("transform","translate(50 -51)");
+  // tethers bridging the ~8 px gap (ER VAPA to lysosomal STARD3 / ORP1L)
+  [[[505,564],[513,563]],[[505,574],[513,574]],[[520,601],[525,596]],[[526,607],[531,602]]].forEach(([a,b])=>
+    el("line",{x1:a[0],y1:a[1],x2:b[0],y2:b[1],stroke:css("--tether"),"stroke-width":3,"stroke-linecap":"round"},gM));
+  // NPC1 in the lysosomal membrane at the contact
+  el("rect",{x:514,y:580,width:10,height:14,rx:3,fill:css("--abca"),transform:"rotate(-10 519 587)"},gM);
+  // cholesterol crossing the contact into the ER tubules
+  [[494,568],[482,571],[508,618],[497,626]].forEach(([x,y])=>el("circle",{cx:x,cy:y,r:2.4,fill:css("--chol")},gM));
+  carrow(svg,"M 536 505 Q 500 510 464 519","cholesterol",433,497);
+  lab(hitGroup(svg,"mcs"),506,660,"mcs");
+  drawMTOR(svg);
+  // endo-lysosomal exocytosis: lysosome-derived vesicle -> plasma membrane pore at x≈430
+  const gZ=hitGroup(svg,"lysexo");
+  memCircle(gZ,530,390,25,LYS);
+  whorl(gZ,538,398,7,2.2);fibAbeta(gZ,523,379,13,-10,2.2);fibTau(gZ,519,396,12,20,2.2);
+  bmpGlyph(gZ,545,381,8,.85);
+  fibTau(gZ,431,160,13,-12,2.4);fibAbeta(gZ,423,142,13,-35,2.4);fibAbeta(gZ,438,122,14,-60,2.6);fibTau(gZ,448,104,14,-40,2.6);
+  [[442,148],[426,110]].forEach(([x,y])=>el("circle",{cx:x,cy:y,r:2.3,fill:css("--ink2"),opacity:.5},gZ));
+  lab(gZ,566,384,"lysexo");
+  carrow(svg,"M 588 478 Q 566 450 548 422","",0,0);
+  carrow(svg,"M 520 362 Q 468 290 432 190","",0,0);
+  { const gB=el("g",{class:"hit",tabindex:0,role:"button","aria-label":"Cholesterol and BMP accumulation"},svg);
+    el("circle",{cx:702,cy:549,r:3.6,fill:css("--chol")},gB);
+    bmpGlyph(gB,716,548,0,1.1);
+    txt(gB,728,548,"Cholesterol and BMP ↑ in APOE4",{class:"mono","font-size":10,fill:css("--bmp")});
+    txt(gB,728,562,"and mTORC1-hyperactive states",{class:"mono","font-size":10,fill:css("--bmp")});
+    bindTip(gB,()=>`<div class="t">Cholesterol and BMP accumulate together</div><div><b>BMP</b> (bis(monoacylglycero)phosphate, LBPA) is confined to the internal membranes of late endosomes and lysosomes — the same membranes that hold most of this compartment's cholesterol, and from which NPC2 must extract it before NPC1 exports it. Antibody against BMP raises free cholesterol and cuts efflux to HDL, so BMP-rich domains are needed for normal cholesterol export; whether BMP mediates that step or only marks its failure is unsettled.</div><div><b>Both rise together.</b> Free cholesterol tracks BMP at r = +0.725 (p = 0.0015) across 16 mice regardless of genotype. BMP is raised in APOE4 entorhinal cortex (allele-dose trend p = 0.007) and APOE4 forebrain, and in mTORC1-hyperactive cortex (+50%, q = 0.023), where it survives Raptor deletion; free cholesterol rises +10.7% (p = 0.024) in the same cortex. Human Alzheimer's entorhinal cortex is enriched in BMP, sphingomyelin, GM3 and cholesteryl esters.</div><div><b>Not APOE-specific.</b> BMP rises across lysosomal storage disorders — 51-fold in the urine of Niemann-Pick type C patients (NPC1/NPC2), in the gangliosidoses (GLB1, HEXA, HEXB), and in drug-induced phospholipidosis — so it reports lysosomal overload.</div><div class="m">Caveat: BMP and phosphatidylglycerol are structural isomers and co-migrate, so read it as BMP/PG combined.</div>`);
+  }
+}
+function drawMTOR(svg){
+  const P=(r,d)=>[610+r*Math.cos(d*Math.PI/180),515+r*Math.sin(d*Math.PI/180)];
+  // site on the lysosome that the magnified view enlarges
+  const [a1x,a1y]=P(54,12),[a2x,a2y]=P(54,52);
+  el("path",{d:`M ${a1x} ${a1y} A 54 54 0 0 1 ${a2x} ${a2y}`,stroke:css("--muted"),"stroke-width":1.4,fill:"none","stroke-dasharray":"3 3"},svg);
+  el("line",{x1:a1x,y1:a1y,x2:688,y2:589,stroke:css("--muted"),"stroke-width":1,"stroke-dasharray":"3 3"},svg);
+  el("line",{x1:a2x,y1:a2y,x2:688,y2:729,stroke:css("--muted"),"stroke-width":1,"stroke-dasharray":"3 3"},svg);
+  // the magnified view is drawn 5% larger, scaled about its left-centre edge (700,659)
+  // so the dashed leader lines still land on it
+  svg=el("g",{transform:"translate(688 659) scale(1.05) translate(-700 -659)"},svg);
+  // lysosomal lumen band + membrane (bilayer), cytosol below
+  el("rect",{x:700,y:592,width:388,height:26,fill:css("--lyso")},svg);
+  const mD="M 700 624 H 1088";
+  el("path",{d:mD,stroke:css("--mem"),"stroke-width":14,fill:"none"},svg);el("path",{d:mD,stroke:css("--mem-in"),"stroke-width":4.5,fill:"none"},svg);
+  txt(svg,1086,586,"lysosome surface, magnified",{class:"mono ink2","font-size":10.5,"text-anchor":"end","letter-spacing":".04em"});
+  const nm=(g,x,y,t,anchor="middle")=>txt(g,x,y,t,{class:"mono","font-size":10,"text-anchor":anchor});
+  // v-ATPase: V0 in the membrane, V1 head in the cytosol
+  let g=hitGroup(svg,"vatp");
+  el("rect",{x:711,y:612,width:18,height:22,rx:4,fill:css("--vatp")},g);el("rect",{x:717,y:634,width:6,height:10,fill:css("--vatp")},g);
+  el("circle",{cx:720,cy:656,r:13,fill:css("--vatp")},g);nm(g,720,686,"v-ATPase");
+  // SLC38A9 (amino-acid and cholesterol sensor), transmembrane
+  g=hitGroup(svg,"slc");
+  el("rect",{x:743,y:611,width:14,height:26,rx:5,fill:css("--slc")},g);el("circle",{cx:750,cy:624,r:3,fill:css("--chol"),stroke:css("--surf"),"stroke-width":1},g);nm(g,752,607,"SLC38A9");
+  // Ragulator on the cytosolic face, Rag heterodimer on Ragulator
+  g=hitGroup(svg,"ragulator");
+  el("rect",{x:832,y:632,width:80,height:9,rx:4.5,fill:css("--lamtor")},g);nm(g,826,640,"Ragulator","end");
+  g=hitGroup(svg,"rag");
+  el("circle",{cx:849,cy:653,r:10,fill:css("--rag1")},g);el("circle",{cx:873,cy:653,r:10,fill:css("--rag2")},g);
+  nm(g,836,657,"RagA/B·GTP","end");nm(g,886,657,"RagC/D·GDP","start");
+  // TM6SF1: lysosomal cholesterol-binding homodimer (10 TMs per protomer) that engages LAMTOR1
+  g=el("g",{class:"hit",tabindex:0,role:"button","aria-label":"TM6SF1"},svg);
+  el("rect",{x:914,y:610,width:13,height:28,rx:4,fill:css("--tm6")},g);el("rect",{x:929,y:610,width:13,height:28,rx:4,fill:css("--tm6")},g);
+  [[920.5,622],[935.5,622]].forEach(([x,y])=>el("circle",{cx:x,cy:y,r:3,fill:css("--chol"),stroke:css("--surf"),"stroke-width":1},g));
+  nm(g,928,606,"TM6SF1");
+  bindTip(g,()=>`<div class="t">TM6SF1</div><div>Lysosomal membrane homodimer, 10 TM helices per protomer; TMs 1–6 form a pocket that holds cholesterol (cryo-EM, 2.9 Å).</div><div>Engages LAMTOR1 of Ragulator in a cholesterol-dependent manner. Loss lowers S6K1 and 4E-BP1 phosphorylation and activates TFEB.</div><div class="m">Hong et al., PNAS 2026 · 10.1073/pnas.2622424123 · not yet in GO</div>`);
+  // FLCN–FNIP, the RagC/D GAP
+  g=hitGroup(svg,"flcn");
+  el("ellipse",{cx:778,cy:674,rx:9,ry:6.5,fill:css("--flcn")},g);el("ellipse",{cx:794,cy:680,rx:9,ry:6.5,fill:css("--flcn")},g);
+  nm(g,784,700,"FLCN–FNIP");
+  // mTORC1 recruited by the Rags
+  g=hitGroup(svg,"mtorc1");
+  el("rect",{x:822,y:690,width:78,height:30,rx:15,fill:css("--mtor")},g);
+  txt(g,861,704,"mTORC1",{"font-size":10.5,"font-weight":600,"text-anchor":"middle",style:`fill:${css("--on-mtor")}`});
+  txt(g,861,716,"LST8 \u00b7 RPTOR",{"font-size":6,"text-anchor":"middle",class:"mono",style:`fill:${css("--on-mtor")}`});
+  // A marker does NOT inherit currentColor from the element that references it - it resolves
+  // against its own <defs> context - so setting `color` on a wrapper recoloured the shafts and
+  // left the arrowheads at --ink2. These two arrows get their own grey marker instead.
+  const AGREY=mix(css("--ink2"),"#ffffff",0.2);
+  // NB: this runs in drawMTOR, not drawA, so drawA's `defs` const is out of scope here -
+  // look the element up instead.
+  const mkg=el("marker",{id:"ahg",viewBox:"0 0 10 10",refX:8,refY:5,markerWidth:6.5,
+    markerHeight:6.5,orient:"auto-start-reverse"},$("#schem").querySelector("defs"));
+  el("path",{d:"M0,0 L10,5 L0,10 z",fill:AGREY},mkg);
+  const AOPT={stroke:AGREY,"stroke-width":1.6,fill:"none","marker-end":"url(#ahg)"};
+  el("path",{d:"M 819.4 668.4 L 835 684",...AOPT},svg);
+  // RHEB, farnesylated on the lysosome, activates mTORC1
+  g=hitGroup(svg,"rheb");
+  el("line",{x1:990,y1:631,x2:990,y2:642,stroke:css("--rheb"),"stroke-width":2},g);
+  el("circle",{cx:990,cy:652,r:10,fill:css("--rheb")},g);nm(g,990,680,"RHEB·GTP");
+  el("path",{d:"M 902.6 668.4 L 887 684",...AOPT},svg);
+  // TSC1/TSC2 (TSC complex): GAP for RHEB, so it inhibits mTORC1 activation
+  g=hitGroup(svg,"tsc");
+  el("circle",{cx:1052,cy:660,r:9,fill:css("--tsc")},g);el("circle",{cx:1069,cy:660,r:9,fill:css("--tsc")},g);
+  nm(g,1060,684,"TSC1/TSC2");
+  el("line",{x1:1041,y1:658,x2:1005,y2:653,stroke:css("--ink2"),"stroke-width":1.6},svg);
+  el("line",{x1:1004,y1:646,x2:1003,y2:660,stroke:css("--ink2"),"stroke-width":2.2},svg);
+
+  /* ================= THERAPEUTIC HYPOTHESES + STEROL STRUCTURES =================
+     NOTE: `svg` was rebound above to the magnified lysosome-surface group
+     (translate(688 659) scale(1.05) translate(-700 -659)). The rapalog targets mTORC1,
+     which is drawn in that group, so it stays in `svg`. The antibody, the LXR agonist and
+     the sterol structures are elsewhere in the cell and must be drawn into ROOT, or they
+     come out shifted by about (-22,-31).
+     Drugs are drawn in --ink with dashed enclosures and an Rx tag, NOT in a new hue:
+     every colour in this figure already means something (GWAS, Open Targets, up, down),
+     so a fourth hue would be read as evidence. These are hypotheses, not data.
+     All four positions were chosen from an occupancy scan of the drawn cartoon, not by eye. */
+
+  // an inhibitory terminus: a stem plus the perpendicular bar, matching the TSC->RHEB idiom
+  function inhib(g,x1,y1,x2,y2,col){
+    el("line",{x1,y1,x2,y2,stroke:col,"stroke-width":1.8},g);
+    const dx=x2-x1,dy=y2-y1,L=Math.hypot(dx,dy)||1,nx=-dy/L,ny=dx/L;
+    el("line",{x1:x2+nx*8,y1:y2+ny*8,x2:x2-nx*8,y2:y2-ny*8,stroke:col,"stroke-width":2.6},g);
+  }
+  function rxTag(g,x,y,lines,col,anchor="start"){
+    lines.forEach((t,i)=>txt(g,x,y+i*12,t,{"font-size":9.5,"font-weight":600,"text-anchor":anchor,
+      class:"mono",style:`fill:${col}`}));
+  }
+
+  const ROOT=$("#schem");
+
+  // A reusable IgG, drawn after Goodsell's Molecule of the Month #21 (PDB 1IGT): SPACE-FILLING
+  // rather than a wire Y. Six globular domains as overlapping spheres - VH/VL and CH1/CL on each
+  // Fab, CH2 and CH3 in the Fc - with the Fab arms extending LATERALLY at a wide separation and
+  // joined to the compact central Fc by thin flexible hinge chains, which is 1IGT's signature.
+  // Two-tone as in the original: heavy chain in the base colour, light chain (the outer half of
+  // each Fab) in a lighter tint.
+  // Drawn in two passes - every shape's darker edge first, then every body - so the overlapping
+  // spheres share ONE continuous outline and read as a single lumpy molecule instead of beads.
+  function igg(parent,x,y,rot,sc){
+    const col=css("--drug"), edge=mix(col,"#1b2430",0.46), lite=mix(col,"#ffffff",0.30);
+    const g=el("g",{transform:`translate(${x} ${y}) rotate(${rot}) scale(${sc||1})`},parent);
+    const D=(deg,t)=>[Math.sin(deg*Math.PI/180)*t,-Math.cos(deg*Math.PI/180)*t];
+    // Fab: base (CH1/CL) out at 40 deg, then the tip (VH/VL) continuing at 50 deg
+    const base=D(30,7.6), step=D(38,6.2), tip=[base[0]+step[0],base[1]+step[1]];
+    const SPH=[];                                     // [cx,cy,r,isLightChain]
+    SPH.push([-1.7,8.7,3.8,false],[1.7,8.7,3.8,false],[0,4.9,3.6,false]);   // Fc: CH2/CH3 dimer
+    [-1,1].forEach(sx=>{
+      SPH.push([sx*base[0],base[1],3.5,false]);        // CH1 / CL
+      SPH.push([sx*tip[0],tip[1],3.4,true]);           // VH / VL - the antigen-binding tip
+    });
+    // the thin flexible hinge chains that join each Fab to the Fc
+    const CH=[-1,1].map(sx=>`M ${(sx*1.9).toFixed(2)} 2.4 L ${(sx*base[0]*0.62).toFixed(2)} ${(base[1]*0.62).toFixed(2)}`);
+    CH.forEach(d=>el("path",{d,stroke:edge,"stroke-width":3.1,fill:"none","stroke-linecap":"round"},g));
+    SPH.forEach(([cx,cy,r])=>el("circle",{cx,cy,r:r+1.25,fill:edge},g));
+    CH.forEach(d=>el("path",{d,stroke:col,"stroke-width":1.8,fill:"none","stroke-linecap":"round"},g));
+    SPH.forEach(([cx,cy,r,lt])=>el("circle",{cx,cy,r,fill:lt?lite:col},g));
+    return g;
+  }
+
+  { // ---- 1. anti-APOE4 antibody, APPROACHING (not touching) the particle at (506,72).
+    //   Rotated 135 deg so the Y sits on a true 45 deg diagonal with the Fc up-left and both Fab
+    //   arms opening down-right onto the particle. The exact hinge->particle bearing is 56 deg,
+    //   but that made the Y look tipped over; 11 deg is imperceptible and the paratopes still
+    //   clear the particle surface (measured).
+    const col=css("--drug"), gW=el("g",{},ROOT);
+    igg(gW,483,49,135);
+    rxTag(gW,536,34,["anti-APOE4 mAb","blocks uptake"],col);
+    protTip(gW,"Therapeutic hypothesis 1 - an antibody that blocks lipoparticle uptake",
+      "A monoclonal antibody raised against the APOE4 lipoparticle, drawn gripping the particle at the moment it is handed from HSPG to the receptors. The intent is steric: occupy the APOE surface that HSPG and the LDLR family read, so the particle is never internalised. Rationale from this figure: APOE4 binds LDLR most tightly of the three isoforms (Kd 9 nM vs 16 nM for E3 and 800 nM for E2, ref [10]), and APOE4 lipoparticles accumulate intracellularly more than APOE3, so uptake is the step where the isoform difference is largest. AN ANTIBODY IS DRAWN, NOT ASSUMED TO WORK: it is a hypothesis with three known liabilities. It must cross the blood-brain barrier or be delivered intrathecally; it cannot easily distinguish APOE4 from APOE3 particles, which differ by a single residue (C112R) that is not surface-exposed on the lipidated particle; and blocking uptake wholesale would also block the delivery of cholesterol that neurons depend on, so the therapeutic window is the open question. Nothing in our data speaks to it.");
+  }
+
+  { // ---- 1b. a SECOND interception, in the gap between the affinity box and the "Uptake" title.
+    //   Here the antibody is ENGAGED, not approaching: the paratopes sit on the particle surface,
+    //   and the route to the clathrin pit is drawn dashed and barred. Coordinates come from an
+    //   occupancy scan that found this block free: x852-980, y16-128, bounded by the affinity box
+    //   on the left, the cargo key above right, and the "Uptake" title below right.
+    const col=css("--drug"), g2=el("g",{},ROOT);
+    particle(g2,922,64,12);
+    igg(g2,901,85,45);
+    txt(g2,911,119,"mAb blocks entry",{"font-size":9.5,"font-weight":600,class:"mono",
+      "text-anchor":"middle",style:`fill:${col}`});
+    protTip(g2,"The same antibody, drawn intercepting",
+      "The same therapeutic hypothesis at the next moment: the antibody is engaged rather than approaching, its two paratopes on the particle surface, and the route to the clathrin-coated pit is drawn dashed and barred. What this asserts is only that uptake is the step being targeted. It does NOT assert that the antibody is isoform-selective - APOE3 and APOE4 differ by C112R, a substitution that is not surface-exposed on the lipidated particle, so selectivity is the hard part of this idea and is unsolved. Blocking uptake wholesale would also block the cholesterol delivery neurons depend on, so the therapeutic window, not the binding, is the open question. Nothing in our spatial data speaks to any of this; it is drawn as a hypothesis.");
+  }
+
+  { // ---- 2. mTORC1-selective rapalog, inhibiting the cholesterol-dependent lysosomal activation
+    const col=css("--ink"), g=el("g",{},svg);
+    // The ring, its dot and the text label are removed; the hypothesis is carried by the
+    // inhibitory mark alone plus the tooltip. Shortened from 96 to 36 units so it reads as a
+    // mark on mTORC1 rather than a line arriving from empty space, and its horizontal run is
+    // level with the pill's vertical centre (pill y690-720, so y705).
+    const GREY=mix(css("--ink2"),"#ffffff",0.2);
+    inhib(g,946,705,910,705,GREY);
+    // label sits off the free end of the inhibitory line, in the same grey as the symbol it
+    // annotates so the two read as one element
+    rxTag(g,952,701,["selective","inhibitor"],GREY);
+    protTip(g,"Therapeutic hypothesis 2 - an mTORC1-selective rapalog",
+      "A rapamycin analogue, drawn inhibiting mTORC1 where it is activated on the lysosomal surface. The target here is specifically the CHOLESTEROL-dependent arm: TM6SF1 engages LAMTOR1 of Ragulator in a cholesterol-dependent manner and is required for normal mTORC1 signalling [3], and SLC38A9 senses lysosomal cholesterol alongside amino acids, so a lysosome loaded with cholesterol signals mTORC1 to stay on. APOE4 glia hold three-fold more lysosomal cholesterol [7], which predicts exactly that. WHAT 'SELECTIVE' HAS TO MEAN: classical rapamycin inhibits mTORC1 partially and substrate-selectively through FKBP12 and, with chronic dosing, hits mTORC2 as well; the hypothesis needs an analogue that spares mTORC2 and ideally the amino-acid arm. OUR DATA DOES NOT SUPPORT THIS AS A TRANSCRIPTIONAL FINDING, and the inhibitory arrow is drawn on the pathway, not on our measurements: mTOR, RPTOR, MLST8, all five LAMTOR subunits, all four Rag GTPases, RHEB, FLCN, TSC1/TSC2 and TM6SF1 are every one of them transcriptionally flat in the spatial data. The case rests on the lipid phenotype and on BMP rising in mTORC1-hyperactive cortex, not on expression. A separate, untested line of inquiry runs the other way: high mTORC1 activity is reported to suppress v-ATPase assembly through the mammalian RAVE complex, which would make this loop self-limiting.");
+  }
+
+  { // ---- 3. LXR/RXR agonist. Placed above the receptor pair, arrow routed left of the
+    //         'desmosterol' label so it crosses nothing.
+    const col=css("--ink"), g=el("g",{},ROOT);
+    el("path",{d:"M 36 566 q 8 -4 14 2 q 6 6 -1 11 q -7 5 -13 0 q -6 -5 0 -13 z",fill:"none",
+      stroke:col,"stroke-width":1.7},g);
+    rxTag(g,58,574,["LXR/RXR agonist"],col);
+    el("path",{d:"M 42 584 Q 34 602 57 611",stroke:col,"stroke-width":1.8,fill:"none",
+      "marker-end":"url(#ah)"},g);
+    protTip(g,"Therapeutic hypothesis 3 - a pharmacological LXR/RXR agonist",
+      "A synthetic agonist supplying the LXR/RXR activation this figure argues is deficient: DHCR24 is higher in APOE4 in five independent datasets, DHCR24 consumes desmosterol, and desmosterol is one of the dominant endogenous LXR agonists, so the prediction is less desmosterol and a hypo-agonised receptor. THIS IS THE ONE OF THE THREE WITH A DIRECT EXPERIMENTAL TEST BEHIND IT: GW3965 and T0901317 restore cholesterol efflux in isogenic APOE4 astrocytes to the level of untreated APOE3 cells, whereas 25-hydroxycholesterol does not [7]. Two caveats the figure keeps visible. The rescue is incomplete - the APOE4-versus-APOE3 baseline gap persists under treatment, and in microglia the agonists raise APOE in APOE3 but not in APOE4, so the response is cell-type specific. And the target-gene evidence is not brain evidence: no LXR response element has been mapped in brain for any of the genes lower in APOE4 here, the APOE/APOC1/APOC2 elements are macrophage- and adipose-specific multienhancers, and CD36's is a mouse liver DR-7 [12]. Systemic LXR agonism also drives hepatic lipogenesis through SREBP-1c, which is why the clinical programmes stalled; a brain-selective or LXR-beta-biased agonist is what the hypothesis actually requires.");
+  }
+
+}
+function nodeTip(k){
+  const st=STEP[k];
+  const nm2={gwas:"AD GWAS",ot:"Open Targets AD",up:"higher in APOE4",dn:"lower in APOE4"};
+  const shown=st.nodes.filter(keepG).map(g=>{const c=GC(g);return `${g}${c.cats&&c.cats.length?" ("+c.cats.map(x=>nm2[x]).join(", ")+")":c.why?" ("+c.why+")":""}`});
+  return `<div class="t">${st.label}</div><div class="m">${st.go} · ${st.n} genes in the downloaded set</div><div>${shown.length?"labelled: "+shown.join("; "):"no labelled genes (none meet the evidence rule)"}</div>`;
+}
+
+/* ---------- B: heatmap ---------- */
+const STEPORDER=["receptors","pit","early","recycling","late","lysosome"];
+let sortB="step";
+function drawB(){
+  const svg=$("#heat");svg.innerHTML="";
+  const cw=22,rh=13,left=78,top=118,gap=10;
+  const colX=[];let x=left,prev=null;HEAT.forEach(c=>{if(prev&&prev!==c.ds)x+=gap;colX.push(x);x+=cw;prev=c.ds});
+  let genes=[...D.genes];
+  const maxAbs=g=>Math.max(0,...Object.values(g.v).map(v=>Math.abs(v[1])));
+  if(sortB==="step")genes.sort((a,b)=>STEPORDER.indexOf(a.step)-STEPORDER.indexOf(b.step)||maxAbs(b)-maxAbs(a));
+  else genes.sort((a,b)=>maxAbs(b)-maxAbs(a));
+  const rowY=[];let y=top,ps=null;genes.forEach(g=>{if(sortB==="step"&&ps&&ps!==g.step)y+=16;rowY.push(y);y+=rh;ps=g.step});
+  const W=x+215,H=y+10;svg.setAttribute("viewBox",`0 0 ${W} ${H}`);svg.setAttribute("width",W);
+  // column headers
+  HEAT.forEach((c,i)=>{txt(svg,0,0,domL(c.dom),{class:"ink2","font-size":10.5,transform:`translate(${colX[i]+cw/2+3},${top-6}) rotate(-60)`})});
+  let dsStart={};HEAT.forEach((c,i)=>{if(!(c.ds in dsStart))dsStart[c.ds]=[colX[i],colX[i]+cw];dsStart[c.ds][1]=colX[i]+cw});
+  Object.entries(dsStart).forEach(([ds,[a,b]])=>{el("line",{x1:a,y1:14,x2:b,y2:14,stroke:css("--rule")},svg);txt(svg,a,10,DSL[ds],{class:"mono ink2","font-size":10.5})});
+  const surf=css("--surf"),ink=css("--ink");
+  genes.forEach((g,r)=>{
+    const yy=rowY[r];
+    txt(svg,left-6,yy+rh-3,g.cis?g.g+"‡":g.g,{class:"mono","font-size":10.5,"text-anchor":"end","font-weight":g.named?600:400});
+    HEAT.forEach((c,i)=>{
+      const v=g.v[ck(c.ds,c.dom)];
+      const rc=el("rect",{x:colX[i],y:yy,width:cw-2,height:rh-2,rx:1.5,fill:v?divColor(v[1],5):surf,stroke:v?"none":css("--grid")},svg);
+      if(v&&v[2]<0.05)el("circle",{cx:colX[i]+(cw-2)/2,cy:yy+(rh-2)/2,r:2,fill:ink},svg);
+      if(v)bindTip(rc,()=>`<div class="t">${g.g}</div><div>${DSL[c.ds]} · ${domL(c.dom)}</div><div class="m">logFC ${fmt(v[0])} · t ${fmt(v[1])} · FDR ${fdrF(v[2])}</div><div>in: ${g.steps.map(k=>STEP[k].label).join(", ")}</div>${g.cis?'<div>‡ cis: within 1 Mb of APOE, left out of step scores</div>':''}`);
+    });
+  });
+  if(sortB==="step"){let ps2=null;genes.forEach((g,r)=>{if(g.step!==ps2){txt(svg,x+8,rowY[r]+rh-3,STEP[g.step].label,{"font-size":11.5,"font-weight":600});el("line",{x1:x+4,y1:rowY[r],x2:x+4,y2:rowY[r]+rh*genes.filter(q=>q.step===g.step).length,stroke:css("--rule")},svg);ps2=g.step}})}
+  const nsig=D.genes.reduce((a,g)=>a+Object.entries(g.v).filter(([k,v])=>v[2]<0.05).length,0);
+  const nsigLC=D.genes.reduce((a,g)=>a+Object.entries(g.v).filter(([k,v])=>v[2]<0.05&&k.startsWith("LC")).length,0);
+  $("#capB").textContent=`Cells show the limma t for E4 vs E2 carriers. Rows are genes, each grouped under the first pathway step whose GO set contains it; the tooltip lists every step. Rows in bold are the schematic labels. ‡ marks genes within 1 Mb of APOE (${D.cis_removed.join(", ")}). Their difference can come from linkage with the genotype that defines the groups, so they are left out of every step score. ${nsig} gene × domain cells reach FDR < 0.05, and ${nsigLC} of them are in LC. ERC's carrier contrast is underpowered: only 0.1–0.3% of all ERC genes clear 0.05.`;
+}
+$("#sortB").addEventListener("click",e=>{const b=e.target.closest("button");if(!b)return;sortB=b.dataset.v;[...$("#sortB").children].forEach(x=>x.setAttribute("aria-pressed",x===b));drawB()});
+
+/* ---------- C: percentile strips ---------- */
+function drawC(){
+  const svg=$("#pct");svg.innerHTML="";
+  const steps=[...STEPORDER,"endocytosis","rme","er","golgi","exo"];
+  const L=250,R=930,top=34,rowH=42;const X=p=>L+(R-L)*p/100;
+  const H=top+rowH*steps.length+40;svg.setAttribute("viewBox",`0 0 960 ${H}`);
+  el("rect",{x:X(90),y:top-8,width:X(100)-X(90),height:rowH*steps.length+8,fill:css("--band")},svg);
+  txt(svg,X(95),top-14,"top decile",{class:"ink2","font-size":11,"text-anchor":"middle"});
+  [0,25,50,75,100].forEach(p=>{el("line",{x1:X(p),y1:top-8,x2:X(p),y2:top+rowH*steps.length,stroke:p===50?css("--muted"):css("--grid"),"stroke-dasharray":p===50?"4 3":"none"},svg);txt(svg,X(p),top+rowH*steps.length+16,p,{class:"mono ink2","font-size":11,"text-anchor":"middle"})});
+  txt(svg,(L+R)/2,top+rowH*steps.length+34,"percentile of |M| among real GO pathways in the same domain (50 = typical)",{class:"ink2","font-size":11.5,"text-anchor":"middle"});
+  const lanes={LC_Visium:-12,ERC_Visium:-4,ERC_snBroad:4,ERC_snFine:12};
+  steps.forEach((k,i)=>{
+    const yc=top+rowH*i+rowH/2-4;const st=STEP[k];
+    if(k==="endocytosis"||k==="er")el("line",{x1:10,y1:top+rowH*i-2,x2:R,y2:top+rowH*i-2,stroke:css("--rule")},svg);
+    txt(svg,10,yc-2,st.label,{"font-size":12.5,"font-weight":600});
+    txt(svg,10,yc+13,`${st.go} · ${st.n} genes`,{class:"mono ink2","font-size":10});
+    const ss=D.scores.filter(s=>s.step===k&&s.pct!=null);
+    ss.forEach(s=>{
+      const c=el("circle",{cx:X(s.pct),cy:yc+lanes[s.ds],r:4,fill:s.m>=0?css("--up"):css("--down"),stroke:css("--surf"),"stroke-width":1.5,class:"hit"},svg);
+      bindTip(c,()=>`<div class="t">${st.label}</div><div>${DSL[s.ds]} · ${domL(s.dom)}</div><div class="m">M ${fmt(s.m)} · ${ord(s.pct)} pct of ${s.nref}</div>`);
+    });
+    const md=median(ss.map(s=>s.pct));
+    el("line",{x1:X(md),y1:yc-18,x2:X(md),y2:yc+18,stroke:css("--ink"),"stroke-width":2.5},svg);
+    txt(svg,X(md)+5,yc-16,ord(md),{class:"mono","font-size":11,"font-weight":500});
+  });
+  const ex=D.steps.filter(s=>STEPORDER.includes(s.k)).map(s=>`${s.label}: ${s.excluded_refs.map(r=>r.replace("ref: ","")).join(", ")}`).join("; ");
+  $("#capC").textContent=`Each dot is one tissue domain or cell type. A real pathway that holds more than 25% of a step's genes is removed from that step's comparator, so a step is never ranked against its own machinery. Removed per step: ${ex}. The endocytosis and receptor-mediated rows are umbrella sets that span the whole uptake route. The bottom three rows are the secretory arm.`;
+  const rows=D.scores.map(s=>`<tr><td>${STEP[s.step].label}</td><td>${DSL[s.ds]} · ${domL(s.dom)}</td><td>${s.n}</td><td>${fmt(s.mean,3)}</td><td>${fmt(s.m)}</td><td>${s.pct==null?"–":s.pct.toFixed(1)}</td><td>${s.nref}</td></tr>`).join("");
+  $("#tblC").innerHTML=`<table><thead><tr><th>step</th><th>domain</th><th>genes</th><th>mean logFC</th><th>M</th><th>pct</th><th>refs</th></tr></thead><tbody>${rows}</tbody></table>`;
+}
+
+/* ---------- D: forest ---------- */
+let dsD="LC_Visium",stD="all";
+const REC=["LDLR","LRP1","VLDLR","LRP8","SORL1","SCARB1"];
+function drawD(){
+  const svg=$("#forest");svg.innerHTML="";
+  [...$("#stD").children].forEach(b=>{b.disabled=dsD!=="LC_Visium"&&b.dataset.v!=="all"});
+  if(dsD!=="LC_Visium")stD="all";
+  [...$("#stD").children].forEach(b=>b.setAttribute("aria-pressed",b.dataset.v===stD));
+  const rows=D.forest.filter(f=>f.ds===dsD&&f.stratum===stD);
+  const doms=[...new Set(rows.map(r=>r.dom))];
+  const lim=Math.max(0.5,...rows.map(r=>Math.max(Math.abs(r.lo),Math.abs(r.hi))));
+  const lim2=Math.ceil(lim*4)/4;
+  const L=240,R=900,rh=15,top=26;
+  let y=top;const pos=[];
+  REC.forEach(g=>{const rr=doms.map(d=>rows.find(r=>r.g===g&&r.dom===d)).filter(Boolean);if(!rr.length)return;pos.push({g,y0:y,rr});y+=rr.length*rh+14});
+  const H=y+30;svg.setAttribute("viewBox",`0 0 960 ${H}`);
+  const X=v=>L+(R-L)*(v+lim2)/(2*lim2);
+  const ticks=[];for(let t=-lim2;t<=lim2+1e-9;t+=lim2/2)ticks.push(+t.toFixed(2));
+  ticks.forEach(t=>{el("line",{x1:X(t),y1:top-6,x2:X(t),y2:y-8,stroke:t===0?css("--muted"):css("--grid")},svg);txt(svg,X(t),y+6,t===0?"0":fmt(t,2),{class:"mono ink2","font-size":11,"text-anchor":"middle"})});
+  txt(svg,X(-lim2),top-12,"← lower in E4",{class:"ink2","font-size":11});
+  txt(svg,X(lim2),top-12,"higher in E4 →",{class:"ink2","font-size":11,"text-anchor":"end"});
+  txt(svg,(L+R)/2,y+22,"log2 fold-change, E4 vs E2 carriers (95% CI)",{class:"ink2","font-size":11.5,"text-anchor":"middle"});
+  pos.forEach(({g,y0,rr})=>{
+    txt(svg,10,y0+rh-3,g,{class:"mono","font-size":12.5,"font-weight":600});
+    rr.forEach((r,i)=>{
+      const yy=y0+i*rh+rh/2;
+      txt(svg,L-10,yy+4,domL(r.dom),{class:"ink2","font-size":11,"text-anchor":"end"});
+      el("line",{x1:X(Math.max(r.lo,-lim2)),x2:X(Math.min(r.hi,lim2)),y1:yy,y2:yy,stroke:css("--ink2"),"stroke-width":1.4},svg);
+      const col=r.lf>=0?css("--up"):css("--down");
+      const c=el("circle",{cx:X(r.lf),cy:yy,r:4.5,fill:r.fdr<0.05?col:css("--surf"),stroke:col,"stroke-width":1.8,class:"hit"},svg);
+      bindTip(c,()=>`<div class="t">${g} · ${domL(r.dom)}</div><div>${DSL[r.ds]} · ${stD==="all"?"all donors":stD+" donors"}</div><div class="m">logFC ${fmt(r.lf,3)} [${fmt(r.lo,2)}, ${fmt(r.hi,2)}] · FDR ${fdrF(r.fdr)}</div>`);
+    });
+  });
+}
+$("#dsD").addEventListener("click",e=>{const b=e.target.closest("button");if(!b)return;dsD=b.dataset.v;[...$("#dsD").children].forEach(x=>x.setAttribute("aria-pressed",x===b));drawD()});
+$("#stD").addEventListener("click",e=>{const b=e.target.closest("button");if(!b||b.disabled)return;stD=b.dataset.v;drawD()});
+
+function drawAll(){paintRamps();drawA();drawB();drawC();drawD()}
+drawAll();
+matchMedia("(prefers-color-scheme: dark)").addEventListener("change",drawAll);
+new MutationObserver(drawAll).observe(document.documentElement,{attributes:true,attributeFilter:["data-theme"]});
+</script>
