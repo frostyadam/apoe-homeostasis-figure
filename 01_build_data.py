@@ -85,6 +85,17 @@ for k,gl in NODE_GENES.items():
     assert not miss, f"schematic genes not in GO set {k}: {miss}"
 
 for k,gl in USER_LABELS.items(): NODE_GENES[k]=NODE_GENES[k]+gl
+# Dynamin consolidation (requested 2026-10-01). DNM1 and DNM2 are shown ONCE, as a single
+# "DNM1/2" label in the clathrin pit where both are annotated, instead of two labels there plus
+# a third DNM2 at the recycling endosome. That removes a row from the pit (it had wrapped to
+# three) and a name from the recycling run, which was 153 units wide and reached to within 9
+# units of the "buds" arrowhead. The merged label's categories are the UNION of the two genes'
+# (DNM1 mendel+up, DNM2 mendel -> mendel+up) and its mendel score the maximum, so no evidence is
+# lost; the per-gene detail lives in the step's hover box.
+# Done after the GO assertion above because "DNM1/2" is a display name, not a gene symbol.
+DNM_MERGE="DNM1/2"
+NODE_GENES["pit"]=[g for g in NODE_GENES["pit"] if g not in ("DNM1","DNM2")]+[DNM_MERGE]
+NODE_GENES["recycling"]=[g for g in NODE_GENES["recycling"] if g!="DNM2"]
 # ---- DE sources (same loaders as mito/null_test.py, plus FDR) ----
 SRC=[("LC_Visium",f"{R}/shared-spatial/st12_allgeno.tsv","tsv"),
      ("ERC_Visium",f"{R}/erc/S9_SRT_domainDE/SuppTable_09.csv","csv"),
@@ -241,7 +252,7 @@ anc=json.load(open(f"{H}/ancestry_tier.json"))
 # (nothing external cited anywhere in the figure).
 EXTERNAL={"APOE","APOC1","APOC2","PLTP","CD36","LRP1","DHCR24","CLU"}
 KEEP_PATHWAY={"NPC1","NPC2"}|{g for k in ("vatp","slc","ragulator","rag","flcn","rheb","mtorc1","tsc") for g in NODE_GENES[k]}|{"TM6SF1"}
-labelled=sorted({g for gl in NODE_GENES.values() for g in gl}|{"ABCA1","ABCA7","CD36","GPIHBP1","TM6SF1","SORT1","DHCR24","MVK","APOC1","APOC2","CLU","PLTP","ACAT2","APOD"}|HYPOTHESIS_LABELS)
+labelled=sorted({g for gl in NODE_GENES.values() for g in gl}|{"ABCA1","ABCA7","CD36","GPIHBP1","TM6SF1","SORT1","DHCR24","MVK","APOC1","APOC2","CLU","PLTP","ACAT2","APOD"}|HYPOTHESIS_LABELS|{"DNM1","DNM2"})   # DNM1/DNM2 stay catalogued though only the merged DNM1/2 label is drawn
 genecat={}
 for g in labelled:
     de=g in pool5 and pool5[g]["fdr"]<0.05
@@ -258,6 +269,16 @@ for g in labelled:
                     adlit=g in ADLIT,
                     ev=("strong" if strong else "weak"),anc=av or None,
                     de=pool5[g] if g in pool5 else None,nd_genetic=round(ndgen,3))
+# the merged dynamin label: union of DNM1 and DNM2 so the colour code loses nothing
+_d1,_d2=genecat["DNM1"],genecat["DNM2"]
+_un=[c for c in ("gwas","ot","mendel","up","dn") if c in set(_d1["cats"])|set(_d2["cats"])]
+genecat[DNM_MERGE]=dict(cats=_un,keep=True,why="evidence",cis=_d1["cis"] or _d2["cis"],
+    gwas_tier=_d1["gwas_tier"] or _d2["gwas_tier"], ot_ad=_d1["ot_ad"] or _d2["ot_ad"],
+    mendel=max(_d1.get("mendel") or 0,_d2.get("mendel") or 0),
+    mendel_dz=(_d1 if (_d1.get("mendel") or 0)>=(_d2.get("mendel") or 0) else _d2).get("mendel_dz"),
+    adlit=False, ev="weak", anc=None, de=None, nd_genetic=max(_d1["nd_genetic"],_d2["nd_genetic"]),
+    members=["DNM1","DNM2"])
+print("DNM1/2 merged cats:",_un,"mendel",genecat[DNM_MERGE]["mendel"])
 print("removed labels:",sorted(g for g,v in genecat.items() if not v["keep"]))
 print("coloured:",{c:sorted(g for g,v in genecat.items() if c in v["cats"]) for c in ("gwas","ot","up","dn")})
 out=dict(genecat=genecat,extra=extra,steps=[dict(k=k,label=l,go=go,n=len(s),nodes=NODE_GENES.get(k,[]),excluded_refs=excluded[k],

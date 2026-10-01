@@ -1,0 +1,155 @@
+Gene	Gene name	Cell type	nCPM
+ENSG00000130203	APOE	adipocytes	0.4
+ENSG00000130203	APOE	adrenal cortex cells	1067.5
+ENSG00000130203	APOE	adrenal medulla cells	117.0
+ENSG00000130203	APOE	alveolar cells type 1	16.3
+ENSG00000130203	APOE	alveolar cells type 2	29.6
+ENSG00000130203	APOE	astrocytes	1019.7
+ENSG00000130203	APOE	b-cells	26.9
+ENSG00000130203	APOE	basal keratinocytes	345.2
+ENSG00000130203	APOE	basal prostatic cells	32.8
+ENSG00000130203	APOE	bergmann glia	574.8
+ENSG00000130203	APOE	brain excitatory neurons	5.9
+ENSG00000130203	APOE	brain inhibitory neurons	8.9
+ENSG00000130203	APOE	breast hormone-responsive cells	20.4
+ENSG00000130203	APOE	breast lactating cells	4.5
+ENSG00000130203	APOE	breast myoepithelial cells	912.8
+ENSG00000130203	APOE	breast secretory cells	122.1
+ENSG00000130203	APOE	cardiomyocytes	1.9
+ENSG00000130203	APOE	cdc	24.5
+ENSG00000130203	APOE	cholangiocytes	474.8
+ENSG00000130203	APOE	choroid plexus epithelial cells	2.7
+ENSG00000130203	APOE	colonocytes	2.1
+ENSG00000130203	APOE	cone photoreceptor cells	12.4
+ENSG00000130203	APOE	conjunctival goblet cells	0.0
+ENSG00000130203	APOE	corticotrophs	0.4
+ENSG00000130203	APOE	cytotrophoblasts	10.6
+ENSG00000130203	APOE	decidual stromal cells	1311.9
+ENSG00000130203	APOE	differentiating spermatogonia	4.4
+ENSG00000130203	APOE	distal convoluted tubule cells	26.9
+ENSG00000130203	APOE	early primary spermatocytes	5.3
+ENSG00000130203	APOE	early spermatids	48.1
+ENSG00000130203	APOE	endometrial ciliated cells	14.1
+ENSG00000130203	APOE	endometrial glandular cells	7.6
+ENSG00000130203	APOE	endometrial luminal cells	7.0
+ENSG00000130203	APOE	endometrial secretory cells	7.5
+ENSG00000130203	APOE	endometrial stromal cells	696.1
+ENSG00000130203	APOE	enteric stem cells	1.7
+ENSG00000130203	APOE	enteric transient amplifying cells	1.8
+ENSG00000130203	APOE	enterocytes	0.2
+ENSG00000130203	APOE	ependymal cells	35.9
+ENSG00000130203	APOE	epicardial cells	4.5
+ENSG00000130203	APOE	epididymal basal cells	182.2
+ENSG00000130203	APOE	epididymal clear cells	208.2
+ENSG00000130203	APOE	epididymal efferent duct absorptive cells	835.7
+ENSG00000130203	APOE	epididymal efferent duct ciliated cells	29.0
+ENSG00000130203	APOE	epididymal principal cells	2.4
+ENSG00000130203	APOE	erythrocyte progenitors	31.7
+ENSG00000130203	APOE	erythrocytes	3.5
+ENSG00000130203	APOE	esophageal apical cells	0.6
+ENSG00000130203	APOE	esophageal basal cells	8.6
+ENSG00000130203	APOE	esophageal suprabasal cells	1.4
+ENSG00000130203	APOE	extravillous trophoblasts	8.4
+ENSG00000130203	APOE	fallopian secretory cells	3.2
+ENSG00000130203	APOE	fallopian tube ciliated cells	3.6
+ENSG00000130203	APOE	fibro-adipogenic progenitors	9.0
+ENSG00000130203	APOE	fibroblasts	801.3
+ENSG00000130203	APOE	foveolar cells	8.5
+ENSG00000130203	APOE	gastric chief cells	14.2
+ENSG00000130203	APOE	gastric progenitor cells	3.8
+ENSG00000130203	APOE	goblet cells	1.0
+ENSG00000130203	APOE	gonadotrophs	1.7
+ENSG00000130203	APOE	granulosa cells	454.2
+ENSG00000130203	APOE	hematopoietic stem cells	0.0
+ENSG00000130203	APOE	hepatic stellate cells	316.3
+ENSG00000130203	APOE	hepatocytes	9962.2
+ENSG00000130203	APOE	hofbauer cells	954.4
+ENSG00000130203	APOE	innate lymphoid cells	35.2
+ENSG00000130203	APOE	kupffer cells	858.9
+ENSG00000130203	APOE	lacrimal acinar cells	3.6
+ENSG00000130203	APOE	lactotrophs	2.6
+ENSG00000130203	APOE	late primary spermatocytes	29.1
+ENSG00000130203	APOE	late spermatids	360.3
+ENSG00000130203	APOE	leydig cells	2556.3
+ENSG00000130203	APOE	loop of henle epithelial cells	23.6
+ENSG00000130203	APOE	lymphatic endothelial cells	21.4
+ENSG00000130203	APOE	macrophages	1733.0
+ENSG00000130203	APOE	mast cells	32.9
+ENSG00000130203	APOE	medullary thymic epithelial cells	72.0
+ENSG00000130203	APOE	megakaryocyte progenitors	0.5
+ENSG00000130203	APOE	megakaryocyte-erythroid progenitors	67.5
+ENSG00000130203	APOE	megakaryocytes	6.2
+ENSG00000130203	APOE	melanocytes	3427.4
+ENSG00000130203	APOE	mesothelial cells	0.4
+ENSG00000130203	APOE	microglia	447.0
+ENSG00000130203	APOE	migrating cytotrophoblasts	11.8
+ENSG00000130203	APOE	monocyte progenitors	0.0
+ENSG00000130203	APOE	monocytes	98.6
+ENSG00000130203	APOE	mucous neck cells	3.2
+ENSG00000130203	APOE	müller glia	6740.1
+ENSG00000130203	APOE	myonuclei	0.7
+ENSG00000130203	APOE	myosatellite cells	1016.1
+ENSG00000130203	APOE	neuroendocrine cells	0.0
+ENSG00000130203	APOE	neutrophil progenitors	4.4
+ENSG00000130203	APOE	neutrophils	47.2
+ENSG00000130203	APOE	nk-cells	27.6
+ENSG00000130203	APOE	ocular epithelial cells	5.5
+ENSG00000130203	APOE	oligodendrocyte progenitor cells	47.2
+ENSG00000130203	APOE	oligodendrocytes	24.7
+ENSG00000130203	APOE	oocytes	41.4
+ENSG00000130203	APOE	other brain neurons	7.1
+ENSG00000130203	APOE	ovarian stromal cells	1003.6
+ENSG00000130203	APOE	pancreatic acinar cells	4.6
+ENSG00000130203	APOE	pancreatic duct cells	5.4
+ENSG00000130203	APOE	pancreatic islet cells	1.3
+ENSG00000130203	APOE	paneth cells	0.0
+ENSG00000130203	APOE	papillary tip epithelial cells	5.7
+ENSG00000130203	APOE	parietal cells	1.8
+ENSG00000130203	APOE	pdcs	29.4
+ENSG00000130203	APOE	pericytes	720.5
+ENSG00000130203	APOE	peritubular myoid cells	4351.8
+ENSG00000130203	APOE	pituicytes/fscs	93.8
+ENSG00000130203	APOE	pituitary stem cells	16.7
+ENSG00000130203	APOE	plasma cells	34.2
+ENSG00000130203	APOE	platelets	53.2
+ENSG00000130203	APOE	podocytes	21.7
+ENSG00000130203	APOE	prostatic club cells	4.8
+ENSG00000130203	APOE	prostatic glandular cells	4.4
+ENSG00000130203	APOE	prostatic hillock cells	5.2
+ENSG00000130203	APOE	proximal tubule cells	143.9
+ENSG00000130203	APOE	renal collecting duct intercalated cells	73.0
+ENSG00000130203	APOE	renal collecting duct principal cells	6.9
+ENSG00000130203	APOE	renal connecting tubule cells	30.8
+ENSG00000130203	APOE	respiratory basal cells	33.2
+ENSG00000130203	APOE	respiratory ciliated cells	28.6
+ENSG00000130203	APOE	respiratory deuterosomal cells	29.0
+ENSG00000130203	APOE	respiratory ionocytes	45.7
+ENSG00000130203	APOE	respiratory secretory cells	38.0
+ENSG00000130203	APOE	retinal amacrine cells	0.0
+ENSG00000130203	APOE	retinal bipolar cells	9.1
+ENSG00000130203	APOE	retinal ganglion cells	0.0
+ENSG00000130203	APOE	retinal horizontal cells	0.0
+ENSG00000130203	APOE	retinal pigment epithelial cells	328.2
+ENSG00000130203	APOE	rod photoreceptor cells	24.9
+ENSG00000130203	APOE	salivary acinar cells	8.8
+ENSG00000130203	APOE	salivary basal cells	1.9
+ENSG00000130203	APOE	salivary duct cells	0.6
+ENSG00000130203	APOE	salivary ionocytes	4.7
+ENSG00000130203	APOE	salivary myoepithelial cells	73.0
+ENSG00000130203	APOE	schwann cells	361.2
+ENSG00000130203	APOE	sertoli cells	17.0
+ENSG00000130203	APOE	smooth muscle cells	5.2
+ENSG00000130203	APOE	somatotrophs	3.1
+ENSG00000130203	APOE	submucosal glandular cells	55.7
+ENSG00000130203	APOE	suprabasal keratinocytes	823.5
+ENSG00000130203	APOE	syncytiotrophoblasts	37.6
+ENSG00000130203	APOE	t-cells	28.1
+ENSG00000130203	APOE	thymic myoid cells	2.7
+ENSG00000130203	APOE	thymocytes	1.7
+ENSG00000130203	APOE	thyrotrophs	0.0
+ENSG00000130203	APOE	transitional alveolar cells	56.5
+ENSG00000130203	APOE	tuft cells	0.0
+ENSG00000130203	APOE	undifferentiated spermatogonia	7.6
+ENSG00000130203	APOE	urothelial cells	1.5
+ENSG00000130203	APOE	vascular endothelial cells	26.9
+ENSG00000130203	APOE	vascular smooth muscle cells	210.1

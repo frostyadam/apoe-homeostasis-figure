@@ -87,8 +87,8 @@ not state.
 
 | | version | what it is |
 |---|---|---|
-| Atlas | **v85** | `apoe_endocytosis_atlas.html` |
-| Tour | **v52** | `apoe_tour.html`, 9 stops |
+| Atlas | **v86** | `apoe_endocytosis_atlas.html` |
+| Tour | **v53** | `apoe_tour.html`, 9 stops |
 
 Republishing the same file path keeps the URL, so the artifact version number is the figure's
 real version history; git records the source that produced each one.
@@ -102,6 +102,22 @@ real version history; git records the source that produced each one.
   "Lysosome exocytosis" label at x541-615 — two stacked labels, neither beside the thing it
   named. Now anchored `start` at (680,215): 16.5 units clear of the endosome's outer edge,
   block centre 3.7 units above the circle centre.
+
+**v86 / v53 — 2026-10-01**
+
+- **DNM1 and DNM2 consolidated** into a single `DNM1/2` label in the clathrin pit, with the
+  union of their categories (mendel + up) and the max Mendelian score, so no evidence is lost.
+  The hover box spells out the members. The third dynamin label at the recycling endosome is
+  dropped, so the family is named once.
+- **Recycling endosome decluttered**: its run went from `RAB11A · DNM2 · BIN1` (153 units) to
+  `RAB11A · BIN1` (102), and the `buds` arrow was re-aimed to approach the endosome lower-left
+  at (652,256). Gap from the arrowhead to the RAB11A run: **9.0 -> 16.2**, with the 12.5-unit
+  membrane clearance preserved (12.6).
+- **APOE by cell type** added under the CYTOPLASM label: six rows with ranks, from HPA
+  single-cell consensus nCPM across 154 cell types (`apoe_celltype_ncpm.tsv` committed).
+  Hepatocytes 9962 (1st), Müller glia 6740 (2nd), macrophages 1733 (6th), astrocytes 1020
+  (9th), Kupffer cells 859 (14th), pericytes 721 (18th). Ranks are printed so the omitted
+  entries are visible rather than hidden.
 
 **v85 / v52 — 2026-10-01**
 

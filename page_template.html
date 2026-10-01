@@ -469,6 +469,33 @@ function drawA(){
     txt(gRb,P(347,a)[0]+10,P(347,a)[1]-4,"ribosome",{class:"mono ink2","font-size":9.5});
     protTip(gRb,"Ribosome on rough ER","APOE is translated on ER-bound ribosomes. Its signal peptide directs co-translational insertion through the Sec61 translocon into the ER lumen, the entry point of the secretory pathway.");
   }
+  { // ---- APOE-producing cell types, ranked by RNA abundance.
+    //  Source: Human Protein Atlas single-cell consensus, rna_single_cell_type.tsv, nCPM
+    //  (normalised counts per million = reads per million), 154 cell types. The full APOE
+    //  slice is committed as apoe_celltype_ncpm.tsv.
+    //  RANKS ARE SHOWN so the gaps are explicit: ranks 3, 4 and 5 are peritubular myoid cells
+    //  4351.8, melanocytes 3427.4 and Leydig cells 2556.3, omitted because they are irrelevant
+    //  to this figure, NOT because they score lower than the rows kept. Astrocytes are 9th, not
+    //  2nd, and microglia are not resolved as a separate type in this atlas - they fall under
+    //  macrophages. Placed by a clearance sweep: root x4-130, y226-330 was the only open block
+    //  under the CYTOPLASM label (12.8 units clear).
+    // parent is `svg`, not ROOT: at this point in drawA `svg` is still the raw #schem, and ROOT
+    // is not yet in scope here (it is declared inside drawMTOR). These are root coordinates.
+    const g=el("g",{class:"hit",tabindex:0,role:"button","aria-label":"APOE expression by cell type"},svg);
+    txt(g,6,228,"APOE mRNA by cell type",{"font-size":9.5,"font-weight":600,class:"mono"});
+    // kept short on purpose: at "nCPM, rank of 154 . HPA single-cell" this line reached x196 and
+    // pushed the block 4.5 units into the secretory vesicle (centre 205,262, outer edge 28.5).
+    // The source attribution lives in the hover box instead.
+    txt(g,6,239,"nCPM \u00b7 rank of 154",{"font-size":7.5,class:"mono",style:`fill:${css("--muted")}`});
+    [[1,"hepatocytes","9962"],[2,"M\u00fcller glia","6740"],[6,"macrophages","1733"],
+     [9,"astrocytes","1020"],[14,"Kupffer cells","859"],[18,"pericytes","721"]]
+      .forEach(([r,nm,v],i)=>{const y=254+i*12;   // shifted up 8: at 262 the last row touched the "Golgi" label at y325
+        txt(g,16,y,String(r),{"font-size":8,class:"mono","text-anchor":"end",style:`fill:${css("--muted")}`});
+        txt(g,22,y,nm,{"font-size":8.5,class:"mono"});
+        txt(g,130,y,v,{"font-size":8.5,class:"mono","text-anchor":"end"});});
+    protTip(g,"Which cells make APOE",
+      "APOE messenger RNA by cell type, from the Human Protein Atlas single-cell consensus (rna_single_cell_type.tsv), in nCPM - normalised counts per million, i.e. reads per million - across 154 cell types. Ranks are printed so the omissions are visible. THE FULL TOP TEN: hepatocytes 9962.2, Muller glia 6740.1, peritubular myoid cells 4351.8, melanocytes 3427.4, Leydig cells 2556.3, macrophages 1733.0, decidual stromal cells 1311.9, adrenal cortex cells 1067.5, astrocytes 1019.7, myosatellite cells 1016.1. Ranks 3, 4, 5, 7 and 8 are left off the figure because they are irrelevant here, not because they rank below the rows shown. TWO THINGS WORTH NOTING. Astrocytes are NINTH, not second: Muller glia - the principal glia of the retina - peritubular myoid cells, melanocytes and Leydig cells all carry more APOE mRNA. And microglia are not resolved as a separate cell type in this atlas at all; they fall within 'macrophages', so the 1733.0 on that row is not a microglial number. Kupffer cells, the liver's resident macrophages, are listed separately at 858.9. FINALLY, THIS IS TRANSCRIPT ABUNDANCE, NOT SECRETION. The two are not the same thing: APOE is a secreted protein and hepatocytes and astrocytes are its principal sources in plasma and in brain respectively, but nothing in this table measures secreted protein, and a cell can hold high mRNA without being a major exporter.");
+  }
   // Golgi
   const gG=hitGroup(svg,"golgi");
   [0,1,2,3].forEach(i=>{const y=398-i*19,w=62-i*4;const d=`M ${250-w} ${y} Q 250 ${y-26} ${250+w} ${y}`;
@@ -627,7 +654,12 @@ function drawA(){
 // structure. The limiting neighbour here is the "buds" arrowhead at (670,242), which is why
 // the block sits slightly high rather than exactly level.
   lab(gC,680,215,"recycling");
-  carrow(svg,"M 757.8 308.3 Q 712.4 281.2 670.1 241.7","buds",716,300,"middle");
+  // Re-aimed: the old head landed at (670,242), only 9 units from the "RAB11A ..." run that
+  // starts at x679, so the arrow and the gene list crowded each other. It now approaches the
+  // endosome lower-left at (652,256) and stays below the run for its whole length. The gap to
+  // the membrane is preserved: |(652,256)-(640,222)| = 36.1, minus the 23.5 outer edge = 12.6,
+  // the figure's standard clearance.
+  carrow(svg,"M 757.8 308.3 Q 700 290 652 256","buds",716,300,"middle");
   carrow(svg,"M 618.3 193.3 Q 604.4 175.4 598 150","receptor returns",600,198,"end");
   // late endosome
   const gL=hitGroup(svg,"late");gL.setAttribute("transform","translate(-5 -46)");
@@ -893,7 +925,11 @@ function drawMTOR(svg){
 function nodeTip(k){
   const st=STEP[k];
   const nm2={gwas:"AD GWAS",ot:"Open Targets AD",up:"higher in APOE4",dn:"lower in APOE4"};
-  const shown=st.nodes.filter(keepG).map(g=>{const c=GC(g);return `${g}${c.cats&&c.cats.length?" ("+c.cats.map(x=>nm2[x]).join(", ")+")":c.why?" ("+c.why+")":""}`});
+  // a merged label spells out its members, so collapsing DNM1+DNM2 into "DNM1/2" to save a row
+  // does not hide which gene carries which evidence
+  const shown=st.nodes.filter(keepG).map(g=>{const c=GC(g);
+    const mem=(c.members&&c.members.length)?" ["+c.members.join(" + ")+"]":"";
+    return `${g}${mem}${c.cats&&c.cats.length?" ("+c.cats.map(x=>nm2[x]).join(", ")+")":c.why?" ("+c.why+")":""}`});
   return `<div class="t">${st.label}</div><div class="m">${st.go} · ${st.n} genes in the downloaded set</div><div>${shown.length?"labelled: "+shown.join("; "):"no labelled genes (none meet the evidence rule)"}</div>`;
 }
 
