@@ -187,6 +187,27 @@ OT_AD={"APOE":0.857,"TREM2":0.858,"SORL1":0.731,"ABCA7":0.649,"ABCA1":0.747,"CLU
 pool5=json.load(open(f"{R}/shared-spatial/pool5.json"))
 # neurodegeneration genetics: Open Targets MONDO_0005559 (neurodegenerative disease, indirect), genetic evidence >= 0.1
 otnd=json.load(open(f"{H}/ot_neurodegen.json"))["assoc"]
+# mendel: Mendelian CNS disease. Open Targets clinical-genetics datasources (Orphanet, ClinGen,
+# Genomics England, ClinVar/EVA, UniProt, Gene2Phenotype) summed per disease, restricted to
+# nervous-system/psychiatric therapeutic areas, neoplasms dropped. Queried for EVERY labelled
+# gene, not a hand-picked shortlist. Threshold 0.5 is set by the two genes that motivated the
+# category: NPC1 0.699 and NPC2 0.608.
+# AD-DRIVEN QUALIFIERS ARE EXCLUDED: APOE, ABCA7 and SORL1 clear the bar only because their
+# Mendelian disease IS Alzheimer's, and the point of this category is the genes carrying severe
+# monogenic CNS disease that is NOT obviously APOE4/AD. They keep their gwas/ot colours.
+otmd=json.load(open(f"{H}/ot_mendelian_all.json"))
+def _mendel(g):
+    v=otmd.get(g) or {}
+    if (v.get("max") or 0)<0.5: return False
+    top=((v.get("top") or [{}])[0].get("disease") or "").lower()
+    return not any(k in top for k in ("alzheimer","dementia"))
+MENDEL={g for g in otmd if _mendel(g)}
+# TSC1/TSC2 carry a literature link to AD that Open Targets does not index at all (it returns no
+# Alzheimer/dementia association for either): Adriaanse 2023 Neuropathol Appl Neurobiol 49:e12904,
+# "TSC1 contributes to selective neuronal vulnerability in Alzheimer's disease", plus the TSC
+# tauopathy series (Liu 2022, Hwang 2023) and plasma p-tau217 in TSC (Baumel 2026 preprint).
+# Marked with a dagger-class symbol rather than a colour -- see the note at CAT_ORDER.
+ADLIT={"TSC1","TSC2"}
 # evidence ramp: a coloured gene is STRONG only on a CONJUNCTION - its pooled direction
 # holds in BOTH ancestry strata (derived in ancestry_tier.py, not hard-coded) AND at least
 # one independent external source is cited in this figure. "Weak" therefore honestly means
@@ -208,12 +229,15 @@ for g in labelled:
     de=g in pool5 and pool5[g]["fdr"]<0.05
     # APOC1/APOC2 Open Targets evidence is the APOE credible set assigned to neighbours, so it is not credited
     ot=g in OT_AD and g not in {"APOC1","APOC2"}
-    cats=[c for c,ok in (("gwas",g in gw),("ot",ot),("up",de and pool5[g]["lf"]>0),("dn",de and pool5[g]["lf"]<0)) if ok]
+    cats=[c for c,ok in (("gwas",g in gw),("ot",ot),("mendel",g in MENDEL),
+                         ("up",de and pool5[g]["lf"]>0),("dn",de and pool5[g]["lf"]<0)) if ok]
     a=otnd.get(g,{}); ndgen=max(a.get("genetic_association",0),a.get("genetic_literature",0))
     why=("" if g in USER_REMOVE else "evidence" if cats else "neurodegeneration genetics" if ndgen>=0.1 else "mTORC1 / NPC pathway" if g in KEEP_PATHWAY else "")
     av=anc.get(g,{})
     strong=bool(({"up","dn"} & set(cats)) and av.get("concordant") and g in EXTERNAL)
     genecat[g]=dict(cats=cats,keep=bool(why),why=why,cis=g in CIS,gwas_tier=gw.get(g),ot_ad=OT_AD.get(g),
+                    mendel=(otmd.get(g) or {}).get("max") or 0, mendel_dz=((otmd.get(g) or {}).get("top") or [{}])[0].get("disease"),
+                    adlit=g in ADLIT,
                     ev=("strong" if strong else "weak"),anc=av or None,
                     de=pool5[g] if g in pool5 else None,nd_genetic=round(ndgen,3))
 print("removed labels:",sorted(g for g,v in genecat.items() if not v["keep"]))

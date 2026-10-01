@@ -1,0 +1,430 @@
+{
+ "NPC1": [
+  {
+   "disease": "cerebellar ataxia",
+   "id": "MONDO_0000437",
+   "mendel": 0.699,
+   "score": 0.434,
+   "ad": false
+  },
+  {
+   "disease": "Postural instability",
+   "id": "HP_0002172",
+   "mendel": 0.699,
+   "score": 0.425,
+   "ad": false
+  },
+  {
+   "disease": "dystonic disorder",
+   "id": "MONDO_0003441",
+   "mendel": 0.547,
+   "score": 0.334,
+   "ad": false
+  }
+ ],
+ "NPC2": [
+  {
+   "disease": "dystonic disorder",
+   "id": "MONDO_0003441",
+   "mendel": 0.608,
+   "score": 0.371,
+   "ad": false
+  },
+  {
+   "disease": "multiple mitochondrial dysfunctions syndrome 4",
+   "id": "MONDO_0014611",
+   "mendel": 0.508,
+   "score": 0.309,
+   "ad": false
+  },
+  {
+   "disease": "microcephaly",
+   "id": "MONDO_0001149",
+   "mendel": 0.426,
+   "score": 0.259,
+   "ad": false
+  }
+ ],
+ "TSC1": [
+  {
+   "disease": "tuberous sclerosis",
+   "id": "MONDO_0001734",
+   "mendel": 4.697,
+   "score": 0.855,
+   "ad": false
+  },
+  {
+   "disease": "isolated focal cortical dysplasia type II",
+   "id": "MONDO_0011818",
+   "mendel": 3.856,
+   "score": 0.789,
+   "ad": false
+  },
+  {
+   "disease": "tuberous sclerosis 1",
+   "id": "MONDO_0008612",
+   "mendel": 2.719,
+   "score": 0.781,
+   "ad": false
+  },
+  {
+   "disease": "cerebral cortical dysplasia",
+   "id": "MONDO_0017094",
+   "mendel": 0.559,
+   "score": 0.41,
+   "ad": false
+  }
+ ],
+ "TSC2": [
+  {
+   "disease": "tuberous sclerosis",
+   "id": "MONDO_0001734",
+   "mendel": 4.711,
+   "score": 0.861,
+   "ad": false
+  },
+  {
+   "disease": "tuberous sclerosis 2",
+   "id": "MONDO_0013199",
+   "mendel": 3.408,
+   "score": 0.816,
+   "ad": false
+  },
+  {
+   "disease": "isolated focal cortical dysplasia type II",
+   "id": "MONDO_0011818",
+   "mendel": 3.312,
+   "score": 0.742,
+   "ad": false
+  },
+  {
+   "disease": "tuberous sclerosis 1",
+   "id": "MONDO_0008612",
+   "mendel": 0.828,
+   "score": 0.504,
+   "ad": false
+  },
+  {
+   "disease": "autism spectrum disorder",
+   "id": "MONDO_0005258",
+   "mendel": 0.67,
+   "score": 0.432,
+   "ad": false
+  }
+ ],
+ "DNM2": [
+  {
+   "disease": "Charcot-Marie-Tooth disease dominant intermediate B",
+   "id": "MONDO_0011674",
+   "mendel": 4.162,
+   "score": 0.83,
+   "ad": false
+  },
+  {
+   "disease": "autosomal dominant Charcot-Marie-Tooth disease type 2M",
+   "id": "MONDO_0016431",
+   "mendel": 2.272,
+   "score": 0.715,
+   "ad": false
+  },
+  {
+   "disease": "Charcot-Marie-Tooth disease",
+   "id": "MONDO_0015626",
+   "mendel": 1.416,
+   "score": 0.59,
+   "ad": false
+  },
+  {
+   "disease": "intermediate Charcot-Marie-Tooth disease",
+   "id": "MONDO_0018778",
+   "mendel": 0.76,
+   "score": 0.462,
+   "ad": false
+  },
+  {
+   "disease": "limb-girdle muscular dystrophy",
+   "id": "MONDO_0016971",
+   "mendel": 0.559,
+   "score": 0.342,
+   "ad": false
+  }
+ ],
+ "DNM1": [
+  {
+   "disease": "Lennox-Gastaut syndrome",
+   "id": "MONDO_0016532",
+   "mendel": 2.306,
+   "score": 0.733,
+   "ad": false
+  },
+  {
+   "disease": "developmental and epileptic encephalopathy, 31A",
+   "id": "MONDO_0014598",
+   "mendel": 2.306,
+   "score": 0.731,
+   "ad": false
+  },
+  {
+   "disease": "developmental and epileptic encephalopathy, 31B",
+   "id": "MONDO_0957248",
+   "mendel": 2.062,
+   "score": 0.615,
+   "ad": false
+  },
+  {
+   "disease": "developmental and epileptic encephalopathy",
+   "id": "MONDO_0100620",
+   "mendel": 0.699,
+   "score": 0.43,
+   "ad": false
+  },
+  {
+   "disease": "genetic developmental and epileptic encephalopathy",
+   "id": "MONDO_0100062",
+   "mendel": 0.684,
+   "score": 0.436,
+   "ad": false
+  }
+ ],
+ "VLDLR": [
+  {
+   "disease": "cerebellar ataxia, intellectual disability, and dysequilibrium",
+   "id": "MONDO_0009133",
+   "mendel": 3.675,
+   "score": 0.788,
+   "ad": false
+  },
+  {
+   "disease": "isolated cerebellar hypoplasia/agenesis",
+   "id": "MONDO_0008939",
+   "mendel": 1.319,
+   "score": 0.552,
+   "ad": false
+  },
+  {
+   "disease": "microcephaly",
+   "id": "MONDO_0001149",
+   "mendel": 0.182,
+   "score": 0.112,
+   "ad": false
+  }
+ ],
+ "SCARB1": [],
+ "ATP6V0A1": [
+  {
+   "disease": "developmental and epileptic encephalopathy 104",
+   "id": "MONDO_0031021",
+   "mendel": 3.141,
+   "score": 0.712,
+   "ad": false
+  },
+  {
+   "disease": "neurodevelopmental disorder with epilepsy and brain atrophy",
+   "id": "MONDO_0859265",
+   "mendel": 2.588,
+   "score": 0.696,
+   "ad": false
+  },
+  {
+   "disease": "developmental disability",
+   "id": "MONDO_0005287",
+   "mendel": 0.608,
+   "score": 0.37,
+   "ad": false
+  },
+  {
+   "disease": "complex neurodevelopmental disorder",
+   "id": "MONDO_0100038",
+   "mendel": 0.608,
+   "score": 0.37,
+   "ad": false
+  },
+  {
+   "disease": "cerebellar ataxia",
+   "id": "MONDO_0000437",
+   "mendel": 0.559,
+   "score": 0.341,
+   "ad": false
+  }
+ ],
+ "ATP6V1A": [
+  {
+   "disease": "genetic developmental and epileptic encephalopathy",
+   "id": "MONDO_0100062",
+   "mendel": 2.969,
+   "score": 0.735,
+   "ad": false
+  },
+  {
+   "disease": "developmental and epileptic encephalopathy 93",
+   "id": "MONDO_0020632",
+   "mendel": 2.255,
+   "score": 0.696,
+   "ad": false
+  },
+  {
+   "disease": "developmental and epileptic encephalopathy 91",
+   "id": "MONDO_0020630",
+   "mendel": 0.608,
+   "score": 0.37,
+   "ad": false
+  },
+  {
+   "disease": "undetermined early-onset epileptic encephalopathy",
+   "id": "MONDO_0018614",
+   "mendel": 0.608,
+   "score": 0.37,
+   "ad": false
+  },
+  {
+   "disease": "developmental disability",
+   "id": "MONDO_0005287",
+   "mendel": 0.195,
+   "score": 0.12,
+   "ad": false
+  }
+ ],
+ "SLC38A9": [],
+ "EEA1": [],
+ "SYT11": [],
+ "MTOR": [
+  {
+   "disease": "isolated focal cortical dysplasia type II",
+   "id": "MONDO_0011818",
+   "mendel": 4.148,
+   "score": 0.824,
+   "ad": false
+  },
+  {
+   "disease": "overgrowth syndrome and/or cerebral malformations due to abnormalities in MTOR pathway genes",
+   "id": "MONDO_0100283",
+   "mendel": 2.093,
+   "score": 0.693,
+   "ad": false
+  },
+  {
+   "disease": "hemimegalencephaly",
+   "id": "MONDO_0020492",
+   "mendel": 0.547,
+   "score": 0.337,
+   "ad": false
+  }
+ ],
+ "RHEB": [
+  {
+   "disease": "isolated focal cortical dysplasia type II",
+   "id": "MONDO_0011818",
+   "mendel": 0.559,
+   "score": 0.341,
+   "ad": false
+  },
+  {
+   "disease": "hemimegalencephaly",
+   "id": "MONDO_0020492",
+   "mendel": 0.438,
+   "score": 0.269,
+   "ad": false
+  }
+ ],
+ "FLCN": [
+  {
+   "disease": "pilocytic astrocytoma",
+   "id": "MONDO_0016691",
+   "mendel": 0.438,
+   "score": 0.312,
+   "ad": false
+  }
+ ],
+ "LIPA": [],
+ "LRP8": [],
+ "CLTC": [
+  {
+   "disease": "intellectual disability, autosomal dominant 56",
+   "id": "MONDO_0030922",
+   "mendel": 3.805,
+   "score": 0.787,
+   "ad": false
+  },
+  {
+   "disease": "autosomal dominant non-syndromic intellectual disability",
+   "id": "MONDO_0015802",
+   "mendel": 1.167,
+   "score": 0.455,
+   "ad": false
+  },
+  {
+   "disease": "undetermined early-onset epileptic encephalopathy",
+   "id": "MONDO_0018614",
+   "mendel": 0.608,
+   "score": 0.37,
+   "ad": false
+  }
+ ],
+ "AP2M1": [
+  {
+   "disease": "developmental and epileptic encephalopathy",
+   "id": "MONDO_0100620",
+   "mendel": 1.216,
+   "score": 0.463,
+   "ad": false
+  },
+  {
+   "disease": "complex neurodevelopmental disorder",
+   "id": "MONDO_0100038",
+   "mendel": 0.802,
+   "score": 0.399,
+   "ad": false
+  },
+  {
+   "disease": "cerebellar ataxia",
+   "id": "MONDO_0000437",
+   "mendel": 0.76,
+   "score": 0.463,
+   "ad": false
+  },
+  {
+   "disease": "epilepsy with myoclonic atonic seizures",
+   "id": "MONDO_0014633",
+   "mendel": 0.608,
+   "score": 0.37,
+   "ad": false
+  },
+  {
+   "disease": "neurodevelopmental disorder",
+   "id": "MONDO_0700092",
+   "mendel": 0.195,
+   "score": 0.119,
+   "ad": false
+  }
+ ],
+ "RAB7A": [
+  {
+   "disease": "Charcot-Marie-Tooth disease type 2B",
+   "id": "MONDO_0010949",
+   "mendel": 3.818,
+   "score": 0.77,
+   "ad": false
+  },
+  {
+   "disease": "Charcot-Marie-Tooth disease type 2",
+   "id": "MONDO_0018993",
+   "mendel": 0.608,
+   "score": 0.371,
+   "ad": false
+  },
+  {
+   "disease": "Charcot-Marie-Tooth disease",
+   "id": "MONDO_0015626",
+   "mendel": 0.289,
+   "score": 0.178,
+   "ad": false
+  },
+  {
+   "disease": "sodium channelopathy-related small fiber neuropathy",
+   "id": "EFO_0700072",
+   "mendel": 0.228,
+   "score": 0.139,
+   "ad": false
+  }
+ ]
+}

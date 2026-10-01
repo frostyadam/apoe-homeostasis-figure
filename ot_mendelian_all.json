@@ -1,0 +1,570 @@
+{
+ "ABCA1": {
+  "top": [
+   {
+    "disease": "Joubert syndrome and related disorders",
+    "mendel": 0.75
+   },
+   {
+    "disease": "neurofibromatosis type 1",
+    "mendel": 0.438
+   }
+  ],
+  "max": 0.75
+ },
+ "ABCA7": {
+  "top": [
+   {
+    "disease": "Alzheimer disease",
+    "mendel": 2.061
+   },
+   {
+    "disease": "neuromuscular disease",
+    "mendel": 0.243
+   },
+   {
+    "disease": "amyotrophic lateral sclerosis",
+    "mendel": 0.195
+   }
+  ],
+  "max": 2.061
+ },
+ "ACAT2": {
+  "top": [
+   {
+    "disease": "intellectual developmental disorder with polymicrogyria and seizures",
+    "mendel": 0.796
+   }
+  ],
+  "max": 0.796
+ },
+ "AP2M1": {
+  "top": [
+   {
+    "disease": "developmental and epileptic encephalopathy",
+    "mendel": 1.216
+   },
+   {
+    "disease": "complex neurodevelopmental disorder",
+    "mendel": 0.802
+   },
+   {
+    "disease": "cerebellar ataxia",
+    "mendel": 0.76
+   }
+  ],
+  "max": 1.216
+ },
+ "APOC1": {
+  "top": [],
+  "max": 0.0
+ },
+ "APOC2": {
+  "top": [],
+  "max": 0.0
+ },
+ "APOD": {
+  "top": [],
+  "max": 0.0
+ },
+ "APOE": {
+  "top": [
+   {
+    "disease": "early-onset autosomal dominant Alzheimer disease",
+    "mendel": 1.932
+   },
+   {
+    "disease": "late-onset Alzheimers disease",
+    "mendel": 0.612
+   },
+   {
+    "disease": "Alzheimer disease",
+    "mendel": 0.517
+   }
+  ],
+  "max": 1.932
+ },
+ "ARL8B": {
+  "top": [],
+  "max": 0.0
+ },
+ "ATP6V0A1": {
+  "top": [
+   {
+    "disease": "developmental and epileptic encephalopathy 104",
+    "mendel": 3.141
+   },
+   {
+    "disease": "neurodevelopmental disorder with epilepsy and brain atrophy",
+    "mendel": 2.588
+   },
+   {
+    "disease": "developmental disability",
+    "mendel": 0.608
+   }
+  ],
+  "max": 3.141
+ },
+ "ATP6V0D1": {
+  "top": [],
+  "max": 0.0
+ },
+ "ATP6V1A": {
+  "top": [
+   {
+    "disease": "genetic developmental and epileptic encephalopathy",
+    "mendel": 2.969
+   },
+   {
+    "disease": "developmental and epileptic encephalopathy 93",
+    "mendel": 2.255
+   },
+   {
+    "disease": "developmental and epileptic encephalopathy 91",
+    "mendel": 0.608
+   }
+  ],
+  "max": 2.969
+ },
+ "BIN1": {
+  "top": [
+   {
+    "disease": "myopathy, centronuclear, 2",
+    "mendel": 3.843
+   },
+   {
+    "disease": "autosomal recessive centronuclear myopathy",
+    "mendel": 1.435
+   }
+  ],
+  "max": 3.843
+ },
+ "CANX": {
+  "top": [],
+  "max": 0.0
+ },
+ "CD36": {
+  "top": [],
+  "max": 0.0
+ },
+ "CLTC": {
+  "top": [
+   {
+    "disease": "intellectual disability, autosomal dominant 56",
+    "mendel": 3.805
+   },
+   {
+    "disease": "autosomal dominant non-syndromic intellectual disability",
+    "mendel": 1.167
+   },
+   {
+    "disease": "undetermined early-onset epileptic encephalopathy",
+    "mendel": 0.608
+   }
+  ],
+  "max": 3.805
+ },
+ "CLU": {
+  "top": [],
+  "max": 0.0
+ },
+ "COPA": {
+  "top": [],
+  "max": 0.0
+ },
+ "DHCR24": {
+  "top": [
+   {
+    "disease": "schizophrenia",
+    "mendel": 0.182
+   }
+  ],
+  "max": 0.182
+ },
+ "DNM1": {
+  "top": [
+   {
+    "disease": "Lennox-Gastaut syndrome",
+    "mendel": 2.306
+   },
+   {
+    "disease": "developmental and epileptic encephalopathy, 31A",
+    "mendel": 2.306
+   },
+   {
+    "disease": "developmental and epileptic encephalopathy, 31B",
+    "mendel": 2.062
+   }
+  ],
+  "max": 2.306
+ },
+ "DNM2": {
+  "top": [
+   {
+    "disease": "Charcot-Marie-Tooth disease dominant intermediate B",
+    "mendel": 4.162
+   },
+   {
+    "disease": "autosomal dominant Charcot-Marie-Tooth disease type 2M",
+    "mendel": 2.272
+   },
+   {
+    "disease": "Charcot-Marie-Tooth disease",
+    "mendel": 1.416
+   }
+  ],
+  "max": 4.162
+ },
+ "EEA1": {
+  "top": [],
+  "max": 0.0
+ },
+ "FLCN": {
+  "top": [],
+  "max": 0.0
+ },
+ "FNIP1": {
+  "top": [],
+  "max": 0.0
+ },
+ "GOLGA2": {
+  "top": [
+   {
+    "disease": "neuromuscular disease",
+    "mendel": 0.438
+   }
+  ],
+  "max": 0.438
+ },
+ "GORASP1": {
+  "top": [],
+  "max": 0.0
+ },
+ "GPIHBP1": {
+  "top": [],
+  "max": 0.0
+ },
+ "HSPA5": {
+  "top": [],
+  "max": 0.0
+ },
+ "LAMTOR1": {
+  "top": [],
+  "max": 0.0
+ },
+ "LAMTOR2": {
+  "top": [],
+  "max": 0.0
+ },
+ "LAMTOR3": {
+  "top": [],
+  "max": 0.0
+ },
+ "LDLR": {
+  "top": [
+   {
+    "disease": "syndromic X-linked intellectual disability Najm type",
+    "mendel": 0.438
+   }
+  ],
+  "max": 0.438
+ },
+ "LIPA": {
+  "top": [],
+  "max": 0.0
+ },
+ "LRP1": {
+  "top": [
+   {
+    "disease": "developmental disability",
+    "mendel": 0.195
+   },
+   {
+    "disease": "neuromuscular disease",
+    "mendel": 0.195
+   }
+  ],
+  "max": 0.195
+ },
+ "LRP8": {
+  "top": [],
+  "max": 0.0
+ },
+ "MLST8": {
+  "top": [],
+  "max": 0.0
+ },
+ "MTOR": {
+  "top": [
+   {
+    "disease": "isolated focal cortical dysplasia type II",
+    "mendel": 3.255
+   },
+   {
+    "disease": "overgrowth syndrome and/or cerebral malformations due to abnormalities in MTOR pathway genes",
+    "mendel": 1.534
+   }
+  ],
+  "max": 3.255
+ },
+ "MVK": {
+  "top": [
+   {
+    "disease": "inherited retinal dystrophy",
+    "mendel": 0.836
+   },
+   {
+    "disease": "retinitis pigmentosa",
+    "mendel": 0.608
+   },
+   {
+    "disease": "nemaline myopathy 6",
+    "mendel": 0.195
+   }
+  ],
+  "max": 0.836
+ },
+ "NPC1": {
+  "top": [
+   {
+    "disease": "cerebellar ataxia",
+    "mendel": 0.699
+   },
+   {
+    "disease": "Postural instability",
+    "mendel": 0.699
+   },
+   {
+    "disease": "dystonic disorder",
+    "mendel": 0.547
+   }
+  ],
+  "max": 0.699
+ },
+ "NPC2": {
+  "top": [
+   {
+    "disease": "dystonic disorder",
+    "mendel": 0.608
+   },
+   {
+    "disease": "multiple mitochondrial dysfunctions syndrome 4",
+    "mendel": 0.508
+   },
+   {
+    "disease": "microcephaly",
+    "mendel": 0.426
+   }
+  ],
+  "max": 0.608
+ },
+ "OSBPL1A": {
+  "top": [],
+  "max": 0.0
+ },
+ "PICALM": {
+  "top": [],
+  "max": 0.0
+ },
+ "PLTP": {
+  "top": [],
+  "max": 0.0
+ },
+ "RAB11A": {
+  "top": [
+   {
+    "disease": "neurodevelopmental disorder",
+    "mendel": 0.608
+   },
+   {
+    "disease": "microcephaly",
+    "mendel": 0.608
+   },
+   {
+    "disease": "autosomal dominant non-syndromic intellectual disability",
+    "mendel": 0.608
+   }
+  ],
+  "max": 0.608
+ },
+ "RAB27A": {
+  "top": [],
+  "max": 0.0
+ },
+ "RAB5A": {
+  "top": [],
+  "max": 0.0
+ },
+ "RAB7A": {
+  "top": [
+   {
+    "disease": "Charcot-Marie-Tooth disease type 2B",
+    "mendel": 3.818
+   },
+   {
+    "disease": "Charcot-Marie-Tooth disease type 2",
+    "mendel": 0.608
+   },
+   {
+    "disease": "Charcot-Marie-Tooth disease",
+    "mendel": 0.289
+   }
+  ],
+  "max": 3.818
+ },
+ "RHEB": {
+  "top": [],
+  "max": 0.0
+ },
+ "RPTOR": {
+  "top": [],
+  "max": 0.0
+ },
+ "RRAGA": {
+  "top": [],
+  "max": 0.0
+ },
+ "RRAGB": {
+  "top": [
+   {
+    "disease": "autism",
+    "mendel": 0.182
+   }
+  ],
+  "max": 0.182
+ },
+ "RRAGC": {
+  "top": [],
+  "max": 0.0
+ },
+ "RRAGD": {
+  "top": [],
+  "max": 0.0
+ },
+ "SCARB1": {
+  "top": [],
+  "max": 0.0
+ },
+ "SEC61A1": {
+  "top": [
+   {
+    "disease": "charcot-marie-tooth disease, axonal, type 2t",
+    "mendel": 0.195
+   }
+  ],
+  "max": 0.195
+ },
+ "SLC38A9": {
+  "top": [],
+  "max": 0.0
+ },
+ "SNAP23": {
+  "top": [],
+  "max": 0.0
+ },
+ "SORL1": {
+  "top": [
+   {
+    "disease": "Alzheimer disease",
+    "mendel": 1.369
+   },
+   {
+    "disease": "early-onset autosomal dominant Alzheimer disease",
+    "mendel": 0.912
+   },
+   {
+    "disease": "complex hereditary spastic paraplegia",
+    "mendel": 0.559
+   }
+  ],
+  "max": 1.369
+ },
+ "SORT1": {
+  "top": [],
+  "max": 0.0
+ },
+ "STARD3": {
+  "top": [],
+  "max": 0.0
+ },
+ "STX4": {
+  "top": [],
+  "max": 0.0
+ },
+ "SYT11": {
+  "top": [],
+  "max": 0.0
+ },
+ "SYT7": {
+  "top": [],
+  "max": 0.0
+ },
+ "TM6SF1": {
+  "top": [],
+  "max": 0.0
+ },
+ "TSC1": {
+  "top": [
+   {
+    "disease": "tuberous sclerosis",
+    "mendel": 4.697
+   },
+   {
+    "disease": "isolated focal cortical dysplasia type II",
+    "mendel": 3.173
+   },
+   {
+    "disease": "tuberous sclerosis 1",
+    "mendel": 2.524
+   }
+  ],
+  "max": 4.697
+ },
+ "TSC2": {
+  "top": [
+   {
+    "disease": "tuberous sclerosis",
+    "mendel": 4.711
+   },
+   {
+    "disease": "isolated focal cortical dysplasia type II",
+    "mendel": 2.765
+   },
+   {
+    "disease": "tuberous sclerosis 2",
+    "mendel": 2.525
+   }
+  ],
+  "max": 4.711
+ },
+ "VAMP3": {
+  "top": [],
+  "max": 0.0
+ },
+ "VAPA": {
+  "top": [
+   {
+    "disease": "microcephaly",
+    "mendel": 0.426
+   }
+  ],
+  "max": 0.426
+ },
+ "VLDLR": {
+  "top": [
+   {
+    "disease": "cerebellar ataxia, intellectual disability, and dysequilibrium",
+    "mendel": 3.675
+   },
+   {
+    "disease": "isolated cerebellar hypoplasia/agenesis",
+    "mendel": 1.319
+   },
+   {
+    "disease": "microcephaly",
+    "mendel": 0.182
+   }
+  ],
+  "max": 3.675
+ }
+}

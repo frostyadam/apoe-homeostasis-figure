@@ -1,0 +1,111 @@
+[
+ {
+  "label": "Baumel 2026 preprint - p-tau217 in TSC",
+  "doi": "10.64898/2026.09.09.26362677",
+  "paper_id": "scilit-paper-e2ef41cf3b82",
+  "verified_title": "",
+  "status": "inserted",
+  "raw": {
+   "success": true,
+   "paper_id": "scilit-paper-e2ef41cf3b82",
+   "title": "Amyloid-Independent Elevation of Plasma phosphorylated tau-217 Tracks Neurodegenerative Risk in Tuberous Sclerosis Complex: Implications for mTOR-Targeted Intervention",
+   "doi": "10.64898/2026.09.09.26362677",
+   "status": "inserted"
+  }
+ },
+ {
+  "label": "Sarnat 2015 infantile tauopathies",
+  "doi": "10.1016/j.braindev.2014.08.010",
+  "paper_id": "scilit-paper-60f6e8310b8e",
+  "verified_title": "",
+  "status": "inserted",
+  "raw": {
+   "success": true,
+   "paper_id": "scilit-paper-60f6e8310b8e",
+   "title": "Infantile tauopathies: Hemimegalencephaly; tuberous sclerosis complex; focal cortical dysplasia 2; ganglioglioma",
+   "doi": "10.1016/j.braindev.2014.08.010",
+   "status": "inserted"
+  }
+ },
+ {
+  "label": "Liu 2020 TSC resembles FTD",
+  "doi": "10.1001/jamaneurol.2019.4284",
+  "paper_id": "scilit-paper-664e8dc27f15",
+  "verified_title": "",
+  "status": "inserted",
+  "raw": {
+   "success": true,
+   "paper_id": "scilit-paper-664e8dc27f15",
+   "title": "Association of Cognitive and Behavioral Features Between Adults With Tuberous Sclerosis and Frontotemporal Dementia",
+   "doi": "10.1001/jamaneurol.2019.4284",
+   "status": "inserted"
+  }
+ },
+ {
+  "label": "Liu 2022 TSC amyloid-independent tauopathy",
+  "doi": "10.1186/s40478-022-01325-8",
+  "paper_id": "scilit-paper-a73aacd32c1d",
+  "verified_title": "",
+  "status": "inserted",
+  "raw": {
+   "success": true,
+   "paper_id": "scilit-paper-a73aacd32c1d",
+   "title": "High-grade childhood intra-parenchymal brain tumor clustering with ATRT and expanding the cancer spectrum related to inherited SMARCE1 truncating variations",
+   "doi": "10.1186/s40478-022-01325-8",
+   "status": "inserted"
+  }
+ },
+ {
+  "label": "Hwang 2023 TSC novel human tauopathy",
+  "doi": "10.1007/s00401-022-02515-3",
+  "paper_id": "scilit-paper-ff2c64a16044",
+  "verified_title": "",
+  "status": "inserted",
+  "raw": {
+   "success": true,
+   "paper_id": "scilit-paper-ff2c64a16044",
+   "title": "NTRK rearrangements in a subset of NF1-related malignant peripheral nerve sheath tumors as novel actionable target",
+   "doi": "10.1007/s00401-022-02515-3",
+   "status": "inserted"
+  }
+ },
+ {
+  "label": "Adriaanse 2023 TSC1 selective neuronal vulnerability in AD",
+  "doi": "10.1111/nan.12904",
+  "paper_id": "scilit-paper-c20cff73e140",
+  "verified_title": "",
+  "status": "inserted",
+  "raw": {
+   "success": true,
+   "paper_id": "scilit-paper-c20cff73e140",
+   "title": "Tuberous sclerosis complex\u20101 (TSC1) contributes to selective neuronal vulnerability in Alzheimer's disease",
+   "doi": "10.1111/nan.12904",
+   "status": "inserted"
+  }
+ },
+ {
+  "label": "Orlando 2023 plasma biomarkers in adult TSC",
+  "doi": "10.1212/WNL.0000000000207710",
+  "paper_id": null,
+  "verified_title": "",
+  "status": null,
+  "raw": {
+   "success": false,
+   "error": "Could not find DOI: 10.1212/WNL.0000000000207710"
+  }
+ },
+ {
+  "label": "Crino 2011 mTOR in developmental brain malformations",
+  "doi": "10.1016/j.molmed.2011.07.008",
+  "paper_id": "scilit-paper-c5712f4e50df",
+  "verified_title": "",
+  "status": "inserted",
+  "raw": {
+   "success": true,
+   "paper_id": "scilit-paper-c5712f4e50df",
+   "title": "mTOR: A pathogenic signaling pathway in developmental brain malformations",
+   "doi": "10.1016/j.molmed.2011.07.008",
+   "status": "inserted"
+  }
+ }
+]

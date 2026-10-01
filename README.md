@@ -87,8 +87,8 @@ not state.
 
 | | version | what it is |
 |---|---|---|
-| Atlas | **v80** | `apoe_endocytosis_atlas.html` |
-| Tour | **v47** | `apoe_tour.html`, 9 stops |
+| Atlas | **v81** | `apoe_endocytosis_atlas.html` |
+| Tour | **v48** | `apoe_tour.html`, 9 stops |
 
 Republishing the same file path keeps the URL, so the artifact version number is the figure's
 real version history; git records the source that produced each one.
@@ -102,6 +102,24 @@ real version history; git records the source that produced each one.
   "Lysosome exocytosis" label at x541-615 — two stacked labels, neither beside the thing it
   named. Now anchored `start` at (680,215): 16.5 units clear of the endosome's outer edge,
   block centre 3.7 units above the circle centre.
+
+**v81 / v48 — 2026-10-01**
+
+- New category: **Mendelian CNS disease**, sienna `#84330b` (dark `#c78005`). 18 genes.
+  Membership is derived, not curated: Open Targets clinical-genetics evidence summed per
+  disease for *every* labelled gene, nervous-system only, neoplasms dropped, threshold 0.5
+  (set by NPC1 0.699 and NPC2 0.608). Genes whose monogenic disease *is* Alzheimer's (APOE,
+  ABCA7, SORL1) are excluded so the category adds information the AD colours do not.
+- `§` on TSC1/TSC2: a literature link to AD that Open Targets does not index. Drawn as a mark,
+  not a sixth colour, because every candidate hue clearing the five category colours collides
+  with a glyph colour (protan ΔE 6.1 and 5.3 vs cholesterol gold, 3.2 vs BMP magenta).
+- Genes with no category are now **ink**, not grey: grey sat only ΔE 2.8 from the Open Targets
+  teal under protanopia. Scoped to label text; `catCol` stays grey so shape fills are untouched.
+- The mTORC1 inset joins the colour code. `nm()` colours a compound label only when every gene
+  it names resolves and they agree on a leading category, so TSC1/TSC2 goes sienna while
+  FLCN–FNIP, RagA/B and v-ATPase stay default.
+- Palette re-validated all-pairs, both modes: **ALL CHECKS PASS**. Light worst CVD ΔE 10.3,
+  normal-vision floor 16.4; dark normal-vision floor 15.7.
 
 **v79 / v46 — 2026-10-01**
 
