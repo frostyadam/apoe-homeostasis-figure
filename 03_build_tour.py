@@ -217,10 +217,13 @@ const svg=document.getElementById("schem");
    current frame, so a stop's key can never disagree with what is on screen. */
 const CAT_TEXT={gwas:["--c-gwas","AD GWAS locus (consensus Tier 1/2)"],
                 ot:  ["--c-ot",  "Open Targets AD genetic association"],
+                mendel:["--c-mendel","Mendelian CNS disease (severe monogenic neurological disease)"],
                 up:  ["--c-up",  "higher expression in APOE4 carriers"],
                 dn:  ["--c-dn",  "lower expression in APOE4 carriers"]};
-const CAT_SEQ=["gwas","ot","up","dn"];
+const CAT_SEQ=["gwas","ot","mendel","up","dn"];
 const LEGEND_MARKS={cis:["\u2021","within 1 Mb of APOE, so the difference can follow the haplotype"],
+                    het:["\u2020","pooled colour comes from one ancestry stratum and reverses in the other"],
+                    adlit:["\u00a7","link to Alzheimer's in the primary literature, absent from Open Targets"],
                     dot:["\u25cf","one further category the gene also belongs to"]};
 /* Glyph rows reuse the cartoon's own drawing functions, so the swatch is literally
    the same mark as the one in the figure. */

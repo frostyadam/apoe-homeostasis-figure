@@ -87,8 +87,8 @@ not state.
 
 | | version | what it is |
 |---|---|---|
-| Atlas | **v82** | `apoe_endocytosis_atlas.html` |
-| Tour | **v49** | `apoe_tour.html`, 9 stops |
+| Atlas | **v83** | `apoe_endocytosis_atlas.html` |
+| Tour | **v50** | `apoe_tour.html`, 9 stops |
 
 Republishing the same file path keeps the URL, so the artifact version number is the figure's
 real version history; git records the source that produced each one.
@@ -102,6 +102,17 @@ real version history; git records the source that produced each one.
   "Lysosome exocytosis" label at x541-615 — two stacked labels, neither beside the thing it
   named. Now anchored `start` at (680,215): 16.5 units clear of the endosome's outer edge,
   block centre 3.7 units above the circle centre.
+
+**v83 / v50 — 2026-10-01**
+
+- The **tour** legend was missing the sienna row (the atlas legend had it since v81). Added, plus
+  the two marks it never listed: `†` ancestry heterogeneity and `§` AD-literature link.
+- Fixed a real TSC1/TSC2 collision in the mTORC1 inset. Anchored `end` at local x1085 the label
+  ran leftward across its own glyph (the two `--tsc` circles at 1052/1069,660) and across the
+  inhibitory bars at x1003-1041. As one 78-unit string a clearance sweep of that corner found
+  only two positions where it fits at all, both at 2.3 units. Split onto two lines (~40 units)
+  and placed below the complex, it clears everything by 19.3 and 21.4. Above was blocked by the
+  inset's own top boundary.
 
 **v82 / v49 — 2026-10-01**
 

@@ -760,10 +760,18 @@ function drawMTOR(svg){
   // TSC1/TSC2 (TSC complex): GAP for RHEB, so it inhibits mTORC1 activation
   g=hitGroup(svg,"tsc");
   el("circle",{cx:1052,cy:660,r:9,fill:css("--tsc")},g);el("circle",{cx:1069,cy:660,r:9,fill:css("--tsc")},g);
-  nm(g,1085,660,"TSC1/TSC2","end");   // NB these are MAGNIFIED-group coords: drawMTOR draws into
-  // drawA's scaled group, so root_x = 688 + 1.05*(local_x - 700). local 1085 -> root 1092, just
-  // inside the 1100 viewBox edge; local 1096 rendered at root 1104 and clipped. Anchored "end"
-  // and lifted to y660 because the \u00a7 widened it and middle@1050 collided with RHEB\u00b7GTP.
+  // Two stacked lines, not one. As "TSC1/TSC2" the label is 78 root units wide and a clearance
+  // sweep of this whole corner found only two positions where it fits at all, both at 2.3 units:
+  // anchored "end" it ran leftward across its own glyph (the two --tsc circles at 1052/1069,660)
+  // and across the inhibitory bars at x1003-1041; placed below the glyph it hit "selective
+  // inhibitor". Split in two it is ~40 units, and it sits BELOW the complex rather than above:
+  // above runs into the inset's own top boundary (path M 700 624 H 1088). A clearance sweep of
+  // this corner for a 40x16 box put the best free slots at root y688-718 / x1036-1090, up to
+  // 22.6 units clear, bounded by the "selective inhibitor" text left and the panel rect below.
+  // NB MAGNIFIED-group coords: drawMTOR draws into drawA's scaled group, so
+  // root_x = 688 + 1.05*(local_x - 700) and root_y = 659 + 1.05*(local_y - 659).
+  nm(g,1075,700,"TSC1","end");
+  nm(g,1075,711,"TSC2","end");
   el("line",{x1:1041,y1:658,x2:1005,y2:653,stroke:css("--ink2"),"stroke-width":1.6},svg);
   el("line",{x1:1004,y1:646,x2:1003,y2:660,stroke:css("--ink2"),"stroke-width":2.2},svg);
 
