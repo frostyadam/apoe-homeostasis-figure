@@ -87,8 +87,8 @@ not state.
 
 | | version | what it is |
 |---|---|---|
-| Atlas | **v89** | `apoe_endocytosis_atlas.html` |
-| Tour | **v56** | `apoe_tour.html`, 9 stops |
+| Atlas | **v90** | `apoe_endocytosis_atlas.html` |
+| Tour | **v57** | `apoe_tour.html`, 9 stops |
 
 Republishing the same file path keeps the URL, so the artifact version number is the figure's
 real version history; git records the source that produced each one.
@@ -102,6 +102,18 @@ real version history; git records the source that produced each one.
   "Lysosome exocytosis" label at x541-615 — two stacked labels, neither beside the thing it
   named. Now anchored `start` at (680,215): 16.5 units clear of the endosome's outer edge,
   block centre 3.7 units above the circle centre.
+
+**v90 / v57 — 2026-10-01**
+
+- Endosomal EAAT barrel scaled to **0.64 = 9/14**, the endosome membrane stroke over the
+  plasma-membrane stroke, so it traverses the thinner bilayer by the same proportion
+  (12.8 tall on a 9-unit band; ratio 1.42 against 1.43 at the cell surface).
+- **Recycling endosome dilated r19 → r25** to clear the green/purple clash. At r19 the lumen was
+  only 29 units across, so the teal recY (x633.5-646.5, y221-240) and the plum sortilin head
+  (x640.7-646, y206.3-226) overlapped over x640.7-646 / y221-226. The two glyphs also moved to
+  opposed bearings (120° and −30°). Teal-to-plum gap is now **9.6** units.
+- Both arrows targeting that endosome were re-trimmed for the larger outer edge (29.5), so the
+  `buds` end and the `receptor returns` start are back to exactly **12.5**.
 
 **v89 / v56 — 2026-10-01**
 

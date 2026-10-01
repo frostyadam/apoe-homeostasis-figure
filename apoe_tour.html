@@ -580,14 +580,22 @@ function drawA(){
   // ph=150 deg is clear of the three receptors already on this circle (-75, -30, 70).
   {const ph=150,t=ph*Math.PI/180; sortGlyph(gE2,880+48*Math.cos(t),372+48*Math.sin(t),ph-90,0.85);}
   // EAAT1/2 on the early endosome membrane, ph=108 deg
-  {const ph=108,t=ph*Math.PI/180; eaatGlyph(gE2,880+48*Math.cos(t),372+48*Math.sin(t),ph-90,0.9);}
+  // scale 0.64 = 9/14, the endosome membrane stroke over the plasma-membrane stroke, so the
+  // barrel traverses this thinner bilayer by the same proportion it does the cell surface
+  {const ph=108,t=ph*Math.PI/180; eaatGlyph(gE2,880+48*Math.cos(t),372+48*Math.sin(t),ph-90,0.64);}
   lab(gE2,938,362,"early");
   carrow(svg,"M 916 292 Q 910.2 302.2 903.3 311.3","uncoats",922,312,"start");
   // recycling: short tubule, budded vesicle, return to membrane
-  memCircle(gC,640,222,19,LUM);recY(gC,640,240,0,recCol);
+  // r19 -> r25. At r19 the lumen is only 29 units across, so two receptor glyphs with ~10-unit
+  // heads pointing inward met in the middle: the teal recY (x633.5-646.5, y221-240) and the plum
+  // sortilin head (x640.7-646, y206.3-226) overlapped over x640.7-646 / y221-226. Dilating and
+  // moving them to opposed bearings (120 and -30 deg) clears it without shrinking either mark so
+  // far that it stops reading. The two arrows that target this endosome are re-trimmed below.
+  memCircle(gC,640,222,25,LUM);
+  {const ph=120,t=ph*Math.PI/180; recY(gC,640+25*Math.cos(t),222+25*Math.sin(t),ph-90,recCol,0.9);}
   // sortilin on the recycling endosome: Asaro 2021 finds sortilin-FABP7 in Rab11 recycling
-  // endosomes, and apoE4 blocks its return to the surface. ph=-60 is clear of the recY at ph=90.
-  {const ph=-60,t=ph*Math.PI/180; sortGlyph(gC,640+19*Math.cos(t),222+19*Math.sin(t),ph-90,0.72);}
+  // endosomes by PLA, and apoE4 blocks its return to the cell surface.
+  {const ph=-30,t=ph*Math.PI/180; sortGlyph(gC,640+25*Math.cos(t),222+25*Math.sin(t),ph-90,0.72);}
   // 3 o'clock of the endosome at (640,222): anchored "start" at x680, 16.5 units clear of its
 // outer edge (r19 + stroke 9/2 = 23.5), block centre 3.7 above the circle centre. Anchored
 // "end" at (612,270) it extended LEFTWARD and landed at x545-612 / y254-292, directly above
@@ -600,8 +608,8 @@ function drawA(){
   // endosome lower-left at (652,256) and stays below the run for its whole length. The gap to
   // the membrane is preserved: |(652,256)-(640,222)| = 36.1, minus the 23.5 outer edge = 12.6,
   // the figure's standard clearance.
-  carrow(svg,"M 757.8 308.3 Q 700 290 652 256","buds",716,300,"middle");
-  carrow(svg,"M 618.3 193.3 Q 604.4 175.4 598 150","receptor returns",600,198,"end");
+  carrow(svg,"M 757.8 308.3 Q 700 290 654.0 261.6","buds",716,300,"middle");
+  carrow(svg,"M 614.7 188.5 Q 604.4 175.4 598 150","receptor returns",600,198,"end");
   // late endosome
   const gL=hitGroup(svg,"late");gL.setAttribute("transform","translate(-5 -46)");
   memCircle(gL,760,524,46,LUM);
