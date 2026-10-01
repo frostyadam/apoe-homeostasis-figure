@@ -238,9 +238,10 @@ const ARROW_OPTS={stroke:"currentColor","stroke-width":1.6,fill:"none","marker-e
 // units from the structure's OUTER edge (stroke centreline + half stroke-width), copied
 // from the scission arrow, which measures +13.1 at its start and +12.5 at its end.
 // Every arrow below was trimmed to that by exact de Casteljau subdivision of its
-// quadratic, so the curve shape is unchanged - only its span. The one exception is the
-// short flow arrow inside the Golgi stack (M 164 402 ...), which belongs within the
-// cisternae rather than between two organelles; forcing the rule collapses it to a stub.
+// quadratic, so the curve shape is unchanged - only its span. One arrow cannot reach 12.5:
+// the ER-to-Golgi arrow sits in the corridor between the two, which is only ~21 units wide
+// at its most open point, so an 18-unit arrow can hold at most ~10.9. It is placed at the
+// best position found by a grid search of that corridor and clears everything by 9.6.
 function carrow(g,d,label,lx,ly,anchor="middle"){el("path",{d,...ARROW_OPTS},g);if(label)txt(g,lx,ly,label,{class:"ink2","font-size":11.5,"text-anchor":anchor,"font-style":"italic"})}
 function memCircle(g,cx,cy,r,lumen,w=9){el("circle",{cx,cy,r,fill:lumen,stroke:css("--mem"),"stroke-width":w},g);el("circle",{cx,cy,r,fill:"none",stroke:css("--mem-in"),"stroke-width":w/3},g)}
 function particle(g,x,y,r=12){
@@ -414,8 +415,8 @@ function drawA(){
     const gRb=el("g",{},svg);
     el("ellipse",{cx:lx,cy:ly,rx:10,ry:7,transform:`rotate(${a+90} ${lx} ${ly})`,fill:css("--ribo")},gRb);
     el("ellipse",{cx:sx,cy:sy,rx:7,ry:4.5,transform:`rotate(${a+90} ${sx} ${sy})`,fill:css("--ribo")},gRb);
-    { const r=337,m0=P(r,a-6),m1=P(r,a),m2=P(r,a+6),[tx,ty]=P(r,a+7.2);
-      el("path",{d:`M ${m0[0]} ${m0[1]} Q ${P(r+1,a-3.5)[0]} ${P(r+1,a-3.5)[1]} ${m1[0]} ${m1[1]} T ${m2[0]} ${m2[1]}`,stroke:css("--ink2"),"stroke-width":1.3,fill:"none","stroke-linecap":"round"},gRb);
+    { const r=337,m0=P(r,a-4),m1=P(r,a),m2=P(r,a+4),[tx,ty]=P(r,a+5.2);
+      el("path",{d:`M ${m0[0]} ${m0[1]} Q ${P(r+1,a-2)[0]} ${P(r+1,a-2)[1]} ${m1[0]} ${m1[1]} T ${m2[0]} ${m2[1]}`,stroke:css("--ink2"),"stroke-width":1.3,fill:"none","stroke-linecap":"round"},gRb);
       txt(gRb,tx,ty,"AAAAA",{class:"mono ink2","font-size":6.5,transform:`rotate(${a+90} ${tx} ${ty})`,"dominant-baseline":"middle"});
       txt(gRb,m0[0],m0[1],"5′",{class:"mono ink2","font-size":6.5,"text-anchor":"end",transform:`rotate(${a+90} ${m0[0]} ${m0[1]}) translate(-2 0)`,"dominant-baseline":"middle"}); }
     el("path",{d:`M ${lx} ${ly} L ${mx} ${my} Q ${t1x} ${t1y} ${P(311,a+4)[0]} ${P(311,a+4)[1]}`,stroke:css("--apoe"),"stroke-width":2.2,fill:"none","stroke-linecap":"round"},gRb);
@@ -435,7 +436,7 @@ function drawA(){
   let gAG=el("g",{},svg);abcGlyph(gAG,317.5,398,90,.36,css("--abca"));apoeFree(gAG,326,396,-70,.7);particle(gAG,334,401,5);
   geneTxt(gAG,332,426,"ABCA1",{"font-size":9.5,"text-anchor":"middle"});
   protTip(gAG,"ABCA1 in a trans-Golgi bud",ABCA1_TIP+" Here lipid-poor APOE docks on ABCA1 and the first nascent lipoparticle forms before secretion.");
-  carrow(svg,"M 164 402 Q 178 396 190 395","",0,0);
+  carrow(svg,"M 206 414 Q 212.9 407.5 222.3 406.4","",0,0);
   // secretory vesicle + pore
   const gX=hitGroup(svg,"exo");
   memCircle(gX,205,262,24,LUM);particle(gX,198,258,8);particle(gX,214,268,6);
