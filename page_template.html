@@ -749,20 +749,11 @@ function drawMTOR(svg){
     return g;
   }
 
-  { // ---- 1. anti-APOE4 antibody, APPROACHING (not touching) the particle at (506,72).
-    //   Rotated 135 deg so the Y sits on a true 45 deg diagonal with the Fc up-left and both Fab
-    //   arms opening down-right onto the particle. The exact hinge->particle bearing is 56 deg,
-    //   but that made the Y look tipped over; 11 deg is imperceptible and the paratopes still
-    //   clear the particle surface (measured).
-    const col=css("--drug"), gW=el("g",{},ROOT);
-    igg(gW,483,49,135);
-    rxTag(gW,536,34,["anti-APOE4 mAb","blocks uptake"],col);
-    protTip(gW,"Therapeutic hypothesis 1 - an antibody that blocks lipoparticle uptake",
-      "A monoclonal antibody raised against the APOE4 lipoparticle, drawn gripping the particle at the moment it is handed from HSPG to the receptors. The intent is steric: occupy the APOE surface that HSPG and the LDLR family read, so the particle is never internalised. Rationale from this figure: APOE4 binds LDLR most tightly of the three isoforms (Kd 9 nM vs 16 nM for E3 and 800 nM for E2, ref [10]), and APOE4 lipoparticles accumulate intracellularly more than APOE3, so uptake is the step where the isoform difference is largest. AN ANTIBODY IS DRAWN, NOT ASSUMED TO WORK: it is a hypothesis with three known liabilities. It must cross the blood-brain barrier or be delivered intrathecally; it cannot easily distinguish APOE4 from APOE3 particles, which differ by a single residue (C112R) that is not surface-exposed on the lipidated particle; and blocking uptake wholesale would also block the delivery of cholesterol that neurons depend on, so the therapeutic window is the open question. Nothing in our data speaks to it.");
-  }
-
-  { // ---- 1b. a SECOND interception, in the gap between the affinity box and the "Uptake" title.
-    //   Here the antibody is ENGAGED, not approaching: the paratopes sit on the particle surface,
+  { // ---- 1. the antibody, in the gap between the affinity box and the "Uptake" title.
+    //   The hypothesis used to be drawn twice; the approaching copy at (483,49) and its two-line
+    //   label were removed as duplicates, so this drawing now carries it alone and its tooltip
+    //   absorbed the rationale the other one held (steric intent, the LDLR Kd series, BBB).
+    //   The antibody is ENGAGED, not approaching: the paratopes sit on the particle surface,
     //   and the route to the clathrin pit is drawn dashed and barred. Coordinates come from an
     //   occupancy scan that found this block free: x852-980, y16-128, bounded by the affinity box
     //   on the left, the cargo key above right, and the "Uptake" title below right.
@@ -771,8 +762,8 @@ function drawMTOR(svg){
     igg(g2,901,85,45);
     txt(g2,911,119,"mAb blocks entry",{"font-size":9.5,"font-weight":600,class:"mono",
       "text-anchor":"middle",style:`fill:${col}`});
-    protTip(g2,"The same antibody, drawn intercepting",
-      "The same therapeutic hypothesis at the next moment: the antibody is engaged rather than approaching, its two paratopes on the particle surface, and the route to the clathrin-coated pit is drawn dashed and barred. What this asserts is only that uptake is the step being targeted. It does NOT assert that the antibody is isoform-selective - APOE3 and APOE4 differ by C112R, a substitution that is not surface-exposed on the lipidated particle, so selectivity is the hard part of this idea and is unsolved. Blocking uptake wholesale would also block the cholesterol delivery neurons depend on, so the therapeutic window, not the binding, is the open question. Nothing in our spatial data speaks to any of this; it is drawn as a hypothesis.");
+    protTip(g2,"Therapeutic hypothesis 1 - an antibody that blocks lipoparticle uptake",
+      "A monoclonal antibody raised against the APOE4 lipoparticle, drawn engaged rather than approaching: its two paratopes sit on the particle surface and the route to the clathrin-coated pit is dashed and barred. The intent is steric - occupy the APOE surface that HSPG and the LDLR family read, so the particle is never internalised. Rationale from this figure: APOE4 binds LDLR most tightly of the three isoforms (Kd 9 nM versus 16 nM for APOE3 and 800 nM for APOE2, ref [10]), and APOE4 lipoparticles accumulate intracellularly more than APOE3, so uptake is the step where the isoform difference is largest. AN ANTIBODY IS DRAWN, NOT ASSUMED TO WORK - it carries three known liabilities. It must cross the blood-brain barrier or be delivered intrathecally. It cannot easily distinguish APOE4 from APOE3 particles, which differ by a single residue (C112R) that is not surface-exposed on the lipidated particle, so selectivity is the hard part of this idea and is unsolved. And blocking uptake wholesale would also block the cholesterol delivery neurons depend on, so the therapeutic window, not the binding, is the open question. Nothing in our spatial data speaks to any of this; it is drawn as a hypothesis.");
   }
 
   { // ---- 2. mTORC1-selective rapalog, inhibiting the cholesterol-dependent lysosomal activation
