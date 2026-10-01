@@ -566,5 +566,31 @@
    }
   ],
   "max": 3.675
+ },
+ "SLC1A3": {
+  "top": [
+   {
+    "disease": "episodic ataxia type 6",
+    "mendel": 4.117
+   },
+   {
+    "disease": "episodic ataxia type 2",
+    "mendel": 0.608
+   }
+  ],
+  "max": 4.117
+ },
+ "SLC1A2": {
+  "top": [
+   {
+    "disease": "developmental and epileptic encephalopathy, 41",
+    "mendel": 4.394
+   },
+   {
+    "disease": "undetermined early-onset epileptic encephalopathy",
+    "mendel": 0.608
+   }
+  ],
+  "max": 4.394
  }
 }

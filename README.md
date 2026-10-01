@@ -87,8 +87,8 @@ not state.
 
 | | version | what it is |
 |---|---|---|
-| Atlas | **v87** | `apoe_endocytosis_atlas.html` |
-| Tour | **v54** | `apoe_tour.html`, 9 stops |
+| Atlas | **v88** | `apoe_endocytosis_atlas.html` |
+| Tour | **v55** | `apoe_tour.html`, 9 stops |
 
 Republishing the same file path keeps the URL, so the artifact version number is the figure's
 real version history; git records the source that produced each one.
@@ -102,6 +102,22 @@ real version history; git records the source that produced each one.
   "Lysosome exocytosis" label at x541-615 — two stacked labels, neither beside the thing it
   named. Now anchored `start` at (680,215): 16.5 units clear of the endosome's outer edge,
   block centre 3.7 units above the circle centre.
+
+**v88 / v55 — 2026-10-01**
+
+- **Category precedence reordered**: direction colours now outrank `mendel`, so a gene carrying
+  both leads with what this dataset measured. The order lives in `01_build_data.py` (geneSpans
+  paints `cats[0]`); the template's `CAT_ORDER` turned out to be referenced nowhere else.
+  ACAT2, MVK, ATP6V0A1 and DNM1/2 flip from sienna+red to red+sienna.
+- **EAAT1/2 (SLC1A3/SLC1A2)** added to the plasma membrane and the early endosome as a
+  transporter barrel, merged into one label like DNM1/2. Blue with a sienna dot: SLC1A3 −0.523
+  FDR 5.7e-13 (the strongest effect in the figure) and SLC1A2 −0.363 FDR 1.6e-05, plus
+  Mendelian CNS disease (episodic ataxia type 6; epileptic encephalopathy 41). Neither is in
+  any downloaded GO set, so they are drawn as their own glyphs and no GO claim is made.
+- **Sortilin glyph** factored into `sortGlyph()` and added to the early and recycling endosome,
+  on the basis of the two papers below.
+- Corpus: Asaro 2021 (J Cell Sci 134:jcs258894) and Greda 2025 (Nat Metab 7:2346), both with
+  full text — PMC XML plus the user-supplied PDFs extracted with poppler (102k and 407k chars).
 
 **v87 / v54 — 2026-10-01**
 

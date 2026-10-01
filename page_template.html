@@ -100,9 +100,9 @@ th{color:var(--ink2);font-weight:500}
   <div class="legend" id="catLegend">
     <span><span class="sw" style="background:var(--c-gwas)"></span>AD GWAS locus (consensus Tier 1/2)</span>
     <span><span class="sw" style="background:var(--c-ot)"></span>Open Targets AD genetic association</span>
-    <span><span class="sw" style="background:var(--c-mendel)"></span>Mendelian CNS disease</span>
     <span><span class="sw" style="background:var(--c-up)"></span>Higher in APOE4 carriers</span>
     <span><span class="sw" style="background:var(--c-dn)"></span>Lower in APOE4 carriers</span>
+    <span><span class="sw" style="background:var(--c-mendel)"></span>Mendelian CNS disease</span>
     <span class="cap" style="flex-basis:100%">A gene with no evidence category is drawn in ink, not grey. <b>§</b> marks a link to Alzheimer's reported in the primary literature but absent from Open Targets. <b>‡</b> marks the &plusmn;1&nbsp;Mb APOE cis window; <b>†</b> marks significant between-ancestry heterogeneity.</span>
   </div>
   <figure>
@@ -287,6 +287,28 @@ function whorl(g,cx,cy,R=10,turns=2.6){
   el("path",{d,stroke:css("--mem-in"),"stroke-width":0.9,fill:"none","stroke-linecap":"round"},g);
   [[1.25,-0.45],[-0.75,1.2]].forEach(([a,b])=>el("circle",{cx:cx+a*R,cy:cy+b*R,r:2.3,fill:css("--chol")},g));
 }
+// Sortilin (SORT1): Vps10p-domain receptor, one membrane span, ten-bladed beta-propeller head
+// drawn as a ring. Factored out of the plasma-membrane copy so the same mark can be reused on
+// the endosomes, where two papers place it: Asaro 2021 (J Cell Sci 134:jcs258894) finds
+// sortilin-FABP7 complexes by PLA in Rab5 early endosomes and Rab11 recycling endosomes, and
+// Greda 2025 (Nat Metab 7:2346) reports that apoE4 "traps internalized sortilin in early
+// endosome, preventing discharge of cargo and recycling to the cell surface".
+function sortGlyph(parent,x,y,rot,sc){
+  const col=catCol("SORT1"), g=el("g",{transform:`translate(${x} ${y}) rotate(${rot}) scale(${sc||1})`},parent);
+  el("rect",{x:-3,y:0,width:6,height:14,rx:2.5,fill:col},g);
+  el("line",{x1:0,y1:0,x2:0,y2:-7,stroke:col,"stroke-width":3},g);
+  el("circle",{cx:0,cy:-17,r:10,fill:col},g);
+  el("circle",{cx:0,cy:-17,r:3.6,fill:css("--surf")},g);
+  return g;
+}
+// Glutamate transporters EAAT1/EAAT2 (SLC1A3/SLC1A2): trimeric Na+-dependent carriers, drawn as
+// a membrane-spanning barrel with a central pore rather than a receptor head.
+function eaatGlyph(parent,x,y,rot,sc){
+  const col=catCol("EAAT1/2"), g=el("g",{transform:`translate(${x} ${y}) rotate(${rot}) scale(${sc||1})`},parent);
+  el("rect",{x:-9,y:-9,width:18,height:18,rx:5,fill:col},g);
+  el("rect",{x:-2,y:-9,width:4,height:18,rx:2,fill:css("--surf")},g);
+  return g;
+}
 function recY(g,x,y,ang,col,sc=1){const q=el("g",{transform:`translate(${x} ${y}) rotate(${ang}) scale(${sc})`},g);el("path",{d:"M0,0 V-11 M0,-11 L-6.5,-19 M0,-11 L6.5,-19",stroke:col,"stroke-width":4.2,"stroke-linecap":"round",fill:"none"},q)}
 function clathrin(g,cx,cy,r,a0,a1,step=20){for(let a=a0;a<=a1;a+=step){const t=a*Math.PI/180,x=cx+r*Math.cos(t),y=cy+r*Math.sin(t);el("rect",{x:x-6,y:y-2.6,width:12,height:5.2,rx:2.6,fill:css("--clath"),transform:`rotate(${a+90} ${x} ${y})`},g)}}
 // Bilayer ribbon: outer leaflet, core, inner leaflet, lumen. Drawing each layer across every
@@ -311,7 +333,12 @@ const ABCA1_TIP="ATP-binding cassette transporter A1. At the plasma membrane it 
 // all. It is drawn as a SECTION MARK, not a second colour: every sixth hue that clears the
 // five category colours collides with a biological glyph (nearest-glyph CVD 6.1 vs cholesterol
 // gold, 5.3 vs gold, 3.2 vs BMP magenta), so the palette has no room for one.
-const CAT_ORDER=["gwas","ot","mendel","up","dn"], CAT_VAR={gwas:"--c-gwas",ot:"--c-ot",mendel:"--c-mendel",up:"--c-up",dn:"--c-dn"};
+// REORDERED 2026-10-01: the direction colours now outrank mendel, so a gene carrying both
+// leads with what THIS dataset measured rather than with borrowed disease context. Forced by
+// EAAT1/2, whose down-regulation (SLC1A3 FDR 5.7e-13, the strongest effect in the figure)
+// would otherwise have shown as a 3-pixel dot beside an episodic-ataxia annotation. Also moves
+// ACAT2, MVK, ATP6V0A1 and DNM1/2 from sienna+red dot to red+sienna dot.
+const CAT_ORDER=["gwas","ot","up","dn","mendel"], CAT_VAR={gwas:"--c-gwas",ot:"--c-ot",up:"--c-up",dn:"--c-dn",mendel:"--c-mendel"};
 // Genes whose pooled colour is produced by ONE ancestry stratum and would reverse in the other.
 // LIPA is the only COLOURED gene in this figure whose two strata have opposite signs.
 const HET=new Set(["LIPA"]);
@@ -581,11 +608,19 @@ function drawA(){
   carrow(svg,"M 522 88 Q 543.2 70 567.1 89.4","hands off",566,70,"start");
   lab(gR,730,-14,"receptors","middle");
   // SORT1 (sortilin): Vps10p-domain receptor, single TM, beta-propeller head
-  let gS1=el("g",{},svg);
-  el("rect",{x:655,y:117,width:6,height:14,rx:2.5,fill:catCol("SORT1")},gS1);
-  el("line",{x1:658,y1:117,x2:658,y2:110,stroke:catCol("SORT1"),"stroke-width":3},gS1);
-  el("circle",{cx:658,cy:100,r:10,fill:catCol("SORT1")},gS1);el("circle",{cx:658,cy:100,r:3.6,fill:css("--surf")},gS1);
+  let gS1=el("g",{},svg); sortGlyph(gS1,658,117,0,1);
   protTip(gS1,"SORT1 (sortilin)","Vps10p-domain sorting receptor with a ten-bladed β-propeller and one membrane span. It is a neuronal receptor for APOE-lipoproteins and APOE-bound amyloid-β, and for progranulin, and routes cargo from the Golgi and plasma membrane to endosomes. SORT1 is an AD GWAS consensus locus (Tier 1).");
+  // Glutamate transporters in the plasma membrane. EAAT1/EAAT2 clear synaptic glutamate; both
+  // are strongly lower in APOE4 here (SLC1A3 -0.523 FDR 5.7e-13, SLC1A2 -0.363 FDR 1.6e-05) and
+  // both cause Mendelian CNS disease, so the label is blue with a sienna dot.
+  {const gEA=el("g",{class:"hit",tabindex:0,role:"button","aria-label":"Glutamate transporters EAAT1 and EAAT2"},svg);
+   // x=360 put the label straight onto ABCA1 (x322-376). A joint sweep of glyph and label
+   // positions along the membrane found x=300 / label y=202 the best free pair: 10.8 units for
+   // the barrel in the membrane and 14.2 for the label below it.
+   eaatGlyph(gEA,300,140,0,1);
+   geneTxt(gEA,300,214,"EAAT1/2",{"text-anchor":"middle"});
+   protTip(gEA,"EAAT1 / EAAT2 (SLC1A3 / SLC1A2) - glutamate clearance",
+     "The two astrocytic sodium-dependent glutamate transporters that clear glutamate from the synapse. They are drawn here because they are among the LARGEST transcriptional effects in this dataset, not because they are part of the endocytic route: SLC1A3 (EAAT1) is down 0.523 log2 with FDR 5.7e-13, the strongest effect anywhere in this figure, and SLC1A2 (EAAT2) is down 0.363 with FDR 1.6e-05. Both also carry severe Mendelian CNS disease - SLC1A3 episodic ataxia type 6 (score 4.117), SLC1A2 developmental and epileptic encephalopathy 41 (4.394) - hence the sienna dot. The direction colour leads because it is what this dataset measured. TWO CAVEATS. Neither gene is in any of the downloaded GO sets used for the organelle labels here, so they are drawn as their own glyphs and no GO membership is claimed for them. And SLC1A2's effect is largely European-ancestry-driven: it is significant in 5 of 5 EA domains and 0 of 5 AA domains (EA -0.718, AA -0.250, between-stratum p 6.0e-04). It does not reverse sign, so it carries no dagger, but the pooled number is not evenly supported across strata. SLC1A3 is significant in both (EA -0.799, AA -0.514, p_het 0.025).");}
   // GPIHBP1: GPI-anchored to the outer leaflet
   let gGP=el("g",{},svg);
   el("path",{d:"M 698 124 L 698 112",stroke:catCol("GPIHBP1"),"stroke-width":1.6,"stroke-dasharray":"2 1.5"},gGP);
@@ -646,10 +681,19 @@ function drawA(){
   el("circle",{cx:880,cy:372,r:43.5,fill:LUM},gE2);
   particle(gE2,882,386,9);
   [-75,-30,70].forEach(ph=>{const t=ph*Math.PI/180;recY(gE2,880+48*Math.cos(t),372+48*Math.sin(t),ph-90,recCol)});
+  // sortilin on the early endosome. Asaro 2021 places sortilin-FABP7 complexes in Rab5 early
+  // endosomes by PLA, and Greda 2025 reports apoE4 trapping internalised sortilin there.
+  // ph=150 deg is clear of the three receptors already on this circle (-75, -30, 70).
+  {const ph=150,t=ph*Math.PI/180; sortGlyph(gE2,880+48*Math.cos(t),372+48*Math.sin(t),ph-90,0.85);}
+  // EAAT1/2 on the early endosome membrane, ph=108 deg
+  {const ph=108,t=ph*Math.PI/180; eaatGlyph(gE2,880+48*Math.cos(t),372+48*Math.sin(t),ph-90,0.9);}
   lab(gE2,938,362,"early");
   carrow(svg,"M 916 292 Q 910.2 302.2 903.3 311.3","uncoats",922,312,"start");
   // recycling: short tubule, budded vesicle, return to membrane
   memCircle(gC,640,222,19,LUM);recY(gC,640,240,0,recCol);
+  // sortilin on the recycling endosome: Asaro 2021 finds sortilin-FABP7 in Rab11 recycling
+  // endosomes, and apoE4 blocks its return to the surface. ph=-60 is clear of the recY at ph=90.
+  {const ph=-60,t=ph*Math.PI/180; sortGlyph(gC,640+19*Math.cos(t),222+19*Math.sin(t),ph-90,0.72);}
   // 3 o'clock of the endosome at (640,222): anchored "start" at x680, 16.5 units clear of its
 // outer edge (r19 + stroke 9/2 = 23.5), block centre 3.7 above the circle centre. Anchored
 // "end" at (612,270) it extended LEFTWARD and landed at x545-612 / y254-292, directly above
