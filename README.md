@@ -83,8 +83,17 @@ not state.
   turned every uncategorised gene glyph near-black. A retry must leave the fallback grey and
   restyle only genes that already have a category.
 
-## Sharing
+## Sharing and reuse
 
-The repo has no remote. The Artifacts above are private; the link alone does not grant access
-until shared from each page's Share menu. Before pushing anywhere, confirm the derived Altos
-analysis in `figdata.json`, `ancestry_tier.json` and `MEMO.md` is cleared for that audience.
+This repo is **public**. The two Artifact links above are *private* pages, so they will not
+open for most readers — clone the repo and open `apoe_endocytosis_atlas.html` or
+`apoe_tour.html` directly in a browser instead. Both are self-contained, with no server and no
+network needed.
+
+No licence file is present, so by default all rights are reserved and the code is not
+redistributable. Add a licence if reuse is intended.
+
+The analysis here is derived from published datasets (see the pipeline above), but the
+within-ancestry re-analysis in `ancestry_tier.json` and the pathway percentiles in `MEMO.md`
+are not themselves published. Treat the numbers as a preprint-stage result and cite the
+upstream papers for the primary data.
