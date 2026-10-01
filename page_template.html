@@ -487,14 +487,15 @@ function drawA(){
     // pushed the block 4.5 units into the secretory vesicle (centre 205,262, outer edge 28.5).
     // The source attribution lives in the hover box instead.
     txt(g,6,239,"nCPM \u00b7 rank of 154",{"font-size":7.5,class:"mono",style:`fill:${css("--muted")}`});
+    // four rows on the figure; the full top twenty is in the hover box
     [[1,"hepatocytes","9962"],[2,"M\u00fcller glia","6740"],[6,"macrophages","1733"],
-     [9,"astrocytes","1020"],[14,"Kupffer cells","859"],[18,"pericytes","721"]]
+     [9,"astrocytes","1020"]]
       .forEach(([r,nm,v],i)=>{const y=254+i*12;   // shifted up 8: at 262 the last row touched the "Golgi" label at y325
         txt(g,16,y,String(r),{"font-size":8,class:"mono","text-anchor":"end",style:`fill:${css("--muted")}`});
         txt(g,22,y,nm,{"font-size":8.5,class:"mono"});
         txt(g,130,y,v,{"font-size":8.5,class:"mono","text-anchor":"end"});});
     protTip(g,"Which cells make APOE",
-      "APOE messenger RNA by cell type, from the Human Protein Atlas single-cell consensus (rna_single_cell_type.tsv), in nCPM - normalised counts per million, i.e. reads per million - across 154 cell types. Ranks are printed so the omissions are visible. THE FULL TOP TEN: hepatocytes 9962.2, Muller glia 6740.1, peritubular myoid cells 4351.8, melanocytes 3427.4, Leydig cells 2556.3, macrophages 1733.0, decidual stromal cells 1311.9, adrenal cortex cells 1067.5, astrocytes 1019.7, myosatellite cells 1016.1. Ranks 3, 4, 5, 7 and 8 are left off the figure because they are irrelevant here, not because they rank below the rows shown. TWO THINGS WORTH NOTING. Astrocytes are NINTH, not second: Muller glia - the principal glia of the retina - peritubular myoid cells, melanocytes and Leydig cells all carry more APOE mRNA. And microglia are not resolved as a separate cell type in this atlas at all; they fall within 'macrophages', so the 1733.0 on that row is not a microglial number. Kupffer cells, the liver's resident macrophages, are listed separately at 858.9. FINALLY, THIS IS TRANSCRIPT ABUNDANCE, NOT SECRETION. The two are not the same thing: APOE is a secreted protein and hepatocytes and astrocytes are its principal sources in plasma and in brain respectively, but nothing in this table measures secreted protein, and a cell can hold high mRNA without being a major exporter.");
+      "APOE messenger RNA by cell type, from the Human Protein Atlas single-cell consensus (rna_single_cell_type.tsv), in nCPM - normalised counts per million, i.e. reads per million - across 154 cell types. The figure shows four rows; the ranks printed beside them are the real ranks, so the gaps are visible rather than implied away. FULL TOP TWENTY: 1. Hepatocytes 9962.2; 2. Müller glia 6740.1; 3. Peritubular myoid cells 4351.8; 4. Melanocytes 3427.4; 5. Leydig cells 2556.3; 6. Macrophages 1733.0; 7. Decidual stromal cells 1311.9; 8. Adrenal cortex cells 1067.5; 9. Astrocytes 1019.7; 10. Myosatellite cells 1016.1; 11. Ovarian stromal cells 1003.6; 12. Hofbauer cells 954.4; 13. Breast myoepithelial cells 912.8; 14. Kupffer cells 858.9; 15. Epididymal efferent duct absorptive cells 835.7; 16. Suprabasal keratinocytes 823.5; 17. Fibroblasts 801.3; 18. Pericytes 720.5; 19. Endometrial stromal cells 696.1; 20. Bergmann glia 574.8. TWO THINGS WORTH NOTING. Astrocytes are NINTH, not second: Muller glia - the principal glia of the retina - peritubular myoid cells, melanocytes and Leydig cells all carry more APOE mRNA. And microglia are not resolved as a separate cell type in this atlas at all; they fall within 'macrophages', so the 1733.0 on that row is not a microglial number. Kupffer cells, the liver's resident macrophages, are listed separately at 858.9 (14th), and pericytes at 720.5 (18th). FINALLY, THIS IS TRANSCRIPT ABUNDANCE, NOT SECRETION. The two are not the same thing: APOE is a secreted protein and hepatocytes and astrocytes are its principal sources in plasma and in brain respectively, but nothing in this table measures secreted protein, and a cell can hold high mRNA without being a major exporter.");
   }
   // Golgi
   const gG=hitGroup(svg,"golgi");
@@ -515,7 +516,9 @@ function drawA(){
   memCircle(gX,205,262,24,LUM);particle(gX,198,258,8);particle(gX,214,268,6);
   lab(gX,240,258,"exo");
   carrow(svg,"M 233.5 308.2 Q 228.9 302.7 224.3 298.1","",0,0);
-  carrow(svg,"M 218.1 223.2 Q 222.6 212.8 228.5 204.8","exocytosis",150,205,"end");
+  // label removed 2026-10-01 to declutter the space above the cell-type ranking; the arrow
+  // alone carries the step, and the secretory-vesicle label beside it already says "exocytosis"
+  carrow(svg,"M 218.1 223.2 Q 222.6 212.8 228.5 204.8","",0,0);
   // plasma membrane: secretory pore (x≈250), lysosomal pore (x≈430), clathrin pit (x≈700)
   const memD="M -10 130 H 222 C 227 130 229 134 227 141 A 30 30 0 1 0 273 141 C 271 134 273 130 278 130 "+
              "H 402 C 406 130 406 136 406 150 A 24 24 0 0 0 454 150 C 454 136 454 130 458 130 "+

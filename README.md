@@ -87,8 +87,8 @@ not state.
 
 | | version | what it is |
 |---|---|---|
-| Atlas | **v86** | `apoe_endocytosis_atlas.html` |
-| Tour | **v53** | `apoe_tour.html`, 9 stops |
+| Atlas | **v87** | `apoe_endocytosis_atlas.html` |
+| Tour | **v54** | `apoe_tour.html`, 9 stops |
 
 Republishing the same file path keeps the URL, so the artifact version number is the figure's
 real version history; git records the source that produced each one.
@@ -102,6 +102,18 @@ real version history; git records the source that produced each one.
   "Lysosome exocytosis" label at x541-615 — two stacked labels, neither beside the thing it
   named. Now anchored `start` at (680,215): 16.5 units clear of the endosome's outer edge,
   block centre 3.7 units above the circle centre.
+
+**v87 / v54 — 2026-10-01**
+
+- Removed the italic `exocytosis` arrow label above the cell-type ranking; the arrow alone
+  carries the step and the secretory-vesicle label beside it already says exocytosis.
+- Ranking trimmed to **four** rows — hepatocytes (1), Müller glia (2), macrophages (6),
+  astrocytes (9) — with the **full top twenty** now in the hover box, generated from
+  `apoe_celltype_ncpm.tsv` at build time rather than typed by hand.
+- **Caught a blank-figure bug before publishing.** The tooltip edit left a stray `)`, so the
+  whole script failed to parse and `#schem` rendered with *zero* elements. The build steps all
+  exited 0 and the tour still reported "9 stops"; the only visible signal was the tour dropping
+  117 → 96 KB. Builds are now syntax-checked with `node --check` on the extracted script.
 
 **v86 / v53 — 2026-10-01**
 
