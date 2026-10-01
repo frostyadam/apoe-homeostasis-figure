@@ -87,8 +87,8 @@ not state.
 
 | | version | what it is |
 |---|---|---|
-| Atlas | **v92** | `apoe_endocytosis_atlas.html` |
-| Tour | **v59** | `apoe_tour.html`, 9 stops |
+| Atlas | **v93** | `apoe_endocytosis_atlas.html` |
+| Tour | **v60** | `apoe_tour.html`, 9 stops |
 
 Republishing the same file path keeps the URL, so the artifact version number is the figure's
 real version history; git records the source that produced each one.
@@ -102,6 +102,17 @@ real version history; git records the source that produced each one.
   "Lysosome exocytosis" label at x541-615 — two stacked labels, neither beside the thing it
   named. Now anchored `start` at (680,215): 16.5 units clear of the endosome's outer edge,
   block centre 3.7 units above the circle centre.
+
+**v93 / v60 — 2026-10-01**
+
+- The three v-ATPase subunit genes are removed from under the `ER–lysosome contact site` label.
+  The evidence moves onto the **pump glyph itself**: filled with the colour of ATP6V0A1, its
+  strongest-evidence subunit — up in APOE4, so red leads — with a sienna dot for its Mendelian
+  CNS disease (epileptic encephalopathy 104, 3.141). ATP6V1A contributes mendel only (2.969)
+  and ATP6V0D1 carries nothing, so neither needed its own label.
+- Retromer: the coat glyph is removed from inside the tubule, and the `retromer / VPS35` text
+  moves to anchor-end (866, 290/302), spanning x811-868 over the tubule **body** rather than
+  its tip at (780,321). Best free slot in a sweep of x800-960 / y290-345, at 13.5 units.
 
 **v92 / v59 — 2026-10-01**
 
