@@ -239,9 +239,11 @@ const ARROW_OPTS={stroke:"currentColor","stroke-width":1.6,fill:"none","marker-e
 // from the scission arrow, which measures +13.1 at its start and +12.5 at its end.
 // Every arrow below was trimmed to that by exact de Casteljau subdivision of its
 // quadratic, so the curve shape is unchanged - only its span. One arrow cannot reach 12.5:
-// the ER-to-Golgi arrow sits in the corridor between the two, which is only ~21 units wide
-// at its most open point, so an 18-unit arrow can hold at most ~10.9. It is placed at the
-// best position found by a grid search of that corridor and clears everything by 9.6.
+// the ER-to-Golgi arrow rides the outer flank of tubC, the ER exit-site tubule aimed at the
+// Golgi (M 136 423 C ... 158 405, tangent ~-32 deg), continuing its line. That flank is
+// pinched by the tubule, the COPII vesicle at (178,392) and the first cisterna, so 8.9 is
+// what the position allows. A grid search found 18.1 available further left, but that sits
+// clear of the tubule and reads as an arrow belonging to nothing.
 function carrow(g,d,label,lx,ly,anchor="middle"){el("path",{d,...ARROW_OPTS},g);if(label)txt(g,lx,ly,label,{class:"ink2","font-size":11.5,"text-anchor":anchor,"font-style":"italic"})}
 function memCircle(g,cx,cy,r,lumen,w=9){el("circle",{cx,cy,r,fill:lumen,stroke:css("--mem"),"stroke-width":w},g);el("circle",{cx,cy,r,fill:"none",stroke:css("--mem-in"),"stroke-width":w/3},g)}
 function particle(g,x,y,r=12){
@@ -432,11 +434,11 @@ function drawA(){
   [[0,.28],[0,.72],[1,.4],[2,.62],[3,.35]].forEach(([i,t])=>{const y=398-i*19,w=62-i*4,x=250+w*(2*t-1),yy=y-52*t*(1-t);
     apoeFree(gG,x,yy,Math.atan2(-52*(1-2*t),2*w)*57.2958,.62)});
   memCircle(gG,330,398,13,LUM,6);
-  lab(gG,172,368,"golgi","end");
+  lab(gG,172,341,"golgi","end");
   let gAG=el("g",{},svg);abcGlyph(gAG,317.5,398,90,.36,css("--abca"));apoeFree(gAG,326,396,-70,.7);particle(gAG,334,401,5);
   geneTxt(gAG,332,426,"ABCA1",{"font-size":9.5,"text-anchor":"middle"});
   protTip(gAG,"ABCA1 in a trans-Golgi bud",ABCA1_TIP+" Here lipid-poor APOE docks on ABCA1 and the first nascent lipoparticle forms before secretion.");
-  carrow(svg,"M 206 414 Q 212.9 407.5 222.3 406.4","",0,0);
+  carrow(svg,"M 140 395 Q 146.4 389.2 154.3 385.5","",0,0);
   // secretory vesicle + pore
   const gX=hitGroup(svg,"exo");
   memCircle(gX,205,262,24,LUM);particle(gX,198,258,8);particle(gX,214,268,6);
