@@ -87,8 +87,8 @@ not state.
 
 | | version | what it is |
 |---|---|---|
-| Atlas | **v81** | `apoe_endocytosis_atlas.html` |
-| Tour | **v48** | `apoe_tour.html`, 9 stops |
+| Atlas | **v82** | `apoe_endocytosis_atlas.html` |
+| Tour | **v49** | `apoe_tour.html`, 9 stops |
 
 Republishing the same file path keeps the URL, so the artifact version number is the figure's
 real version history; git records the source that produced each one.
@@ -102,6 +102,25 @@ real version history; git records the source that produced each one.
   "Lysosome exocytosis" label at x541-615 — two stacked labels, neither beside the thing it
   named. Now anchored `start` at (680,215): 16.5 units clear of the endosome's outer edge,
   block centre 3.7 units above the circle centre.
+
+**v82 / v49 — 2026-10-01**
+
+- Restored **AP2M1, DNM1, DNM2**, removed earlier for simplicity. All three carry Mendelian
+  CNS disease: DNM2 4.162 (CMT dominant intermediate B, the 4th strongest in the figure),
+  DNM1 2.306 (Lennox-Gastaut), AP2M1 1.216 (epileptic encephalopathy). EEA1, SYT11 and HSPA5
+  stay removed — they score 0.000.
+- Gave the mTORC1 inset real gene symbols so three genes that qualified but were invisible can
+  carry the code: `ATP6V1A · ATP6V0D1 · ATP6V0A1` under the v-ATPase glyph, and `MTOR` above
+  the pill. MTOR goes outside the pill because the pill's subunit line is white-on-fill, where
+  a category colour would be illegible. Sienna labels: 9 -> 16.
+- New `geneRun()` helper: a run of symbols each coloured by its own category. `nm()`'s compound
+  rule cannot do this — it paints a whole label from one leading category, which would wrongly
+  colour non-qualifying subunits.
+- `lab()` now packs gene rows **width-aware into as many rows as needed**. The old rule split
+  into exactly two at the midpoint and estimated 6.1 px/char, under-counting the ‡†§● marks;
+  the restored pit genes then pushed both rows past the 1100 viewBox edge and were silently
+  clipped. Measured rate is 7.4 px/char.
+- Re-verified: nothing clipped, zero text overlaps, drawA clean.
 
 **v81 / v48 — 2026-10-01**
 

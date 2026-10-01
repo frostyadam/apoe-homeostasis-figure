@@ -59,7 +59,11 @@ NODE_GENES["pit"]=NODE_GENES["pit"]+["BIN1"]
 USER_LABELS={"receptors":["SORT1","CD36","GPIHBP1"]}
 # User-requested removals from the cartoon (2026-09-24). DNM1 is APOE4-DE (pool5 +0.12, FDR 0.031) but was
 # removed at the user's request: the fold-change is small and its neurodegeneration link is not relevant here.
-USER_REMOVE={"AP2M1","DNM2","EEA1","DNM1","SYT11","HSPA5"}   # HSPA5: DE but down, so not an ER-stress signature
+# AP2M1, DNM1 and DNM2 were removed here for simplicity; all three carry Mendelian CNS
+# disease (DNM2 4.162 CMT dominant intermediate B, DNM1 2.306 Lennox-Gastaut, AP2M1 1.216
+# epileptic encephalopathy) and were restored 2026-10-01. EEA1, SYT11 and HSPA5 score 0.000,
+# so they stay out.
+USER_REMOVE={"EEA1","SYT11","HSPA5"}   # HSPA5: DE but down, so not an ER-stress signature
 NODE_GENES["recycling"]=[g for g in NODE_GENES["recycling"] if g!="SORL1"]   # SORL1 is listed under the receptors
 SD={k:s for k,_,_,s in STEPS+UMBRELLA+SECRETORY}
 for k,gl in NODE_GENES.items():
