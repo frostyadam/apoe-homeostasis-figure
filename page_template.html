@@ -304,9 +304,12 @@ function sortGlyph(parent,x,y,rot,sc){
 // Glutamate transporters EAAT1/EAAT2 (SLC1A3/SLC1A2): trimeric Na+-dependent carriers, drawn as
 // a membrane-spanning barrel with a central pore rather than a receptor head.
 function eaatGlyph(parent,x,y,rot,sc){
+  // 14 wide x 20 tall, i.e. TALLER than wide, so it reads as traversing the bilayer rather than
+  // sitting on it. The plasma membrane here is a 14-unit stroke centred on y130, so a 20-unit
+  // barrel spans y120-140 and overhangs the band by 3 units on each face.
   const col=catCol("EAAT1/2"), g=el("g",{transform:`translate(${x} ${y}) rotate(${rot}) scale(${sc||1})`},parent);
-  el("rect",{x:-9,y:-9,width:18,height:18,rx:5,fill:col},g);
-  el("rect",{x:-2,y:-9,width:4,height:18,rx:2,fill:css("--surf")},g);
+  el("rect",{x:-7,y:-10,width:14,height:20,rx:4,fill:col},g);
+  el("rect",{x:-1.5,y:-10,width:3,height:20,rx:1.5,fill:css("--surf")},g);
   return g;
 }
 function recY(g,x,y,ang,col,sc=1){const q=el("g",{transform:`translate(${x} ${y}) rotate(${ang}) scale(${sc})`},g);el("path",{d:"M0,0 V-11 M0,-11 L-6.5,-19 M0,-11 L6.5,-19",stroke:col,"stroke-width":4.2,"stroke-linecap":"round",fill:"none"},q)}
@@ -614,11 +617,12 @@ function drawA(){
   // are strongly lower in APOE4 here (SLC1A3 -0.523 FDR 5.7e-13, SLC1A2 -0.363 FDR 1.6e-05) and
   // both cause Mendelian CNS disease, so the label is blue with a sienna dot.
   {const gEA=el("g",{class:"hit",tabindex:0,role:"button","aria-label":"Glutamate transporters EAAT1 and EAAT2"},svg);
-   // x=360 put the label straight onto ABCA1 (x322-376). A joint sweep of glyph and label
-   // positions along the membrane found x=300 / label y=202 the best free pair: 10.8 units for
-   // the barrel in the membrane and 14.2 for the label below it.
-   eaatGlyph(gEA,300,140,0,1);
-   geneTxt(gEA,300,214,"EAAT1/2",{"text-anchor":"middle"});
+   // Far right of the plasma membrane, directly under the "Uptake" title (y74-108, x1002-1088).
+   // The membrane runs flat at y130 from about x940 rightward, so the barrel is centred on the
+   // centreline and traverses the full 14-unit band. It was previously at x300, where the label
+   // collided with ABCA1 (x322-376).
+   eaatGlyph(gEA,1030,130,0,1);
+   geneTxt(gEA,1030,164,"EAAT1/2",{"text-anchor":"middle"});
    protTip(gEA,"EAAT1 / EAAT2 (SLC1A3 / SLC1A2) - glutamate clearance",
      "The two astrocytic sodium-dependent glutamate transporters that clear glutamate from the synapse. They are drawn here because they are among the LARGEST transcriptional effects in this dataset, not because they are part of the endocytic route: SLC1A3 (EAAT1) is down 0.523 log2 with FDR 5.7e-13, the strongest effect anywhere in this figure, and SLC1A2 (EAAT2) is down 0.363 with FDR 1.6e-05. Both also carry severe Mendelian CNS disease - SLC1A3 episodic ataxia type 6 (score 4.117), SLC1A2 developmental and epileptic encephalopathy 41 (4.394) - hence the sienna dot. The direction colour leads because it is what this dataset measured. TWO CAVEATS. Neither gene is in any of the downloaded GO sets used for the organelle labels here, so they are drawn as their own glyphs and no GO membership is claimed for them. And SLC1A2's effect is largely European-ancestry-driven: it is significant in 5 of 5 EA domains and 0 of 5 AA domains (EA -0.718, AA -0.250, between-stratum p 6.0e-04). It does not reverse sign, so it carries no dagger, but the pooled number is not evenly supported across strata. SLC1A3 is significant in both (EA -0.799, AA -0.514, p_het 0.025).");}
   // GPIHBP1: GPI-anchored to the outer leaflet

@@ -87,8 +87,8 @@ not state.
 
 | | version | what it is |
 |---|---|---|
-| Atlas | **v88** | `apoe_endocytosis_atlas.html` |
-| Tour | **v55** | `apoe_tour.html`, 9 stops |
+| Atlas | **v89** | `apoe_endocytosis_atlas.html` |
+| Tour | **v56** | `apoe_tour.html`, 9 stops |
 
 Republishing the same file path keeps the URL, so the artifact version number is the figure's
 real version history; git records the source that produced each one.
@@ -102,6 +102,14 @@ real version history; git records the source that produced each one.
   "Lysosome exocytosis" label at x541-615 — two stacked labels, neither beside the thing it
   named. Now anchored `start` at (680,215): 16.5 units clear of the endosome's outer edge,
   block centre 3.7 units above the circle centre.
+
+**v89 / v56 — 2026-10-01**
+
+- EAAT1/2 moved from x300 to the **far right of the plasma membrane at x1030**, directly under
+  the `Uptake` title (y74-108, x1002-1088), with the label at y151-167 in the cytoplasm below.
+- The barrel now **fully traverses** the bilayer. `eaatGlyph()` is 14 wide × 20 tall rather than
+  18 × 18, so against the 14-unit membrane stroke centred on y130 it spans y120-140 — the band
+  is y123-137, giving 3 units of overhang on each face. Verified by measurement.
 
 **v88 / v55 — 2026-10-01**
 
