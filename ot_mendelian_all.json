@@ -592,5 +592,43 @@
    }
   ],
   "max": 4.394
+ },
+ "VPS35": {
+  "top": [
+   {
+    "disease": "late-onset Parkinson disease",
+    "mendel": 3.506
+   },
+   {
+    "disease": "Parkinson disease",
+    "mendel": 1.401
+   },
+   {
+    "disease": "young-onset Parkinson disease",
+    "mendel": 0.827
+   }
+  ],
+  "max": 3.506
+ },
+ "VPS26A": {
+  "top": [],
+  "max": 0.0
+ },
+ "VPS26B": {
+  "top": [],
+  "max": 0.0
+ },
+ "VPS29": {
+  "top": [],
+  "max": 0.0
+ },
+ "VPS35L": {
+  "top": [
+   {
+    "disease": "Ritscher-Schinzel syndrome",
+    "mendel": 2.045
+   }
+  ],
+  "max": 2.045
  }
 }

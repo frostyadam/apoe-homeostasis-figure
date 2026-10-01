@@ -87,8 +87,8 @@ not state.
 
 | | version | what it is |
 |---|---|---|
-| Atlas | **v90** | `apoe_endocytosis_atlas.html` |
-| Tour | **v57** | `apoe_tour.html`, 9 stops |
+| Atlas | **v91** | `apoe_endocytosis_atlas.html` |
+| Tour | **v58** | `apoe_tour.html`, 9 stops |
 
 Republishing the same file path keeps the URL, so the artifact version number is the figure's
 real version history; git records the source that produced each one.
@@ -102,6 +102,21 @@ real version history; git records the source that produced each one.
   "Lysosome exocytosis" label at x541-615 — two stacked labels, neither beside the thing it
   named. Now anchored `start` at (680,215): 16.5 units clear of the endosome's outer edge,
   block centre 3.7 units above the circle centre.
+
+**v91 / v58 — 2026-10-01**
+
+- `buds` arrow now **points at** the recycling endosome. Its end tangent was ~40° off the line
+  to the centre, so it read as sweeping past; the control point is moved onto the ray from the
+  centre through the end point, giving a tangent error of **2.3°**. The `buds` label moved clear
+  of the new curve (gap 8.7, was colliding). End gap to the membrane still 12.5.
+- **Retromer** added on the cytosolic face of the recycling endosome, as three subunit beads in
+  an arc, coloured by **VPS35** — D620N causes autosomal-dominant Parkinson disease (PARK17),
+  Mendelian nervous-system score 3.506. VPS26A, VPS26B and VPS29 score 0.000 and take no
+  colour; none of the four moves in our data (all FDR > 0.55), so the sienna is external
+  genetics only. Sienna is the right bin precisely because it is neurodegenerative genetics
+  broadly rather than PD-specific — it already holds ataxia, epilepsy and CMT genes.
+- Lipoparticle receptors on **two rows** by request, via a `FORCE` layout that overrides the
+  width packer: `LDLR · VLDLR · SCARB1 · CD36` then `LRP1 · SORT1 · SORL1 · GPIHBP1`.
 
 **v90 / v57 — 2026-10-01**
 

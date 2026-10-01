@@ -303,6 +303,16 @@ function sortGlyph(parent,x,y,rot,sc){
 }
 // Glutamate transporters EAAT1/EAAT2 (SLC1A3/SLC1A2): trimeric Na+-dependent carriers, drawn as
 // a membrane-spanning barrel with a central pore rather than a receptor head.
+// Retromer: a cytosolic coat, drawn as three subunit beads in a shallow arc sitting on the
+// OUTER face of the membrane rather than in it. Coloured by VPS35, the subunit that carries the
+// human genetics - VPS35 D620N causes autosomal-dominant Parkinson disease (PARK17), Open
+// Targets Mendelian nervous-system score 3.506. VPS26A and VPS29 score 0.000 and take no colour.
+function retroGlyph(parent,x,y,rot,sc){
+  const col=catCol("VPS35"), g=el("g",{transform:`translate(${x} ${y}) rotate(${rot}) scale(${sc||1})`},parent);
+  el("path",{d:"M -13 4 Q 0 -5 13 4",stroke:col,"stroke-width":2.6,fill:"none","stroke-linecap":"round"},g);
+  [[-11,2.5],[0,-2.4],[11,2.5]].forEach(([cx,cy])=>el("circle",{cx,cy,r:4.2,fill:col},g));
+  return g;
+}
 function eaatGlyph(parent,x,y,rot,sc){
   // 14 wide x 20 tall, i.e. TALLER than wide, so it reads as traversing the bilayer rather than
   // sitting on it. The plasma membrane here is a 14-unit stroke centred on y130, so a 20-unit
@@ -379,7 +389,12 @@ function lab(g,x,y,k,anchor="start"){
   tl.forEach((t,j)=>txt(g,x,y+j*15*FONT_SCALE,t,{"font-size":12.5,"font-weight":600,"text-anchor":anchor}));
   const y0=y+(tl.length-1)*15*FONT_SCALE;
   const nodes=st.nodes.filter(keepG);
-  const FORCE={lysosome:[["NPC1","NPC2"],["LIPA"]]};
+  // Explicit row layouts override the width packer where the reading order matters. The
+  // receptor header is set in two rows by request: the classic LDL-receptor family and the
+  // scavenger/lipase-carrier arm on the first line, the Vps10p-domain sorting receptors and
+  // GPIHBP1 on the second.
+  const FORCE={lysosome:[["NPC1","NPC2"],["LIPA"]],
+               receptors:[["LDLR","VLDLR","SCARB1","CD36"],["LRP1","SORT1","SORL1","GPIHBP1"]]};
   // Width-aware greedy packing into AS MANY rows as the space needs. The old rule split into
   // exactly two rows at the midpoint and estimated 6.1 px/char, which under-counts the cis,
   // heterogeneity, AD-literature and extra-category marks; restoring AP2M1/DNM1/DNM2 to the
@@ -706,6 +721,18 @@ function drawA(){
   // sortilin on the recycling endosome: Asaro 2021 finds sortilin-FABP7 in Rab11 recycling
   // endosomes by PLA, and apoE4 blocks its return to the cell surface.
   {const ph=-30,t=ph*Math.PI/180; sortGlyph(gC,640+25*Math.cos(t),222+25*Math.sin(t),ph-90,0.72);}
+  // retromer on the cytosolic face, bearing 170 deg: clear of recY (120), sortilin (-30), the
+  // label at 3 o'clock, the buds arrow arriving at 55 and receptor-returns leaving near 233.
+  // R=38, not 33: at 33 the coat beads reached 28 units from the centre, inside the 29.5 outer
+  // edge, so the glyph sat -4.5 into the membrane instead of on its cytosolic face. The label
+  // also moves DOWN: at y206 it ran leftward into "receptor returns" (x502-600, y184-202).
+  {const ph=178,t=ph*Math.PI/180, R=38;
+   const gRt=el("g",{class:"hit",tabindex:0,role:"button","aria-label":"Retromer coat on the recycling endosome"},svg);
+   retroGlyph(gRt,640+R*Math.cos(t),222+R*Math.sin(t),ph+90,0.95);
+   txt(gRt,604,252,"retromer",{"font-size":9.5,class:"mono","text-anchor":"end",style:`fill:${css("--muted")}`});
+   geneTxt(gRt,604,264,"VPS35",{"text-anchor":"end","font-size":9.5});
+   protTip(gRt,"Retromer - VPS35, VPS26, VPS29",
+     "The retromer coat, drawn on the cytosolic face of the recycling endosome because that is where it acts: it retrieves cargo from the endosome and returns it to the cell surface or the Golgi, which is the step apoE4 is reported to block for sortilin. THE HUMAN GENETICS SIT IN ONE SUBUNIT. VPS35 D620N causes autosomal-dominant Parkinson disease (PARK17); its Open Targets Mendelian nervous-system score is 3.506, on late-onset Parkinson disease, which places it in the same Mendelian CNS disease category as the ataxia, epileptic-encephalopathy and Charcot-Marie-Tooth genes elsewhere in this figure - the point being that the category is neurodegenerative genetics broadly, not Parkinson specifically. VPS26A, VPS26B and VPS29 carry NO Mendelian nervous-system disease at all (score 0.000) and so take no colour. NONE OF THE FOUR MOVES IN OUR DATA: VPS35 +0.017 FDR 0.81, VPS26A -0.016 FDR 0.89, VPS26B +0.048 FDR 0.62, VPS29 -0.050 FDR 0.56. The sienna is therefore external disease genetics only, with no transcriptional support from this dataset, and retromer is not in any of the downloaded GO sets used for the organelle labels, so no GO membership is claimed for it either.");}
   // 3 o'clock of the endosome at (640,222): anchored "start" at x680, 16.5 units clear of its
 // outer edge (r19 + stroke 9/2 = 23.5), block centre 3.7 above the circle centre. Anchored
 // "end" at (612,270) it extended LEFTWARD and landed at x545-612 / y254-292, directly above
@@ -718,7 +745,12 @@ function drawA(){
   // endosome lower-left at (652,256) and stays below the run for its whole length. The gap to
   // the membrane is preserved: |(652,256)-(640,222)| = 36.1, minus the 23.5 outer edge = 12.6,
   // the figure's standard clearance.
-  carrow(svg,"M 757.8 308.3 Q 700 290 654.0 261.6","buds",716,300,"middle");
+  // End tangent now aims at the endosome centre. The old control (700,290) left the arrow
+  // arriving tangentially -- its final direction was about 40 deg off the line to (640,222) --
+  // so it read as sweeping past rather than pointing at the endosome. End sits at bearing 55
+  // deg, 42 units from the centre, which is the outer edge 29.5 plus the standard 12.5.
+  // "buds" moves clear of the new curve.
+  carrow(svg,"M 757.8 308.3 Q 683.6 284.2 664.1 256.4","buds",706,318,"middle");
   carrow(svg,"M 614.7 188.5 Q 604.4 175.4 598 150","receptor returns",600,198,"end");
   // late endosome
   const gL=hitGroup(svg,"late");gL.setAttribute("transform","translate(-5 -46)");

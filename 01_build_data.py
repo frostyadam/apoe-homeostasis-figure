@@ -65,6 +65,13 @@ HYPOTHESIS_LABELS={"TET2"}
 # (SLC1A3 -0.523 FDR 5.7e-13, SLC1A2 -0.363 FDR 1.6e-05 -- SLC1A3's is the strongest effect
 # anywhere in this figure) and Mendelian CNS disease (SLC1A3 4.117 episodic ataxia type 6,
 # SLC1A2 4.394 developmental and epileptic encephalopathy 41).
+# Retromer, drawn on the recycling endosome (requested 2026-10-01). VPS35 is the subunit that
+# carries the human genetics: VPS35 D620N causes autosomal-dominant Parkinson disease (PARK17),
+# Open Targets Mendelian nervous-system score 3.506 on late-onset PD. VPS26A, VPS26B and VPS29
+# score 0.000, and none of the four moves in our LC contrast (all FDR > 0.55), so only VPS35
+# takes a colour. They are not in any downloaded GO set here, so the complex is drawn as its own
+# glyph and no GO membership is claimed.
+RETROMER=["VPS35","VPS26A","VPS29"]
 EAAT_MERGE="EAAT1/2"
 EAAT_MEMBERS=["SLC1A3","SLC1A2"]
 # Named exceptions: label-only genes shown on a step whose GO set does not contain them.
@@ -261,7 +268,7 @@ anc=json.load(open(f"{H}/ancestry_tier.json"))
 # (nothing external cited anywhere in the figure).
 EXTERNAL={"APOE","APOC1","APOC2","PLTP","CD36","LRP1","DHCR24","CLU"}
 KEEP_PATHWAY={"NPC1","NPC2"}|{g for k in ("vatp","slc","ragulator","rag","flcn","rheb","mtorc1","tsc") for g in NODE_GENES[k]}|{"TM6SF1"}
-labelled=sorted({g for gl in NODE_GENES.values() for g in gl}|{"ABCA1","ABCA7","CD36","GPIHBP1","TM6SF1","SORT1","DHCR24","MVK","APOC1","APOC2","CLU","PLTP","ACAT2","APOD"}|HYPOTHESIS_LABELS|{"DNM1","DNM2"}|set(EAAT_MEMBERS))   # merged-label members stay catalogued
+labelled=sorted({g for gl in NODE_GENES.values() for g in gl}|{"ABCA1","ABCA7","CD36","GPIHBP1","TM6SF1","SORT1","DHCR24","MVK","APOC1","APOC2","CLU","PLTP","ACAT2","APOD"}|HYPOTHESIS_LABELS|{"DNM1","DNM2"}|set(EAAT_MEMBERS)|set(RETROMER))   # merged-label members stay catalogued
 genecat={}
 for g in labelled:
     de=g in pool5 and pool5[g]["fdr"]<0.05
