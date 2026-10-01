@@ -53,8 +53,14 @@ EXTRA_GENES=["ABCA1"]   # drawn as a membrane glyph; values shown in its tooltip
 # Named exceptions: label-only genes shown on a step whose GO set does not contain them.
 # BIN1 (amphiphysin 2, a BAR-domain protein at clathrin-coated pits) is annotated to
 # endocytosis GO:0006897 but not to the clathrin-specific terms that define the pit step.
-LABEL_EXCEPTIONS={"pit":{"BIN1":"endocytosis"}}
+# BIN1 is also drawn on the early and recycling endosome (requested 2026-10-01). Same situation:
+# of the downloaded sets it is in endocytosis GO:0006897 and endosome_to_lysosome (which is why
+# it already carries the late endosome), but NOT in early_endosome GO:0005769 or
+# recycling_endosome GO:0055037, so both are declared exceptions and the figcaption says so.
+LABEL_EXCEPTIONS={"pit":{"BIN1":"endocytosis"},"early":{"BIN1":"endocytosis"},"recycling":{"BIN1":"endocytosis"}}
 NODE_GENES["pit"]=NODE_GENES["pit"]+["BIN1"]
+NODE_GENES["early"]=NODE_GENES["early"]+["BIN1"]
+NODE_GENES["recycling"]=NODE_GENES["recycling"]+["BIN1"]
 # User-requested label-only additions (drawn as their own receptors, listed under the receptor heading)
 USER_LABELS={"receptors":["SORT1","CD36","GPIHBP1"]}
 # User-requested removals from the cartoon (2026-09-24). DNM1 is APOE4-DE (pool5 +0.12, FDR 0.031) but was

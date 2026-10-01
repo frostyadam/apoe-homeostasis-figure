@@ -87,8 +87,8 @@ not state.
 
 | | version | what it is |
 |---|---|---|
-| Atlas | **v83** | `apoe_endocytosis_atlas.html` |
-| Tour | **v50** | `apoe_tour.html`, 9 stops |
+| Atlas | **v84** | `apoe_endocytosis_atlas.html` |
+| Tour | **v51** | `apoe_tour.html`, 9 stops |
 
 Republishing the same file path keeps the URL, so the artifact version number is the figure's
 real version history; git records the source that produced each one.
@@ -102,6 +102,18 @@ real version history; git records the source that produced each one.
   "Lysosome exocytosis" label at x541-615 — two stacked labels, neither beside the thing it
   named. Now anchored `start` at (680,215): 16.5 units clear of the endosome's outer edge,
   block centre 3.7 units above the circle centre.
+
+**v84 / v51 — 2026-10-01**
+
+- TSC1/TSC2 labels raised to sit just under the complex glyph: gap to the circles 20 -> 4.1
+  units, clearance +3.6 and +15.2. The band *above* the circles is only ~26 root units, which
+  fits one line but not two, so below-and-close is as near as a two-line label can get.
+- **BIN1** added to the early and recycling endosome, via the build's existing
+  `LABEL_EXCEPTIONS` mechanism. BIN1 is in endocytosis GO:0006897 and endosome-to-lysosome
+  but **not** in early endosome GO:0005769 or recycling endosome GO:0055037, and
+  `01_build_data.py` asserts every schematic gene is in its step's GO set — so the placement
+  has to be declared, exactly as BIN1 at the clathrin pit already was. The figcaption now
+  states the exception. BIN1 renders at four compartments.
 
 **v83 / v50 — 2026-10-01**
 
