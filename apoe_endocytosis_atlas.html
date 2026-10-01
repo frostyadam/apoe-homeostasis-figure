@@ -778,16 +778,24 @@ function drawMTOR(svg){
       "A rapamycin analogue, drawn inhibiting mTORC1 where it is activated on the lysosomal surface. The target here is specifically the CHOLESTEROL-dependent arm: TM6SF1 engages LAMTOR1 of Ragulator in a cholesterol-dependent manner and is required for normal mTORC1 signalling [3], and SLC38A9 senses lysosomal cholesterol alongside amino acids, so a lysosome loaded with cholesterol signals mTORC1 to stay on. APOE4 glia hold three-fold more lysosomal cholesterol [7], which predicts exactly that. WHAT 'SELECTIVE' HAS TO MEAN: classical rapamycin inhibits mTORC1 partially and substrate-selectively through FKBP12 and, with chronic dosing, hits mTORC2 as well; the hypothesis needs an analogue that spares mTORC2 and ideally the amino-acid arm. OUR DATA DOES NOT SUPPORT THIS AS A TRANSCRIPTIONAL FINDING, and the inhibitory arrow is drawn on the pathway, not on our measurements: mTOR, RPTOR, MLST8, all five LAMTOR subunits, all four Rag GTPases, RHEB, FLCN, TSC1/TSC2 and TM6SF1 are every one of them transcriptionally flat in the spatial data. The case rests on the lipid phenotype and on BMP rising in mTORC1-hyperactive cortex, not on expression. A separate, untested line of inquiry runs the other way: high mTORC1 activity is reported to suppress v-ATPase assembly through the mammalian RAVE complex, which would make this loop self-limiting.");
   }
 
-  { // ---- 3. LXR/RXR agonist. Placed above the receptor pair, arrow routed left of the
-    //         'desmosterol' label so it crosses nothing.
-    const col=css("--ink"), g=el("g",{},ROOT);
-    el("path",{d:"M 36 566 q 8 -4 14 2 q 6 6 -1 11 q -7 5 -13 0 q -6 -5 0 -13 z",fill:"none",
-      stroke:col,"stroke-width":1.7},g);
-    rxTag(g,58,574,["LXR/RXR agonist"],col);
-    el("path",{d:"M 42 584 Q 34 602 57 611",stroke:col,"stroke-width":1.8,fill:"none",
-      "marker-end":"url(#ah)"},g);
-    protTip(g,"Therapeutic hypothesis 3 - a pharmacological LXR/RXR agonist",
-      "A synthetic agonist supplying the LXR/RXR activation this figure argues is deficient: DHCR24 is higher in APOE4 in five independent datasets, DHCR24 consumes desmosterol, and desmosterol is one of the dominant endogenous LXR agonists, so the prediction is less desmosterol and a hypo-agonised receptor. THIS IS THE ONE OF THE THREE WITH A DIRECT EXPERIMENTAL TEST BEHIND IT: GW3965 and T0901317 restore cholesterol efflux in isogenic APOE4 astrocytes to the level of untreated APOE3 cells, whereas 25-hydroxycholesterol does not [7]. Two caveats the figure keeps visible. The rescue is incomplete - the APOE4-versus-APOE3 baseline gap persists under treatment, and in microglia the agonists raise APOE in APOE3 but not in APOE4, so the response is cell-type specific. And the target-gene evidence is not brain evidence: no LXR response element has been mapped in brain for any of the genes lower in APOE4 here, the APOE/APOC1/APOC2 elements are macrophage- and adipose-specific multienhancers, and CD36's is a mouse liver DR-7 [12]. Systemic LXR agonism also drives hepatic lipogenesis through SREBP-1c, which is why the clinical programmes stalled; a brain-selective or LXR-beta-biased agonist is what the hypothesis actually requires.");
+  { // ---- 3. Chemical reprogramming. Replaces the nuclear-receptor agonist that sat here;
+    //         its blob glyph, label and arrow are all gone. The label takes the band that
+    //         freed up - y562-577 measures clear from x16 to x260, between 'Nucleus' (ends
+    //         y552) and 'desmosterol' (starts y584, x73).
+    // The arrow does NOT reuse the agonist's old route: that ended at (57,611), which lands on
+    // the blue inhibitory bar (M 55 610 L 69 610) and abuts the LXR ellipse at x63. It is
+    // re-aimed down the empty corridor x15-35 / y584-636 to the left end of the LXRE helix
+    // (y638-646, x34-172), which is also the better target - reprogramming acts on the
+    // transcriptional programme, not on the receptor protein.
+    // Grey matches the two arrows into the mTORC1 pill. Block 2's GREY is scoped to its own
+    // braces, so it is recomputed here rather than reused; #ahg is the grey arrowhead created
+    // earlier in this function (the default #ah head is --ink2 and would read as a mismatch).
+    const GREY=mix(css("--ink2"),"#ffffff",0.2), g=el("g",{},ROOT);
+    rxTag(g,20,574,["chemical reprogramming"],GREY);
+    el("path",{d:"M 30 584 Q 16 608 32 630",stroke:GREY,"stroke-width":1.8,fill:"none",
+      "marker-end":"url(#ahg)"},g);
+    protTip(g,"Therapeutic hypothesis 3 - chemical reprogramming",
+      "Drawn in the nucleus because this is the one intervention on the figure aimed at cell state rather than at a single protein: small-molecule induction of partial reprogramming, intended to reset the transcriptional programme of APOE4 glia rather than to correct any one step of the pathway drawn here. NOTHING IN THIS FIGURE TESTS IT. Every other annotation on this diagram is anchored to a measurement or a citation; this one marks where such an intervention would act and carries no claim about efficacy, selectivity, or safety in brain. It is also the hypothesis whose off-target risk is hardest to bound, since resetting cell state in post-mitotic tissue is not a reversible perturbation.");
   }
 
 }

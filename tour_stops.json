@@ -151,7 +151,8 @@
     "chol"
    ],
    "notes": [
-    "<b>Therapeutic hypothesis 3</b> \u2014 the <b>LXR/RXR agonist</b> above the receptor pair supplies the agonism this arm argues is missing. It is the only one of the three with a direct test behind it: GW3965 and T0901317 restore APOE4 cholesterol efflux to untreated-APOE3 levels, though the rescue is incomplete and systemic LXR agonism drives hepatic lipogenesis.",
+    "<b>Therapeutic hypothesis 3</b> \u2014 <b>chemical reprogramming</b>, marked in the nucleus, is the only intervention on this figure aimed at cell state rather than at a single protein. Nothing in our data tests it: the label marks where such an intervention would act, not a result.",
+    "<b>LXR agonism is pharmacologically responsive in APOE4 glia</b>, even though no agonist is drawn: GW3965 and T0901317 restore APOE4 cholesterol efflux to untreated-APOE3 levels. The rescue is incomplete, and systemic LXR agonism drives hepatic lipogenesis.",
     "<b>Direct LXR/RXR targets down in human spatial transcriptomics data:</b> PLTP <b>\u22120.51</b>, the APOE/APOC1/APOC2 cluster (\u22120.18, \u22120.75, \u22120.41), CD36 <b>\u22120.92</b>.",
     "APOD is drawn uncoloured: it does NOT move in this pooled contrast, but within European-ancestry donors it is <b>up +0.66</b>, the 99.4th percentile of all genes.",
     "ABCA1 and ABCA7 are <b>flat in the spatial transcript data</b> (FDR 0.13 and 0.70) but are decreased in isogenic APOE4 astrocytes."
