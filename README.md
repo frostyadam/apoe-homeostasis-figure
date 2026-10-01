@@ -87,13 +87,21 @@ not state.
 
 | | version | what it is |
 |---|---|---|
-| Atlas | **v79** | `apoe_endocytosis_atlas.html` |
-| Tour | **v46** | `apoe_tour.html`, 9 stops |
+| Atlas | **v80** | `apoe_endocytosis_atlas.html` |
+| Tour | **v47** | `apoe_tour.html`, 9 stops |
 
 Republishing the same file path keeps the URL, so the artifact version number is the figure's
 real version history; git records the source that produced each one.
 
 ### Changelog
+
+**v80 / v47 — 2026-10-01**
+
+- Moved the "Recycling endosome" label to 3 o'clock of its own structure. Anchored `end` at
+  (612,270) it extended leftward and landed at x545-612 / y254-292, directly above the
+  "Lysosome exocytosis" label at x541-615 — two stacked labels, neither beside the thing it
+  named. Now anchored `start` at (680,215): 16.5 units clear of the endosome's outer edge,
+  block centre 3.7 units above the circle centre.
 
 **v79 / v46 — 2026-10-01**
 

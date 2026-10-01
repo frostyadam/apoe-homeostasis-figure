@@ -576,7 +576,13 @@ function drawA(){
   carrow(svg,"M 916 292 Q 910.2 302.2 903.3 311.3","uncoats",922,312,"start");
   // recycling: short tubule, budded vesicle, return to membrane
   memCircle(gC,640,222,19,LUM);recY(gC,640,240,0,recCol);
-  lab(gC,612,270,"recycling","end");
+  // 3 o'clock of the endosome at (640,222): anchored "start" at x680, 16.5 units clear of its
+// outer edge (r19 + stroke 9/2 = 23.5), block centre 3.7 above the circle centre. Anchored
+// "end" at (612,270) it extended LEFTWARD and landed at x545-612 / y254-292, directly above
+// the "Lysosome exocytosis" label at x541-615 -- two stacked labels, neither next to its
+// structure. The limiting neighbour here is the "buds" arrowhead at (670,242), which is why
+// the block sits slightly high rather than exactly level.
+  lab(gC,680,215,"recycling");
   carrow(svg,"M 757.8 308.3 Q 712.4 281.2 670.1 241.7","buds",716,300,"middle");
   carrow(svg,"M 618.3 193.3 Q 604.4 175.4 598 150","receptor returns",600,198,"end");
   // late endosome
