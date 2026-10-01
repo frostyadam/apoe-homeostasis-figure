@@ -269,6 +269,10 @@ anc=json.load(open(f"{H}/ancestry_tier.json"))
 EXTERNAL={"APOE","APOC1","APOC2","PLTP","CD36","LRP1","DHCR24","CLU"}
 KEEP_PATHWAY={"NPC1","NPC2"}|{g for k in ("vatp","slc","ragulator","rag","flcn","rheb","mtorc1","tsc") for g in NODE_GENES[k]}|{"TM6SF1"}
 labelled=sorted({g for gl in NODE_GENES.values() for g in gl}|{"ABCA1","ABCA7","CD36","GPIHBP1","TM6SF1","SORT1","DHCR24","MVK","APOC1","APOC2","CLU","PLTP","ACAT2","APOD"}|HYPOTHESIS_LABELS|{"DNM1","DNM2"}|set(EAAT_MEMBERS)|set(RETROMER))   # merged-label members stay catalogued
+# one-line functional summary per gene product, built by 00_build_func.py from UniProt
+# CC FUNCTION (reviewed human entries). Every KEPT label must have one -- asserted below.
+FUNC=json.load(open(f"{H}/gene_function.json"))
+
 genecat={}
 for g in labelled:
     de=g in pool5 and pool5[g]["fdr"]<0.05
@@ -285,7 +289,7 @@ for g in labelled:
     why=("" if g in USER_REMOVE else "evidence" if cats else "neurodegeneration genetics" if ndgen>=0.1 else "mTORC1 / NPC pathway" if g in KEEP_PATHWAY else "therapeutic hypothesis readout" if g in HYPOTHESIS_LABELS else "")
     av=anc.get(g,{})
     strong=bool(({"up","dn"} & set(cats)) and av.get("concordant") and g in EXTERNAL)
-    genecat[g]=dict(cats=cats,keep=bool(why),why=why,cis=g in CIS,gwas_tier=gw.get(g),ot_ad=OT_AD.get(g),
+    genecat[g]=dict(cats=cats,keep=bool(why),why=why,func=(FUNC.get(g) or {}).get("f"),uniprot=(FUNC.get(g) or {}).get("acc"),cis=g in CIS,gwas_tier=gw.get(g),ot_ad=OT_AD.get(g),
                     mendel=(otmd.get(g) or {}).get("max") or 0, mendel_dz=((otmd.get(g) or {}).get("top") or [{}])[0].get("disease"),
                     adlit=g in ADLIT,
                     ev=("strong" if strong else "weak"),anc=av or None,
@@ -293,7 +297,7 @@ for g in labelled:
 # the merged dynamin label: union of DNM1 and DNM2 so the colour code loses nothing
 _d1,_d2=genecat["DNM1"],genecat["DNM2"]
 _un=[c for c in ("gwas","ot","up","dn","mendel") if c in set(_d1["cats"])|set(_d2["cats"])]
-genecat[DNM_MERGE]=dict(cats=_un,keep=True,why="evidence",cis=_d1["cis"] or _d2["cis"],
+genecat[DNM_MERGE]=dict(func=FUNC["DNM1/2"]["f"],uniprot=None,cats=_un,keep=True,why="evidence",cis=_d1["cis"] or _d2["cis"],
     gwas_tier=_d1["gwas_tier"] or _d2["gwas_tier"], ot_ad=_d1["ot_ad"] or _d2["ot_ad"],
     mendel=max(_d1.get("mendel") or 0,_d2.get("mendel") or 0),
     mendel_dz=(_d1 if (_d1.get("mendel") or 0)>=(_d2.get("mendel") or 0) else _d2).get("mendel_dz"),
@@ -303,13 +307,16 @@ print("DNM1/2 merged cats:",_un,"mendel",genecat[DNM_MERGE]["mendel"])
 # the merged glutamate-transporter label: union of SLC1A3 and SLC1A2
 _e1,_e2=genecat["SLC1A3"],genecat["SLC1A2"]
 _eu=[c for c in ("gwas","ot","up","dn","mendel") if c in set(_e1["cats"])|set(_e2["cats"])]
-genecat[EAAT_MERGE]=dict(cats=_eu,keep=True,why="evidence",cis=False,gwas_tier=None,ot_ad=None,
+genecat[EAAT_MERGE]=dict(func=FUNC["EAAT1/2"]["f"],uniprot=None,cats=_eu,keep=True,why="evidence",cis=False,gwas_tier=None,ot_ad=None,
     mendel=max(_e1.get("mendel") or 0,_e2.get("mendel") or 0),
     mendel_dz=(_e1 if (_e1.get("mendel") or 0)>=(_e2.get("mendel") or 0) else _e2).get("mendel_dz"),
     adlit=False, ev="weak", anc=None,
     de=(_e1["de"] if (_e1.get("de") or {}).get("fdr",1)<=(_e2.get("de") or {}).get("fdr",1) else _e2["de"]),
     nd_genetic=max(_e1["nd_genetic"],_e2["nd_genetic"]), members=EAAT_MEMBERS)
 print("EAAT1/2 merged cats:",_eu,"mendel",genecat[EAAT_MERGE]["mendel"])
+nofunc=sorted(g for g,v in genecat.items() if v["keep"] and not v.get("func"))
+assert not nofunc, f"kept gene label with no functional summary: {nofunc} -- add it to 00_build_func.py OVERRIDE"
+print(f"functional summaries: {sum(1 for v in genecat.values() if v.get('func'))}/{len(genecat)} genecat entries; every kept label covered")
 print("removed labels:",sorted(g for g,v in genecat.items() if not v["keep"]))
 print("coloured:",{c:sorted(g for g,v in genecat.items() if c in v["cats"]) for c in ("gwas","ot","up","dn")})
 out=dict(genecat=genecat,extra=extra,steps=[dict(k=k,label=l,go=go,n=len(s),nodes=NODE_GENES.get(k,[]),excluded_refs=excluded[k],

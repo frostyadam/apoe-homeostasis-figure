@@ -1,0 +1,387 @@
+{
+ "ABCA1": {
+  "acc": "O95477",
+  "f": "ATP-driven phospholipid floppase that transfers phospholipid and cholesterol onto apolipoproteins to form nascent HDL.",
+  "src": "uniprot-short"
+ },
+ "ABCA7": {
+  "acc": "Q8IZY2",
+  "f": "ATP-driven lipid floppase, closest homologue of ABCA1, preferring phosphatidylserine; needed for macrophage and microglial phagocytosis.",
+  "src": "uniprot-short"
+ },
+ "ACAT2": {
+  "acc": "Q9BWD1",
+  "f": "Cytosolic thiolase that condenses two acetyl-CoA into acetoacetyl-CoA at the entry of the mevalonate pathway to cholesterol.",
+  "src": "curated"
+ },
+ "AP2M1": {
+  "acc": "Q96CW1",
+  "f": "Mu subunit of the AP-2 adaptor complex; it reads the YxxO sorting motif in receptor tails and links the cargo to the clathrin coat.",
+  "src": "curated"
+ },
+ "APOC1": {
+  "acc": "P02654",
+  "f": "Inhibitor of lipoprotein binding to the low density lipoprotein (LDL) receptor, LDL receptor-related protein, and very low density lipoprotein (VLDL) receptor.",
+  "src": "uniprot"
+ },
+ "APOC2": {
+  "acc": "P02655",
+  "f": "Component of chylomicrons, very low-density lipoproteins (VLDL), low-density lipoproteins (LDL), and high-density lipoproteins (HDL) in plasma.",
+  "src": "uniprot"
+ },
+ "APOD": {
+  "acc": "P05090",
+  "f": "Secreted lipocalin that binds small hydrophobic ligands including cholesterol and arachidonic acid, and co-resides on APOE-containing lipoparticles.",
+  "src": "curated"
+ },
+ "APOE": {
+  "acc": "P02649",
+  "f": "APOE is an apolipoprotein, a protein associating with lipid particles, that mainly functions in lipoprotein-mediated lipid transport between organs via the plasma and interstitial fluids.",
+  "src": "uniprot"
+ },
+ "ARL8B": {
+  "acc": "Q9NVJ2",
+  "f": "Small GTPase which cycles between active GTP-bound and inactive GDP-bound states.",
+  "src": "uniprot"
+ },
+ "ATP6V0A1": {
+  "acc": "Q93050",
+  "f": "a subunit of the membrane-integral V0 sector of the vacuolar H+-ATPase, the pump that acidifies endosomes and lysosomes.",
+  "src": "uniprot-short"
+ },
+ "ATP6V0D1": {
+  "acc": "P61421",
+  "f": "d subunit of the membrane-integral V0 sector of the vacuolar H+-ATPase, which translocates protons across the organelle membrane.",
+  "src": "uniprot-short"
+ },
+ "ATP6V1A": {
+  "acc": "P38606",
+  "f": "Catalytic A subunit of the peripheral V1 sector of the vacuolar H+-ATPase, which hydrolyses ATP to drive proton pumping.",
+  "src": "uniprot-short"
+ },
+ "BIN1": {
+  "acc": "O00499",
+  "f": "Is a key player in the control of plasma membrane curvature, membrane shaping and membrane remodeling.",
+  "src": "uniprot"
+ },
+ "CANX": {
+  "acc": "P27824",
+  "f": "Calcium-binding protein that interacts with newly synthesized monoglucosylated glycoproteins in the endoplasmic reticulum.",
+  "src": "uniprot"
+ },
+ "CD36": {
+  "acc": "P16671",
+  "f": "Class B scavenger receptor for oxidised LDL, long-chain fatty acids and fibrillar amyloid-beta, which it internalises.",
+  "src": "curated"
+ },
+ "CLTC": {
+  "acc": "Q00610",
+  "f": "Clathrin is the major protein of the polyhedral coat of coated pits and vesicles.",
+  "src": "uniprot"
+ },
+ "CLU": {
+  "acc": "P10909",
+  "f": "Functions as extracellular chaperone that prevents aggregation of non native proteins.",
+  "src": "uniprot"
+ },
+ "COPA": {
+  "acc": "P53621",
+  "f": "Alpha subunit of the COPI coatomer, which buds vesicles that carry cargo from the ER through the Golgi to the trans-Golgi network.",
+  "src": "uniprot-short"
+ },
+ "DHCR24": {
+  "acc": "Q15392",
+  "f": "Catalyzes the reduction of the delta-24 double bond of sterol intermediates during cholesterol biosynthesis.",
+  "src": "uniprot"
+ },
+ "DNM1": {
+  "acc": "Q05193",
+  "f": "Neuronal dynamin; a GTPase that constricts the neck of a coated pit and severs the vesicle from the membrane.",
+  "src": "uniprot-short"
+ },
+ "DNM1/2": {
+  "acc": null,
+  "f": "Dynamin GTPases that constrict the neck of a clathrin-coated pit and sever the vesicle; DNM1 is neuronal, DNM2 ubiquitous.",
+  "src": "curated"
+ },
+ "DNM2": {
+  "acc": "P50570",
+  "f": "Ubiquitous dynamin; a GTPase that severs endocytic vesicles from the plasma membrane and remodels actin structures.",
+  "src": "uniprot-short"
+ },
+ "EAAT1/2": {
+  "acc": null,
+  "f": "Sodium-dependent high-affinity glutamate transporters (GLAST and GLT-1) that clear synaptic glutamate into astrocytes.",
+  "src": "curated"
+ },
+ "EEA1": {
+  "acc": "Q15075",
+  "f": "Binds phospholipid vesicles containing phosphatidylinositol 3-phosphate and participates in endosomal trafficking.",
+  "src": "uniprot"
+ },
+ "FLCN": {
+  "acc": "Q8NFG4",
+  "f": "Multi-functional protein, involved in both the cellular response to amino acid availability and in the regulation of glycolysis.",
+  "src": "uniprot"
+ },
+ "FNIP1": {
+  "acc": "Q8TF40",
+  "f": "Binding partner of the FLCN GTPase-activating protein; the pair couple amino-acid availability to mTORC1 control of TFEB and TFE3.",
+  "src": "uniprot-short"
+ },
+ "GOLGA2": {
+  "acc": "Q08379",
+  "f": "GM130, a cis-Golgi membrane skeleton protein that maintains Golgi structure and tethers incoming vesicles for fusion.",
+  "src": "uniprot-short"
+ },
+ "GORASP1": {
+  "acc": "Q9BQQ3",
+  "f": "Golgi reassembly-stacking protein that holds cis-Golgi cisternae in a stack and is disassembled for mitotic Golgi breakdown.",
+  "src": "curated"
+ },
+ "GPIHBP1": {
+  "acc": "Q8IV16",
+  "f": "Mediates the transport of lipoprotein lipase LPL from the basolateral to the apical surface of endothelial cells in capillaries.",
+  "src": "uniprot"
+ },
+ "HSPA5": {
+  "acc": "P11021",
+  "f": "Endoplasmic reticulum chaperone that plays a key role in protein folding and quality control in the endoplasmic reticulum lumen.",
+  "src": "uniprot"
+ },
+ "LAMTOR1": {
+  "acc": "Q6IAA8",
+  "f": "p18, the lipid-anchored scaffold of the Ragulator complex that holds the Rag GTPases on the lysosome for amino-acid sensing by mTORC1.",
+  "src": "uniprot-short"
+ },
+ "LAMTOR2": {
+  "acc": "Q9Y2Q5",
+  "f": "As part of the Ragulator complex it is involved in amino acid sensing and activation of mTORC1, a signaling complex promoting cell growth in response to growth factors, energy levels, and amino acids.",
+  "src": "uniprot"
+ },
+ "LAMTOR3": {
+  "acc": "Q9UHA4",
+  "f": "As part of the Ragulator complex it is involved in amino acid sensing and activation of mTORC1, a signaling complex promoting cell growth in response to growth factors, energy levels, and amino acids.",
+  "src": "uniprot"
+ },
+ "LDLR": {
+  "acc": "P01130",
+  "f": "Binds low density lipoprotein /LDL, the major cholesterol-carrying lipoprotein of plasma, and transports it into cells by endocytosis.",
+  "src": "uniprot"
+ },
+ "LIPA": {
+  "acc": "P38571",
+  "f": "Catalyzes the deacylation of cholesteryl ester core lipids of endocytosed low density lipoproteins to generate free fatty acids and cholesterol.",
+  "src": "uniprot"
+ },
+ "LRP1": {
+  "acc": "Q07954",
+  "f": "Large endocytic receptor for APOE-lipoproteins, alpha-2-macroglobulin and amyloid-beta, and a signalling co-receptor.",
+  "src": "curated"
+ },
+ "LRP8": {
+  "acc": "Q14114",
+  "f": "Cell surface receptor for Reelin (RELN) and apolipoprotein E (apoE)-containing ligands.",
+  "src": "uniprot"
+ },
+ "MLST8": {
+  "acc": "Q9BVC4",
+  "f": "Subunit of both mTORC1 and mTORC2, which regulates cell growth and survival in response to nutrient and hormonal signals. mTORC1 is activated in response to growth factors or amino acids.",
+  "src": "uniprot"
+ },
+ "MTOR": {
+  "acc": "P42345",
+  "f": "Serine/threonine protein kinase which is a central regulator of cellular metabolism, growth and survival in response to hormones, growth factors, nutrients, energy and stress signals.",
+  "src": "uniprot"
+ },
+ "MVK": {
+  "acc": "Q03426",
+  "f": "Catalyzes the phosphorylation of mevalonate to mevalonate 5-phosphate, a key step in isoprenoid and cholesterol biosynthesis.",
+  "src": "uniprot"
+ },
+ "NPC1": {
+  "acc": "O15118",
+  "f": "Intracellular cholesterol transporter which acts in concert with NPC2 and plays an important role in the egress of cholesterol from the endosomal/lysosomal compartment.",
+  "src": "uniprot"
+ },
+ "NPC2": {
+  "acc": "P61916",
+  "f": "Intracellular cholesterol transporter which acts in concert with NPC1 and plays an important role in the egress of cholesterol from the lysosomal compartment.",
+  "src": "uniprot"
+ },
+ "OSBPL1A": {
+  "acc": "Q9BXW6",
+  "f": "Binds phospholipids; exhibits strong binding to phosphatidic acid and weak binding to phosphatidylinositol 3-phosphate.",
+  "src": "uniprot"
+ },
+ "PICALM": {
+  "acc": "Q13492",
+  "f": "Clathrin assembly lymphoid myeloid protein, a cytoplasmic adaptor that selects cargo and sets vesicle size in clathrin-mediated endocytosis.",
+  "src": "uniprot-short"
+ },
+ "PLTP": {
+  "acc": "P55058",
+  "f": "Secreted phospholipid transfer protein that moves phospholipid and free cholesterol between lipoproteins and remodels HDL.",
+  "src": "uniprot-short"
+ },
+ "RAB11A": {
+  "acc": "P62491",
+  "f": "Recycling-endosome Rab GTPase; it governs the slow recycling route that returns internalised receptors to the plasma membrane.",
+  "src": "curated"
+ },
+ "RAB27A": {
+  "acc": "P51159",
+  "f": "Secretory Rab GTPase; it tethers secretory lysosomes and multivesicular bodies at the plasma membrane for exocytosis.",
+  "src": "curated"
+ },
+ "RAB5A": {
+  "acc": "P20339",
+  "f": "Early-endosome Rab GTPase; in its GTP state it recruits the effectors that drive homotypic early-endosome fusion and PI(3)P production.",
+  "src": "curated"
+ },
+ "RAB7A": {
+  "acc": "P51149",
+  "f": "Late-endosome and lysosome Rab GTPase; it drives early-to-late endosome maturation and recruits the machinery for lysosome fusion.",
+  "src": "curated"
+ },
+ "RHEB": {
+  "acc": "Q15382",
+  "f": "Small GTPase that allosterically activates mTORC1 at the lysosome; it is the direct target of TSC2's GAP activity.",
+  "src": "uniprot-short"
+ },
+ "RPTOR": {
+  "acc": "Q8N122",
+  "f": "Raptor, the defining scaffold subunit of mTORC1; it presents substrates to the kinase and is the rapamycin-sensitive arm.",
+  "src": "uniprot-short"
+ },
+ "RRAGA": {
+  "acc": "Q7L523",
+  "f": "Guanine nucleotide-binding protein that plays a crucial role in the cellular response to amino acid availability through regulation of the mTORC1 signaling cascade.",
+  "src": "uniprot"
+ },
+ "RRAGB": {
+  "acc": "Q5VZM2",
+  "f": "Guanine nucleotide-binding protein that plays a crucial role in the cellular response to amino acid availability through regulation of the mTORC1 signaling cascade.",
+  "src": "uniprot"
+ },
+ "RRAGC": {
+  "acc": "Q9HB90",
+  "f": "Guanine nucleotide-binding protein that plays a crucial role in the cellular response to amino acid availability through regulation of the mTORC1 signaling cascade.",
+  "src": "uniprot"
+ },
+ "RRAGD": {
+  "acc": "Q9NQL2",
+  "f": "Guanine nucleotide-binding protein that plays a crucial role in the cellular response to amino acid availability through regulation of the mTORC1 signaling cascade.",
+  "src": "uniprot"
+ },
+ "SCARB1": {
+  "acc": "Q8WTV0",
+  "f": "Receptor for different ligands such as phospholipids, cholesterol ester, lipoproteins, phosphatidylserine and apoptotic cells.",
+  "src": "uniprot"
+ },
+ "SEC61A1": {
+  "acc": "P61619",
+  "f": "Component of SEC61 channel-forming translocon complex that mediates transport of signal peptide-containing precursor polypeptides across the endoplasmic reticulum (ER).",
+  "src": "uniprot"
+ },
+ "SLC1A2": {
+  "acc": "P43004",
+  "f": "Sodium-dependent, high-affinity amino acid transporter that mediates the uptake of L-glutamate and also L-aspartate and D-aspartate.",
+  "src": "uniprot"
+ },
+ "SLC1A3": {
+  "acc": "P43003",
+  "f": "Sodium-dependent, high-affinity amino acid transporter that mediates the uptake of L-glutamate and also L-aspartate and D-aspartate.",
+  "src": "uniprot"
+ },
+ "SLC38A9": {
+  "acc": "Q8NBW4",
+  "f": "Lysosomal amino acid transporter involved in the activation of mTORC1 in response to amino acid levels.",
+  "src": "uniprot"
+ },
+ "SNAP23": {
+  "acc": "O00161",
+  "f": "Plasma-membrane SNAP-25 homologue that forms the ternary SNARE complex driving exocytic vesicle fusion in non-neuronal cells.",
+  "src": "curated"
+ },
+ "SORL1": {
+  "acc": "Q92673",
+  "f": "Vps10p-domain sorting receptor (SORLA) that routes APP and APOE-lipoproteins between the Golgi, the cell surface and endosomes.",
+  "src": "curated"
+ },
+ "SORT1": {
+  "acc": "Q99523",
+  "f": "Functions as a sorting receptor in the Golgi compartment and as a clearance receptor on the cell surface.",
+  "src": "uniprot"
+ },
+ "STARD3": {
+  "acc": "Q14849",
+  "f": "Sterol-binding protein that mediates cholesterol transport from the endoplasmic reticulum to endosomes.",
+  "src": "uniprot"
+ },
+ "STX4": {
+  "acc": "Q12846",
+  "f": "Plasma membrane t-SNARE that mediates docking of transport vesicles.",
+  "src": "uniprot"
+ },
+ "SYT11": {
+  "acc": "Q9BT88",
+  "f": "Synaptotagmin family member involved in vesicular and membrane trafficking which does not bind Ca(2+).",
+  "src": "uniprot"
+ },
+ "SYT7": {
+  "acc": "O43581",
+  "f": "Ca(2+) sensor involved in Ca(2+)-dependent exocytosis of secretory and synaptic vesicles through Ca(2+) and phospholipid binding to the C2 domain.",
+  "src": "uniprot"
+ },
+ "TET2": {
+  "acc": "Q6N021",
+  "f": "Dioxygenase that catalyzes the conversion of the modified genomic base 5-methylcytosine (5mC) into 5-hydroxymethylcytosine (5hmC) and plays a key role in active DNA demethylation.",
+  "src": "uniprot"
+ },
+ "TM6SF1": {
+  "acc": "Q9BZW5",
+  "f": "Lysosomal cholesterol-binding membrane homodimer that engages LAMTOR1 of Ragulator; UniProt's sterol-isomerase annotation is superseded by the 2026 cryo-EM structure.",
+  "src": "curated"
+ },
+ "TSC1": {
+  "acc": "Q92574",
+  "f": "Non-catalytic subunit of the TSC complex, which switches off mTORC1 by acting as a GTPase-activating protein for RHEB.",
+  "src": "uniprot-short"
+ },
+ "TSC2": {
+  "acc": "P49815",
+  "f": "Catalytic subunit of the TSC complex; its GAP activity converts RHEB to the GDP state and so switches mTORC1 off.",
+  "src": "uniprot-short"
+ },
+ "VAMP3": {
+  "acc": "Q15836",
+  "f": "SNARE involved in vesicular transport from the late endosomes to the trans-Golgi network.",
+  "src": "uniprot"
+ },
+ "VAPA": {
+  "acc": "Q9P0L0",
+  "f": "Endoplasmic reticulum (ER)-anchored protein that mediates the formation of contact sites between the ER and endosomes via interaction with FFAT motif-containing proteins such as STARD3 or WDR44.",
+  "src": "uniprot"
+ },
+ "VLDLR": {
+  "acc": "P98155",
+  "f": "Multifunctional cell surface receptor that binds VLDL and transports it into cells by endocytosis and therefore plays an important role in energy metabolism.",
+  "src": "uniprot"
+ },
+ "VPS26A": {
+  "acc": "O75436",
+  "f": "Cargo-selective retromer subunit; with VPS35 and VPS29 it captures cargo on the endosome for retrograde and plasma-membrane recycling.",
+  "src": "curated"
+ },
+ "VPS29": {
+  "acc": "Q9UBQ0",
+  "f": "Shared subunit of retromer and of the Commander/retriever complexes, both of which recycle transmembrane cargo off the endosome.",
+  "src": "curated"
+ },
+ "VPS35": {
+  "acc": "Q96QK1",
+  "f": "Cargo-selective retromer subunit that binds cargo tails and nucleates the tubules that recycle receptors out of the endosome.",
+  "src": "curated"
+ }
+}

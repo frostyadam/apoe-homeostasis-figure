@@ -83,6 +83,8 @@ th{color:var(--ink2);font-weight:500}
 #tip table{margin-top:4px}
 #tip td{padding:1px 6px 1px 0;border:0}
 .hit{cursor:pointer}
+.ghit{cursor:help}
+.ghit:focus{outline:2px solid var(--c-gwas);outline-offset:1px}
 @media (max-width:560px){h1{font-size:31.5px}.wrap{padding-inline:16px}}
 @media (prefers-reduced-motion:no-preference){.node rect{transition:fill .2s}}
 </style>
@@ -358,10 +360,55 @@ const HET=new Set(["LIPA"]);
 const GC=g=>(D.genecat||{})[g]||{cats:[],keep:true};
 const keepG=g=>GC(g).keep!==false;
 const ALIAS={CLU:"CLU/APOJ"};
+// ONE HOVER BOX PER GENE PRODUCT. Before this, a gene drawn inside an organelle's hit group
+// (CLTC, RAB7A, NPC1, LDLR and 16 others) had no box of its own: hovering it showed only the
+// organelle's step description, which names the gene but never says what the gene does. The
+// box is attached to the symbol's leading tspan inside geneSpans, which is the single place
+// every gene name in the schematic is drawn, so coverage follows from the call graph rather
+// than from a list that has to be maintained. func comes from UniProt CC FUNCTION via
+// 00_build_func.py, and 01_build_data.py asserts that every kept label has one.
+function geneTip(sym){
+  const c=GC(sym);
+  const mem=(c.members&&c.members.length)?` <span class="m">(${c.members.join(" + ")})</span>`:"";
+  let h=`<div class="t">${ALIAS[sym]||sym}${mem}</div><div>${c.func||"No UniProt FUNCTION annotation."}</div>`;
+  const ev=[];
+  if(c.gwas_tier)ev.push(`AD GWAS consensus locus, Tier ${c.gwas_tier}`);
+  if(c.ot_ad)ev.push(`Open Targets AD genetics ${(+c.ot_ad).toFixed(2)}`);
+  if(c.de&&c.de.fdr<0.05)ev.push(`${c.de.lf>0?"higher":"lower"} in APOE4 (pooled LC ${fmt(c.de.lf)}, FDR ${fdrF(c.de.fdr)})`);
+  if(c.mendel>=0.5)ev.push(`monogenic CNS disease${c.mendel_dz?" \u2014 "+c.mendel_dz:""} (${(+c.mendel).toFixed(2)})`);
+  else if(c.nd_genetic>=0.1)ev.push(`Open Targets neurodegeneration genetics ${(+c.nd_genetic).toFixed(2)}`);
+  h+=ev.length?`<div>${ev.join(" \u00b7 ")}</div>`
+             :`<div class="m">No evidence category \u2014 drawn for its pathway role.</div>`;
+  const mk=[];
+  if(c.cis)mk.push("\u2021 within 1\u00a0Mb of APOE, so its difference can follow the haplotype");
+  if(HET.has(sym))mk.push("\u2020 pooled colour comes from one ancestry stratum and reverses in the other");
+  if(c.adlit)mk.push("\u00a7 Alzheimer link in the primary literature, absent from Open Targets");
+  if(c.uniprot)mk.push("UniProt "+c.uniprot);
+  if(mk.length)h+=`<div class="m">${mk.join(" \u00b7 ")}</div>`;
+  return h;
+}
+// Attaches the gene box to any element: a single tspan from geneSpans, or an nm() label in the
+// mTORC1 inset, which builds compound text ("TSC1", "FLCN-FNIP", "RHEB.GTP") through its own
+// path and so was the one place a drawn gene still had no box of its own. stopPropagation is
+// what makes the gene box win over the enclosing organelle box: both listeners fire on the
+// same pointermove, inner first, and without it the step box overwrites the gene's.
+function attachGeneTip(node,syms){
+  const ss=syms.filter(g=>GC(g)&&GC(g).func); if(!ss.length)return node;
+  const body=()=>ss.map(geneTip).join('<div style="height:6px"></div>');
+  node.setAttribute("class",((node.getAttribute("class")||"")+" ghit").trim());
+  node.setAttribute("tabindex",0);node.setAttribute("role","button");
+  node.setAttribute("aria-label",ss.map(g=>(ALIAS[g]||g)+": "+GC(g).func).join(" "));
+  node.addEventListener("pointermove",e=>{e.stopPropagation();showTip(e,body())});
+  node.addEventListener("pointerleave",hideTip);
+  node.addEventListener("focus",()=>{const r=node.getBoundingClientRect();showTip({clientX:r.right,clientY:r.top},body())});
+  node.addEventListener("blur",hideTip);
+  return node;
+}
 function geneSpans(t,sym,base){
   const c=GC(sym).cats||[];
   const s0=el("tspan",{style:`fill:${c.length?css(CAT_VAR[c[0]]):base}`,"font-weight":c.length?600:400},t);s0.textContent=(ALIAS[sym]||sym)+(GC(sym).cis?"‡":"")+(HET.has(sym)?"†":"")+(GC(sym).adlit?"§":"");
   c.slice(1).forEach(k=>{const d=el("tspan",{style:`fill:${css(CAT_VAR[k])}`,"font-size":"0.95em"},t);d.textContent="●"});
+  attachGeneTip(s0,[sym]);
 }
 const catCol=g=>{const c=GC(g).cats||[];return c.length?css(CAT_VAR[c[0]]):css("--muted")};
 function geneTxt(g,x,y,sym,attrs={}){const t=el("text",{x,y,class:"mono","font-size":10.5,...attrs},g);geneSpans(t,sym,css("--ink"));return t}
@@ -473,7 +520,7 @@ function drawA(){
     txt(gNR,34,662,"LXR/RXR on LXRE",{class:"mono muted","font-size":9});
     txt(gNR,34,677,"hypo-agonised · efflux ↓",{class:"mono","font-size":9,fill:css("--c-dn"),"font-weight":600});
     protTip(gNR,"LXR/RXR — ligand supply unresolved",
-      "LXRα/β (NR1H3/NR1H2) heterodimerise with RXR on DR4 response elements (LXREs) and drive cholesterol-efflux genes. Desmosterol (dashed dot) is one of the dominant endogenous agonists and is consumed by DHCR24, which is higher in APOE4 in five independent datasets including isogenic human oligodendroglia. The hypothesis drawn here is therefore a DEFICIT of LXR/RXR agonism: less desmosterol, less efflux, more storage. Consistent measured output: PLTP −0.505 (FDR 9.7e-05), and an efflux-down/accumulation-up transcriptional signature in isogenic APOE4 glia. ABCA1 is n.s. (−0.221); APOE, APOC1 and APOC2 fall but are cis. No sterol is measured, so this is a testable prediction, not a finding. See the sub-panel below.");
+      "LXR-alpha/beta (NR1H3/NR1H2) heterodimerise with RXR on DR4 response elements and drive cholesterol-efflux genes. Desmosterol (dashed dot) is one of the dominant endogenous agonists and is consumed by DHCR24, which is higher in APOE4 in five independent datasets including isogenic human oligodendroglia. The hypothesis drawn here is therefore a DEFICIT of LXR/RXR agonism: less desmosterol, less efflux, more storage. Consistent measured output: PLTP -0.505 (FDR 9.7e-05), plus an efflux-down signature in isogenic APOE4 glia. ABCA1 is n.s. (-0.221); APOE, APOC1 and APOC2 fall but are cis. Caveat: no sterol is measured here, so this is a testable prediction, not a finding.");
   }
   const gER=hitGroup(svg,"er");
   // ER sheets plus the two peripheral tubules that reach the lysosome, drawn layer by layer
@@ -491,7 +538,7 @@ function drawA(){
     el("ellipse",{cx:dx,cy:dy,rx:9,ry:5.5,transform:`rotate(${-33+90} ${dx} ${dy})`,fill:catCol("DHCR24"),stroke:css("--surf"),"stroke-width":1},gD);
     el("circle",{cx:cx2,cy:cy2,r:2.4,fill:css("--chol")},gD);
     geneTxt(gD,dx+12,dy-12,"DHCR24",{"font-size":10});
-    protTip(gD,"DHCR24 (seladin-1)","24-dehydrocholesterol reductase, an ER-membrane enzyme that performs the last step of cholesterol synthesis (desmosterol → cholesterol). It is an SREBP2 target, so its expression rises when too little cholesterol reaches the ER. As seladin-1 (selective AD indicator-1) it is reduced in vulnerable neurons in AD brain. Higher in APOE4 carriers here (pooled LC +0.28, FDR 5.7e-7; robust to the sex imbalance). CONSEQUENCE: desmosterol is itself an endogenous LXR agonist, so raising DHCR24 predicts LOWER desmosterol and therefore LESS LXR/RXR agonism — and every measured LXR target here is lower in APOE4 (PLTP −0.51, ABCA1 −0.22, APOE −0.18). DHCR7, the terminal enzyme of the parallel Kandutsch–Russell branch, is flat (−0.02, FDR 0.89), so this is Bloch-branch specific. Not measured: desmosterol itself. Seladin-1 also has cholesterol-independent antioxidant and anti-apoptotic roles, so the elevation need not be a sterol-flux signal.");
+    protTip(gD,"DHCR24 (seladin-1)","24-dehydrocholesterol reductase, an ER-membrane enzyme that performs the last step of cholesterol synthesis (desmosterol to cholesterol). An SREBP2 target, so it rises when too little cholesterol reaches the ER. As seladin-1 it is reduced in vulnerable neurons in AD brain. Higher in APOE4 carriers here (pooled LC +0.28, FDR 5.7e-07, robust to the sex imbalance). CONSEQUENCE: desmosterol is itself an endogenous LXR agonist, so raising DHCR24 predicts LOWER desmosterol and therefore LESS LXR/RXR agonism - and every measured LXR target here is lower in APOE4 (PLTP -0.51, ABCA1 -0.22, APOE -0.18). DHCR7, the terminal enzyme of the parallel Kandutsch-Russell branch, is flat (-0.02, FDR 0.89), so this is Bloch-branch specific. Caveat: desmosterol itself is not measured, and seladin-1 also has cholesterol-independent antioxidant roles, so the elevation need not be a sterol-flux signal.");
     const gM2=el("g",{},svg);
     el("circle",{cx:340,cy:556,r:7,fill:catCol("MVK")},gM2);el("circle",{cx:347,cy:562,r:4.5,fill:catCol("MVK")},gM2);
     geneTxt(gM2,356,562,"MVK",{"font-size":10});
@@ -599,7 +646,7 @@ function drawA(){
         fill:catCol("APOD")},gAd);
       el("circle",{cx:212,cy:30,r:1.35,fill:css("--chol")},gAd); }
     const tD=el("g",{},svg);geneTxt(tD,200,54,"APOD",{"font-size":10,"text-anchor":"middle"});
-    protTip(tD,"APOD (apolipoprotein D)","A secreted lipocalin. CORRECTED 2026-09-30: despite the name, APOD is NOT structurally an apolipoprotein - it has no amphipathic alpha-helices and attaches to lipoparticles through hydrophobic surface loops and a disulfide, not through the helical bundle APOE and APOB use. It earns its place here anyway because it genuinely co-resides on APOE-containing lipoparticles: two independent CSF fractionation studies six years apart put the bulk of CSF APOD on apoE-plus-apoA-I particles, though it is also found on APOE-free particles, so the association is real but not obligate. It does NOT bind APOE - absent from APOE among 179 IntAct partners, zero IMEx pair records, and STRING's 0.715 edge is text-mining 0.667 with experimental support 0.000 - and no APOD binding to LDLR or LRP1 exists in any source. Its one well-evidenced receptor is CD36, drawn elsewhere on this figure, which it inhibits and for which it competes with long-chain fatty acids (Circulation 2026). In human brain it is a perivascular-fibroblast and mural-cell gene first (Human Protein Atlas single-nuclei fibroblast 2,810 nCPM, rank 1 of 34 brain cell types) and is reported absent from astrocytes. Our entorhinal values (vascular 7.97, OPC 6.94, oligodendrocyte 6.64, microglia 3.31, astrocyte 2.45) are Huuki-Myers Supplementary Table 11, so they are internal consistency rather than an independent dataset. IT CARRIES NO RED OR BLUE HERE ON PURPOSE: in the pooled LC contrast APOD does not move (+0.10, FDR 0.4-0.98), because its effect is ANCESTRY-RESTRICTED and pooling cancels it. Within European-ancestry donors it is strongly UP (5-domain mean +0.66; ACHE_SERT_LC_WM +0.96 FDR 1.7e-6, Astro +0.70 FDR 8.1e-5, Oligo_Astro +0.63 FDR 3.9e-4, Npep +0.65 FDR 1e-3), the 99.4th percentile of all 8,151 tested genes, while within African-ancestry donors it is flat to slightly down (mean -0.13). Formal between-stratum heterogeneity is significant in all five domains (p 1e-5 to 0.018) and is not a power artefact, since the African-ancestry stratum has the TIGHTER standard errors. It is not compositional either: across domains APOD is uncorrelated with a leptomeningeal/VLMC module (r = -0.05) and moves opposite to it in sign, and it ranks 1st of 83 astrocyte-specific, 1st of 116 vascular-specific and 1st of 17 VLMC-specific genes in the European-ancestry stratum. Not replicated in the ERC spatial data, but ERC publishes no ancestry-stratified contrast, so its null is the diluted pooled estimate rather than a refutation.");
+    protTip(tD,"APOD (apolipoprotein D)","A secreted lipocalin. Despite the name APOD is NOT structurally an apolipoprotein: it has no amphipathic alpha-helices and attaches to lipoparticles through hydrophobic surface loops and a disulfide. It does genuinely co-reside on APOE-containing particles - two independent CSF fractionation studies six years apart put the bulk of CSF APOD on apoE-plus-apoA-I particles - but it does not BIND APOE (absent from APOE's 179 IntAct partners; STRING's 0.715 edge is text-mining with experimental support 0.000), and no APOD binding to LDLR or LRP1 exists in any source. Its one well-evidenced receptor is CD36, drawn elsewhere on this figure. In human brain it is a perivascular-fibroblast and mural-cell gene first (Human Protein Atlas fibroblast 2,810 nCPM, rank 1 of 34 brain cell types). IT CARRIES NO RED OR BLUE HERE ON PURPOSE: its effect is ANCESTRY-RESTRICTED and pooling cancels it (+0.10, FDR 0.4-0.98). Within European-ancestry donors it is strongly UP (5-domain mean +0.66, the 99.4th percentile of all 8,151 tested genes); within African-ancestry donors it is flat to slightly down (-0.13), and between-stratum heterogeneity is significant in all five domains (p 1e-5 to 0.018) with the TIGHTER standard errors in the African-ancestry stratum, so it is not a power artefact. Nor is it compositional: it is uncorrelated with a leptomeningeal module (r -0.05) and ranks 1st of 83 astrocyte-specific and 1st of 116 vascular-specific genes in the European-ancestry stratum. Caveat: not replicated in the ERC spatial data, but ERC publishes no ancestry-stratified contrast, so its null is the diluted pooled estimate rather than a refutation.");
     const tC=el("g",{},svg);geneTxt(tC,222,-2,"CLU",{"font-size":10});
     protTip(tC,"CLU (APOJ)","Clusterin, a secreted chaperone and lipoparticle apolipoprotein that binds amyloid-β. AD GWAS consensus locus (CLU/PTK2B, OR 0.91, protective); Open Targets 0.66. Lower in APOE4 carriers (pooled LC −0.19, FDR 2e-4).");
     particle(svg,268,40,10);
@@ -644,7 +691,7 @@ function drawA(){
    eaatGlyph(gEA,1030,130,0,1);
    geneTxt(gEA,1030,164,"EAAT1/2",{"text-anchor":"middle"});
    protTip(gEA,"EAAT1 / EAAT2 (SLC1A3 / SLC1A2) - glutamate clearance",
-     "The two astrocytic sodium-dependent glutamate transporters that clear glutamate from the synapse. They are drawn here because they are among the LARGEST transcriptional effects in this dataset, not because they are part of the endocytic route: SLC1A3 (EAAT1) is down 0.523 log2 with FDR 5.7e-13, the strongest effect anywhere in this figure, and SLC1A2 (EAAT2) is down 0.363 with FDR 1.6e-05. Both also carry severe Mendelian CNS disease - SLC1A3 episodic ataxia type 6 (score 4.117), SLC1A2 developmental and epileptic encephalopathy 41 (4.394) - hence the sienna dot. The direction colour leads because it is what this dataset measured. TWO CAVEATS. Neither gene is in any of the downloaded GO sets used for the organelle labels here, so they are drawn as their own glyphs and no GO membership is claimed for them. And SLC1A2's effect is largely European-ancestry-driven: it is significant in 5 of 5 EA domains and 0 of 5 AA domains (EA -0.718, AA -0.250, between-stratum p 6.0e-04). It does not reverse sign, so it carries no dagger, but the pooled number is not evenly supported across strata. SLC1A3 is significant in both (EA -0.799, AA -0.514, p_het 0.025).");}
+     "The two astrocytic sodium-dependent glutamate transporters that clear glutamate from the synapse. They are drawn here because they are among the LARGEST transcriptional effects in this dataset, not because they are part of the endocytic route: SLC1A3 (EAAT1) is down 0.523 log2 at FDR 5.7e-13, the strongest effect anywhere in this figure, and SLC1A2 (EAAT2) is down 0.363 at FDR 1.6e-05. Both also carry severe Mendelian CNS disease - SLC1A3 episodic ataxia type 6 (4.117), SLC1A2 developmental and epileptic encephalopathy 41 (4.394) - hence the sienna dot; the direction colour leads because it is what this dataset measured. Caveat: SLC1A2's effect is largely European-ancestry-driven (significant in 5 of 5 EA domains and 0 of 5 AA; EA -0.718, AA -0.250, between-stratum p 6.0e-04). It does not reverse sign, so it carries no dagger, but the pooled number is not evenly supported. SLC1A3 is significant in both strata (EA -0.799, AA -0.514).");}
   // GPIHBP1: GPI-anchored to the outer leaflet
   let gGP=el("g",{},svg);
   el("path",{d:"M 698 124 L 698 112",stroke:catCol("GPIHBP1"),"stroke-width":1.6,"stroke-dasharray":"2 1.5"},gGP);
@@ -739,15 +786,19 @@ function drawA(){
   // puts the coat's bulge on the cytosolic face.
   {const gRt=el("g",{class:"hit",tabindex:0,role:"button","aria-label":"Retromer coat on the recycling tubule"},svg);
    // coat glyph removed by request; the labelled text alone marks retromer on this tubule
-   // Down and left to hug the tubule where it emerges from the early endosome, so the label reads
-   // as naming the machinery that PULLS the tube out rather than floating above it. Anchored
-   // "end" at x838: the two lines span x783-840 and the tubule runs y322-347 directly beneath.
-   // Baselines 298/310, not 316/328: the 11-unit ribbon puts its top edge at y316.5 where the
-   // label's left end sits, so 316/328 overlapped the tube by 14 units. This leaves ~3.
-   txt(gRt,838,298,"retromer",{"font-size":9.5,class:"mono","text-anchor":"end",style:`fill:${css("--muted")}`});
-   geneTxt(gRt,838,310,"VPS35",{"text-anchor":"end","font-size":9.5});
+   // Hugs the tubule where it emerges from the early endosome, so the label reads as naming the
+   // machinery that PULLS the tube out rather than floating above it. Anchored "end" at x843.
+   // THE TUBULE IS FOUR STACKED STROKES, not one: 26.2 / 21 / 16.2 / 11, so its OUTER edge is
+   // 13.1 off the centreline, not 5.5. Baselines 298/310 measured 8.5 clear for "retromer" but
+   // only 3.4 for VPS35, whose left end at x801 sits over the steepest part of the ribbon --
+   // the earlier note here read the clearance off the 11-unit lumen stroke and so reported ~3
+   // as if that were the whole tube. The ribbon's top edge falls 0.504 units per unit of x, so
+   // moving right buys clearance as well as moving up: +5 x and -4 y takes VPS35 to 9.9 and
+   // retromer to 15.0, putting the tighter of the two at the clearance the accepted line had.
+   txt(gRt,843,294,"retromer",{"font-size":9.5,class:"mono","text-anchor":"end",style:`fill:${css("--muted")}`});
+   geneTxt(gRt,843,306,"VPS35",{"text-anchor":"end","font-size":9.5});
    protTip(gRt,"Retromer - VPS35, VPS26, VPS29",
-     "The retromer coat, labelled on the recycling tubule at the point it emerges from the early endosome, because that is where it acts: retromer with its SNX-BAR partners is the machinery that PULLS these tubes out of the endosome, and the tube is the carrier. It retrieves cargo from the endosome and returns it to the cell surface or the Golgi, which is the step apoE4 is reported to block for sortilin. THE HUMAN GENETICS SIT IN ONE SUBUNIT. VPS35 D620N causes autosomal-dominant Parkinson disease (PARK17); its Open Targets Mendelian nervous-system score is 3.506, on late-onset Parkinson disease, which places it in the same Mendelian CNS disease category as the ataxia, epileptic-encephalopathy and Charcot-Marie-Tooth genes elsewhere in this figure - the point being that the category is neurodegenerative genetics broadly, not Parkinson specifically. VPS26A, VPS26B and VPS29 carry NO Mendelian nervous-system disease at all (score 0.000) and so take no colour. NONE OF THE FOUR MOVES IN OUR DATA: VPS35 +0.017 FDR 0.81, VPS26A -0.016 FDR 0.89, VPS26B +0.048 FDR 0.62, VPS29 -0.050 FDR 0.56. The sienna is therefore external disease genetics only, with no transcriptional support from this dataset, and retromer is not in any of the downloaded GO sets used for the organelle labels, so no GO membership is claimed for it either. VPS35 IS NOT THE STRONGEST CANDIDATE IN THIS MACHINERY. A sweep of 40 retromer, retriever, WASH, CCC, sorting-nexin and recycling-Rab genes against the same Mendelian nervous-system criterion puts nine above it: SNX14 4.879 on autosomal recessive spinocerebellar ataxia 20; RAB39B 4.347 on early-onset parkinsonism-intellectual disability syndrome; WASHC5 4.133 on hereditary spastic paraplegia 8; VPS13A 4.061 on VPS13A-related neurodegenerative disease; LRRK2 4.001 on late-onset Parkinson disease; VPS13D 3.957 on autosomal recessive cerebellar ataxia-saccadic intrusion syndrome; RAB7A 3.818 on Charcot-Marie-Tooth disease type 2B; RAB11B 3.707 on neurodevelopmental disorder with ataxic gait, absent speech, and decreased cortical white matter; CCDC22 3.646 on Ritscher-Schinzel syndrome. More telling is where the burden is NOT. Retromer's own trimer beyond VPS35 is genetically silent - VPS26A, VPS26B and VPS29 all score 0.000 - and so are the SNX-BAR proteins that tubulate with it (SNX1, SNX2, SNX3, SNX5, SNX6, SNX8), along with CCDC93, COMMD1, TBC1D5, RAB29, RAB10, EHD1, GAK and SH3GL2. The disease genetics sit in the ACCESSORY machinery - WASH, CCC, retriever - and in the Rab GTPases, not in the retromer core itself. Scores are in ot_recycling_genetics.json.");}
+     "The retromer coat, labelled on the recycling tubule at the point it emerges from the early endosome, because that is where it acts: retromer with its SNX-BAR partners is the machinery that PULLS these tubes out, and the tube is the carrier. It retrieves cargo from the endosome and returns it to the cell surface or the Golgi - the step APOE4 is reported to block for sortilin. THE HUMAN GENETICS SIT IN ONE SUBUNIT. VPS35 D620N causes autosomal-dominant Parkinson disease (PARK17); its Open Targets Mendelian nervous-system score is 3.506, which places it in the same category as the ataxia, epileptic-encephalopathy and Charcot-Marie-Tooth genes elsewhere here - the category is neurodegenerative genetics broadly, not Parkinson specifically. VPS26A, VPS26B and VPS29 carry no Mendelian nervous-system disease at all (0.000) and take no colour. NONE OF THE FOUR MOVES IN OUR DATA (VPS35 +0.017 FDR 0.81; VPS26A -0.016; VPS26B +0.048; VPS29 -0.050), so the sienna is external disease genetics only. AND VPS35 IS NOT THE STRONGEST CANDIDATE IN THIS MACHINERY: a sweep of 40 retromer, retriever, WASH, CCC, sorting-nexin and recycling-Rab genes against the same criterion puts nine above it, led by SNX14 (4.879, spinocerebellar ataxia 20), RAB39B (4.347) and WASHC5 (4.133). More telling is where the burden is NOT: retromer's own trimer beyond VPS35 is genetically silent, as are all six SNX-BARs that tubulate with it. The disease genetics sit in the accessory machinery and in the Rab GTPases, not in the retromer core. Scores are in ot_recycling_genetics.json. Caveat: retromer is in none of the downloaded GO sets, so no GO membership is claimed for it.");}
   // 3 o'clock of the endosome at (640,222): anchored "start" at x680, 16.5 units clear of its
 // outer edge (now r25 + stroke 9/2 = 29.5 after the dilation), block centre 3.7 above centre. Anchored
 // "end" at (612,270) it extended LEFTWARD and landed at x545-612 / y254-292, directly above
@@ -841,8 +892,12 @@ function drawMTOR(svg){
       if(lead.every(c=>c===lead[0])) col=css(CAT_VAR[lead[0]]);
       if(found.some(k=>GC(k).adlit)) mk="§";
     }
-    return txt(g,x,y,t+mk,{class:"mono","font-size":10,"text-anchor":anchor,
+    const lb=txt(g,x,y,t+mk,{class:"mono","font-size":10,"text-anchor":anchor,
       ...(col?{style:`fill:${col}`,"font-weight":600}:{})});
+    // TSC1 and TSC2 reached the figure through here, so until now their only hover text was the
+    // "TSC complex" step box. Tokens that are not genes ("Ragulator", "GTP") resolve to nothing
+    // and attachGeneTip returns the label untouched.
+    return attachGeneTip(lb,toks);
   };
   // v-ATPase: V0 in the membrane, V1 head in the cytosol
   let g=hitGroup(svg,"vatp");
@@ -994,7 +1049,7 @@ function drawMTOR(svg){
     txt(g2,911,119,"mAb blocks entry",{"font-size":9.5,"font-weight":600,class:"mono",
       "text-anchor":"middle",style:`fill:${col}`});
     protTip(g2,"Therapeutic hypothesis 1 - an antibody that blocks lipoparticle uptake",
-      "A monoclonal antibody raised against the APOE4 lipoparticle, drawn engaged rather than approaching: its two paratopes sit on the particle surface and the route to the clathrin-coated pit is dashed and barred. The intent is steric - occupy the APOE surface that HSPG and the LDLR family read, so the particle is never internalised. Rationale from this figure: APOE4 binds LDLR most tightly of the three isoforms (Kd 9 nM versus 16 nM for APOE3 and 800 nM for APOE2, ref [10]), and APOE4 lipoparticles accumulate intracellularly more than APOE3, so uptake is the step where the isoform difference is largest. AN ANTIBODY IS DRAWN, NOT ASSUMED TO WORK - it carries three known liabilities. It must cross the blood-brain barrier or be delivered intrathecally. It cannot easily distinguish APOE4 from APOE3 particles, which differ by a single residue (C112R) that is not surface-exposed on the lipidated particle, so selectivity is the hard part of this idea and is unsolved. And blocking uptake wholesale would also block the cholesterol delivery neurons depend on, so the therapeutic window, not the binding, is the open question. Nothing in our spatial data speaks to any of this; it is drawn as a hypothesis.");
+      "A monoclonal antibody raised against the APOE4 lipoparticle, drawn engaged rather than approaching: its two paratopes sit on the particle surface and the route to the clathrin-coated pit is dashed and barred. The intent is steric - occupy the APOE surface that HSPG and the LDLR family read, so the particle is never internalised. Rationale from this figure: APOE4 binds LDLR most tightly of the three isoforms (Kd 9 nM vs 16 nM for APOE3 and 800 nM for APOE2, ref [10]) and APOE4 lipoparticles accumulate intracellularly more than APOE3, so uptake is the step where the isoform difference is largest. Caveats: selectivity is the unsolved part - APOE4 and APOE3 particles differ by one residue (C112R) that is not surface-exposed when lipidated - and blocking uptake wholesale would also block the cholesterol delivery neurons depend on, so the therapeutic window, not the binding, is the open question. Nothing in our spatial data speaks to any of this.");
   }
 
   { // ---- 2. mTORC1-selective rapalog, inhibiting the cholesterol-dependent lysosomal activation
@@ -1009,7 +1064,7 @@ function drawMTOR(svg){
     // annotates so the two read as one element
     rxTag(g,952,701,["selective","inhibitor"],GREY);
     protTip(g,"Therapeutic hypothesis 2 - an mTORC1-selective rapalog",
-      "A rapamycin analogue, drawn inhibiting mTORC1 where it is activated on the lysosomal surface. The target here is specifically the CHOLESTEROL-dependent arm: TM6SF1 engages LAMTOR1 of Ragulator in a cholesterol-dependent manner and is required for normal mTORC1 signalling [3], and SLC38A9 senses lysosomal cholesterol alongside amino acids, so a lysosome loaded with cholesterol signals mTORC1 to stay on. APOE4 glia hold three-fold more lysosomal cholesterol [7], which predicts exactly that. WHAT 'SELECTIVE' HAS TO MEAN: classical rapamycin inhibits mTORC1 partially and substrate-selectively through FKBP12 and, with chronic dosing, hits mTORC2 as well; the hypothesis needs an analogue that spares mTORC2 and ideally the amino-acid arm. OUR DATA DOES NOT SUPPORT THIS AS A TRANSCRIPTIONAL FINDING, and the inhibitory arrow is drawn on the pathway, not on our measurements: mTOR, RPTOR, MLST8, all five LAMTOR subunits, all four Rag GTPases, RHEB, FLCN, TSC1/TSC2 and TM6SF1 are every one of them transcriptionally flat in the spatial data. The case rests on the lipid phenotype and on BMP rising in mTORC1-hyperactive cortex, not on expression. A separate, untested line of inquiry runs the other way: high mTORC1 activity is reported to suppress v-ATPase assembly through the mammalian RAVE complex, which would make this loop self-limiting.");
+      "A rapamycin analogue, drawn inhibiting mTORC1 where it is activated on the lysosomal surface. The target is specifically the CHOLESTEROL-dependent arm: TM6SF1 engages LAMTOR1 of Ragulator in a cholesterol-dependent manner and is required for normal mTORC1 signalling [3], and SLC38A9 senses lysosomal cholesterol alongside amino acids, so a cholesterol-loaded lysosome signals mTORC1 to stay on. APOE4 glia hold three-fold more lysosomal cholesterol [7], which predicts exactly that. WHAT 'SELECTIVE' HAS TO MEAN: classical rapamycin inhibits mTORC1 partially and substrate-selectively through FKBP12 and, chronically, hits mTORC2 too; this needs an analogue that spares mTORC2. Caveat: the inhibitory arrow is drawn on the pathway, not on our measurements. mTOR, RPTOR, MLST8, all five LAMTOR subunits, all four Rag GTPases, RHEB, FLCN, TSC1/TSC2 and TM6SF1 are every one of them transcriptionally flat here, so the case rests on the lipid phenotype, not on expression.");
   }
 
   { // ---- 3. Chemical reprogramming. Replaces the nuclear-receptor agonist that sat here;
@@ -1037,7 +1092,7 @@ function drawMTOR(svg){
     // open-ended: these two are named examples, not the whole LXR/RXR output
     txt(g,138,722,"\u00b7 \u2026",{"font-size":10,class:"mono",style:`fill:${css("--muted")}`});
     protTip(g,"Therapeutic hypothesis 3 - chemical reprogramming",
-      "Drawn in the nucleus because this is the one intervention on the figure aimed at cell state rather than at a single protein: small-molecule induction of partial reprogramming, intended to reset the transcriptional programme of APOE4 glia rather than to correct any one step of the pathway drawn here. NOTHING IN THIS FIGURE TESTS IT. Every other annotation on this diagram is anchored to a measurement or a citation; this one marks where such an intervention would act and carries no claim about efficacy, selectivity, or safety in brain. It is also the hypothesis whose off-target risk is hardest to bound, since resetting cell state in post-mitotic tissue is not a reversible perturbation. TWO TRANSCRIPTIONAL OUTPUTS ARE NAMED BELOW THE RESPONSE ELEMENT. ABCA1 is the canonical efflux target of this arm and already appears twice in the cartoon, at the trans-Golgi bud and on the lysosome; it carries an AD GWAS locus, an Open Targets AD association and Mendelian CNS disease, which is why it is plum with two dots. TET2, the DNA demethylase, is drawn because the hypothesis names it, and it carries NO evidence category in this figure at all: it is not an AD GWAS locus, it is absent from the locus coeruleus expression universe so it can never take red or blue, and its Mendelian evidence is entirely haematological and immunological (immunodeficiency 75, myelodysplastic syndrome, clonal haematopoiesis) with no nervous-system disease, so the Mendelian CNS category correctly excludes it. Its ink colour is the honest reading: a named prediction with nothing behind it in these data.");
+      "Drawn in the nucleus because this is the one intervention on the figure aimed at cell state rather than at a single protein: small-molecule induction of partial reprogramming, intended to reset the transcriptional programme of APOE4 glia rather than to correct any one step of the pathway drawn here. TWO TRANSCRIPTIONAL OUTPUTS ARE NAMED BELOW THE RESPONSE ELEMENT. ABCA1 is the canonical efflux target of this arm and already appears twice in the cartoon, at the trans-Golgi bud and on the lysosome; it carries an AD GWAS locus, an Open Targets AD association and Mendelian CNS disease, which is why it is plum with two dots. TET2, the DNA demethylase, is drawn because the hypothesis names it, and it carries NO evidence category here at all: not an AD GWAS locus, absent from the locus coeruleus expression universe so it can never take red or blue, and its Mendelian evidence is entirely haematological and immunological with no nervous-system disease. Its ink colour is the honest reading - a named prediction with nothing behind it in these data. Caveat: nothing in this figure tests the intervention itself, and resetting cell state in post-mitotic tissue is not a reversible perturbation, so its off-target risk is the hardest on the figure to bound.");
   }
 
 }

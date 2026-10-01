@@ -87,8 +87,8 @@ not state.
 
 | | version | what it is |
 |---|---|---|
-| Atlas | **v94** | `apoe_endocytosis_atlas.html` |
-| Tour | **v61** | `apoe_tour.html`, 9 stops |
+| Atlas | **v95** | `apoe_endocytosis_atlas.html` |
+| Tour | **v62** | `apoe_tour.html`, 9 stops |
 
 Republishing the same file path keeps the URL, so the artifact version number is the figure's
 real version history; git records the source that produced each one.
@@ -102,6 +102,41 @@ real version history; git records the source that produced each one.
   "Lysosome exocytosis" label at x541-615 — two stacked labels, neither beside the thing it
   named. Now anchored `start` at (680,215): 16.5 units clear of the endosome's outer edge,
   block centre 3.7 units above the circle centre.
+
+**v95 / v62 — 2026-10-01**
+
+- **Every gene product now has its own hover box with a functional summary.** 20-odd gene
+  names drawn inside an organelle's hit group (CLTC, RAB7A, NPC1, LDLR, TSC1, TSC2 and the
+  rest) previously showed only that organelle's step description, which names the gene but
+  never says what it does. New `00_build_func.py` fetches UniProt `CC FUNCTION` for all 75
+  genes from `rest.uniprot.org` (reviewed human entries) and condenses each to one line:
+  42 are the entry's own verbatim lead sentence, 17 are that sentence hand-cut to its
+  load-bearing clause, and 18 are curated replacements, each annotated with why the UniProt
+  lead was unusable — four Rabs shared identical family boilerplate, APOD led with an LCAT
+  complex rather than its job, four were one-clause stubs, and TM6SF1's "may function as
+  sterol isomerase" is superseded by the 2026 cryo-EM structure. Summaries run 50-205 chars
+  (median 127), asserted in `00_build_func.py`.
+- The box is attached in `geneSpans` to each symbol's leading tspan, which is the single
+  place every gene name in the schematic is drawn, so coverage follows from the call graph
+  rather than from a list that has to be maintained. `nm()` in the mTORC1 inset builds
+  compound labels through its own path and was the one remaining gap — TSC1 and TSC2 reached
+  the figure that way — so it now shares the same `attachGeneTip` helper. `stopPropagation`
+  is what makes the gene box win over the enclosing organelle box. 39 hoverable labels,
+  verified none without a summary.
+- `01_build_data.py` asserts that every *kept* gene label has a `func`, so a future gene
+  added to the schematic fails the build rather than shipping an empty box.
+- **Caveat prose cut by 3,076 characters across eight tooltips** (APOD −857, retromer −950,
+  hypothesis 2 −377, hypothesis 3 −330, hypothesis 1 −253, EAAT1/2 −218, DHCR24 −48,
+  LXR/RXR −43). Every load-bearing number is kept; what went was hedging and the long
+  enumerations. Each box now carries at most one `Caveat:` sentence.
+- `retromer / VPS35` moved up and right to x843, baselines 294/306. **The previous placement
+  measured the clearance against the wrong stroke**: the tubule is four stacked strokes
+  (26.2 / 21 / 16.2 / 11), so its outer edge is 13.1 off the centreline, not 5.5. Measured in
+  the browser, baselines 298/310 left "retromer" 8.5 clear but VPS35 only 3.4 — the earlier
+  note read the gap off the 11-unit lumen stroke as if that were the whole tube. The ribbon's
+  top edge falls 0.504 units per unit of x, so moving right buys clearance as well as moving
+  up; +5 x and −4 y takes VPS35 to 9.9 and retromer to 13.0, verified against every
+  neighbouring element.
 
 **v94 / v61 — 2026-10-01**
 
