@@ -465,6 +465,11 @@ function drawA(){
     el("path",{d:strand(Math.PI),stroke:css("--ink2"),"stroke-width":1.4,fill:"none"},gNR);
     for(let x=xA+5;x<xB;x+=11){const u=y0+AMP*Math.sin((x-xA)/11),v=y0+AMP*Math.sin((x-xA)/11+Math.PI);
       el("path",{d:`M ${x} ${u.toFixed(1)} L ${x} ${v.toFixed(1)}`,stroke:css("--rule"),"stroke-width":.9},gNR)}
+    // Traditional transcription-start arrow, to the RIGHT of the heterodimer (lobes end at x125):
+    // a vertical arm rising off the DNA at x145 (helix centreline y642) and a horizontal arm
+    // pointing away from the dimer. Sits below "desmosterol" (y584-599) and above the LXRE label.
+    el("path",{d:"M 145 640 L 145 612 L 190 612",stroke:css("--ink2"),"stroke-width":1.6,fill:"none",
+      "marker-end":"url(#ah)"},gNR);
     txt(gNR,34,662,"LXR/RXR on LXRE",{class:"mono muted","font-size":9});
     txt(gNR,34,677,"hypo-agonised · efflux ↓",{class:"mono","font-size":9,fill:css("--c-dn"),"font-weight":600});
     protTip(gNR,"LXR/RXR — ligand supply unresolved",
@@ -721,6 +726,10 @@ function drawA(){
   // sortilin on the recycling endosome: Asaro 2021 finds sortilin-FABP7 in Rab11 recycling
   // endosomes by PLA, and apoE4 blocks its return to the cell surface.
   {const ph=-30,t=ph*Math.PI/180; sortGlyph(gC,640+25*Math.cos(t),222+25*Math.sin(t),ph-90,0.72);}
+  // amyloid-beta in the lumen: the recycling route carries APOE-bound cargo, and the figure
+  // already shows aggregates in the late endosome and the exocytic lysosome. Centre-left of the
+  // lumen, clear of the recY on the membrane at 120 deg and the sortilin head at -30.
+  fibAbeta(gC,634,220,13,-15,2.2);
   // Retromer sits ON THE RECYCLING TUBULE emanating from the early endosome, not on the
   // recycling endosome itself - which is where it belongs: retromer with its SNX-BAR partners
   // tubulates the endosome, and that tubule IS the retrieval carrier. The tubule is
@@ -730,13 +739,15 @@ function drawA(){
   // puts the coat's bulge on the cytosolic face.
   {const gRt=el("g",{class:"hit",tabindex:0,role:"button","aria-label":"Retromer coat on the recycling tubule"},svg);
    // coat glyph removed by request; the labelled text alone marks retromer on this tubule
-   // Anchored "end" at x866 so the two lines span x810-866, over the BODY of the tubule rather
-   // than its tip at (780,321). A clearance sweep of x800-960 / y290-345 made this the best free
-   // slot at 13.5 units; the tubule runs y333-358 beneath that span.
-   txt(gRt,866,290,"retromer",{"font-size":9.5,class:"mono","text-anchor":"end",style:`fill:${css("--muted")}`});
-   geneTxt(gRt,866,302,"VPS35",{"text-anchor":"end","font-size":9.5});
+   // Down and left to hug the tubule where it emerges from the early endosome, so the label reads
+   // as naming the machinery that PULLS the tube out rather than floating above it. Anchored
+   // "end" at x838: the two lines span x783-840 and the tubule runs y322-347 directly beneath.
+   // Baselines 298/310, not 316/328: the 11-unit ribbon puts its top edge at y316.5 where the
+   // label's left end sits, so 316/328 overlapped the tube by 14 units. This leaves ~3.
+   txt(gRt,838,298,"retromer",{"font-size":9.5,class:"mono","text-anchor":"end",style:`fill:${css("--muted")}`});
+   geneTxt(gRt,838,310,"VPS35",{"text-anchor":"end","font-size":9.5});
    protTip(gRt,"Retromer - VPS35, VPS26, VPS29",
-     "The retromer coat, drawn on the recycling tubule because that is where it acts: it retrieves cargo from the endosome and returns it to the cell surface or the Golgi, which is the step apoE4 is reported to block for sortilin. THE HUMAN GENETICS SIT IN ONE SUBUNIT. VPS35 D620N causes autosomal-dominant Parkinson disease (PARK17); its Open Targets Mendelian nervous-system score is 3.506, on late-onset Parkinson disease, which places it in the same Mendelian CNS disease category as the ataxia, epileptic-encephalopathy and Charcot-Marie-Tooth genes elsewhere in this figure - the point being that the category is neurodegenerative genetics broadly, not Parkinson specifically. VPS26A, VPS26B and VPS29 carry NO Mendelian nervous-system disease at all (score 0.000) and so take no colour. NONE OF THE FOUR MOVES IN OUR DATA: VPS35 +0.017 FDR 0.81, VPS26A -0.016 FDR 0.89, VPS26B +0.048 FDR 0.62, VPS29 -0.050 FDR 0.56. The sienna is therefore external disease genetics only, with no transcriptional support from this dataset, and retromer is not in any of the downloaded GO sets used for the organelle labels, so no GO membership is claimed for it either. VPS35 IS NOT THE STRONGEST CANDIDATE IN THIS MACHINERY. A sweep of 40 retromer, retriever, WASH, CCC, sorting-nexin and recycling-Rab genes against the same Mendelian nervous-system criterion puts nine above it: SNX14 4.879 on autosomal recessive spinocerebellar ataxia 20; RAB39B 4.347 on early-onset parkinsonism-intellectual disability syndrome; WASHC5 4.133 on hereditary spastic paraplegia 8; VPS13A 4.061 on VPS13A-related neurodegenerative disease; LRRK2 4.001 on late-onset Parkinson disease; VPS13D 3.957 on autosomal recessive cerebellar ataxia-saccadic intrusion syndrome; RAB7A 3.818 on Charcot-Marie-Tooth disease type 2B; RAB11B 3.707 on neurodevelopmental disorder with ataxic gait, absent speech, and decreased cortical white matter; CCDC22 3.646 on Ritscher-Schinzel syndrome. More telling is where the burden is NOT. Retromer's own trimer beyond VPS35 is genetically silent - VPS26A, VPS26B and VPS29 all score 0.000 - and so are the SNX-BAR proteins that tubulate with it (SNX1, SNX2, SNX3, SNX5, SNX6, SNX8), along with CCDC93, COMMD1, TBC1D5, RAB29, RAB10, EHD1, GAK and SH3GL2. The disease genetics sit in the ACCESSORY machinery - WASH, CCC, retriever - and in the Rab GTPases, not in the retromer core itself. Scores are in ot_recycling_genetics.json.");}
+     "The retromer coat, labelled on the recycling tubule at the point it emerges from the early endosome, because that is where it acts: retromer with its SNX-BAR partners is the machinery that PULLS these tubes out of the endosome, and the tube is the carrier. It retrieves cargo from the endosome and returns it to the cell surface or the Golgi, which is the step apoE4 is reported to block for sortilin. THE HUMAN GENETICS SIT IN ONE SUBUNIT. VPS35 D620N causes autosomal-dominant Parkinson disease (PARK17); its Open Targets Mendelian nervous-system score is 3.506, on late-onset Parkinson disease, which places it in the same Mendelian CNS disease category as the ataxia, epileptic-encephalopathy and Charcot-Marie-Tooth genes elsewhere in this figure - the point being that the category is neurodegenerative genetics broadly, not Parkinson specifically. VPS26A, VPS26B and VPS29 carry NO Mendelian nervous-system disease at all (score 0.000) and so take no colour. NONE OF THE FOUR MOVES IN OUR DATA: VPS35 +0.017 FDR 0.81, VPS26A -0.016 FDR 0.89, VPS26B +0.048 FDR 0.62, VPS29 -0.050 FDR 0.56. The sienna is therefore external disease genetics only, with no transcriptional support from this dataset, and retromer is not in any of the downloaded GO sets used for the organelle labels, so no GO membership is claimed for it either. VPS35 IS NOT THE STRONGEST CANDIDATE IN THIS MACHINERY. A sweep of 40 retromer, retriever, WASH, CCC, sorting-nexin and recycling-Rab genes against the same Mendelian nervous-system criterion puts nine above it: SNX14 4.879 on autosomal recessive spinocerebellar ataxia 20; RAB39B 4.347 on early-onset parkinsonism-intellectual disability syndrome; WASHC5 4.133 on hereditary spastic paraplegia 8; VPS13A 4.061 on VPS13A-related neurodegenerative disease; LRRK2 4.001 on late-onset Parkinson disease; VPS13D 3.957 on autosomal recessive cerebellar ataxia-saccadic intrusion syndrome; RAB7A 3.818 on Charcot-Marie-Tooth disease type 2B; RAB11B 3.707 on neurodevelopmental disorder with ataxic gait, absent speech, and decreased cortical white matter; CCDC22 3.646 on Ritscher-Schinzel syndrome. More telling is where the burden is NOT. Retromer's own trimer beyond VPS35 is genetically silent - VPS26A, VPS26B and VPS29 all score 0.000 - and so are the SNX-BAR proteins that tubulate with it (SNX1, SNX2, SNX3, SNX5, SNX6, SNX8), along with CCDC93, COMMD1, TBC1D5, RAB29, RAB10, EHD1, GAK and SH3GL2. The disease genetics sit in the ACCESSORY machinery - WASH, CCC, retriever - and in the Rab GTPases, not in the retromer core itself. Scores are in ot_recycling_genetics.json.");}
   // 3 o'clock of the endosome at (640,222): anchored "start" at x680, 16.5 units clear of its
 // outer edge (now r25 + stroke 9/2 = 29.5 after the dilation), block centre 3.7 above centre. Anchored
 // "end" at (612,270) it extended LEFTWARD and landed at x545-612 / y254-292, directly above
@@ -1021,8 +1032,10 @@ function drawMTOR(svg){
     // sweep of the nucleus for a 112x16 run found the band y708-724 to be the only free space
     // (27.3 units clear), below "hypo-agonised / efflux down" and inside the frame's y730 edge.
     // Parented to ROOT like the rest of this block, so these are root coordinates.
-    txt(g,34,706,"transcriptional output",{"font-size":9,class:"mono",style:`fill:${css("--muted")}`});
+    txt(g,34,706,"transcriptional outputs",{"font-size":9,class:"mono",style:`fill:${css("--muted")}`});
     geneRun(g,34,722,["ABCA1","TET2"],10,"start");
+    // open-ended: these two are named examples, not the whole LXR/RXR output
+    txt(g,138,722,"\u00b7 \u2026",{"font-size":10,class:"mono",style:`fill:${css("--muted")}`});
     protTip(g,"Therapeutic hypothesis 3 - chemical reprogramming",
       "Drawn in the nucleus because this is the one intervention on the figure aimed at cell state rather than at a single protein: small-molecule induction of partial reprogramming, intended to reset the transcriptional programme of APOE4 glia rather than to correct any one step of the pathway drawn here. NOTHING IN THIS FIGURE TESTS IT. Every other annotation on this diagram is anchored to a measurement or a citation; this one marks where such an intervention would act and carries no claim about efficacy, selectivity, or safety in brain. It is also the hypothesis whose off-target risk is hardest to bound, since resetting cell state in post-mitotic tissue is not a reversible perturbation. TWO TRANSCRIPTIONAL OUTPUTS ARE NAMED BELOW THE RESPONSE ELEMENT. ABCA1 is the canonical efflux target of this arm and already appears twice in the cartoon, at the trans-Golgi bud and on the lysosome; it carries an AD GWAS locus, an Open Targets AD association and Mendelian CNS disease, which is why it is plum with two dots. TET2, the DNA demethylase, is drawn because the hypothesis names it, and it carries NO evidence category in this figure at all: it is not an AD GWAS locus, it is absent from the locus coeruleus expression universe so it can never take red or blue, and its Mendelian evidence is entirely haematological and immunological (immunodeficiency 75, myelodysplastic syndrome, clonal haematopoiesis) with no nervous-system disease, so the Mendelian CNS category correctly excludes it. Its ink colour is the honest reading: a named prediction with nothing behind it in these data.");
   }

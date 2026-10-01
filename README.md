@@ -87,8 +87,8 @@ not state.
 
 | | version | what it is |
 |---|---|---|
-| Atlas | **v93** | `apoe_endocytosis_atlas.html` |
-| Tour | **v60** | `apoe_tour.html`, 9 stops |
+| Atlas | **v94** | `apoe_endocytosis_atlas.html` |
+| Tour | **v61** | `apoe_tour.html`, 9 stops |
 
 Republishing the same file path keeps the URL, so the artifact version number is the figure's
 real version history; git records the source that produced each one.
@@ -102,6 +102,20 @@ real version history; git records the source that produced each one.
   "Lysosome exocytosis" label at x541-615 — two stacked labels, neither beside the thing it
   named. Now anchored `start` at (680,215): 16.5 units clear of the endosome's outer edge,
   block centre 3.7 units above the circle centre.
+
+**v94 / v61 — 2026-10-01**
+
+- `retromer / VPS35` moved down and left to hug the tubule where it emerges from the early
+  endosome, so it reads as naming the machinery that *pulls* the tube out. Anchored end at
+  x838, baselines 298/310 — at 316/328 the label overlapped the 11-unit ribbon by 14 units,
+  since the ribbon’s top edge is y316.5 under the label’s left end. The tooltip now says so.
+- Amyloid-β squiggle added inside the recycling-endosome lumen, centre-left and clear of the
+  receptor on the membrane at 120° and the sortilin head at −30°.
+- Nucleus: a traditional transcription-start arrow right of the LXR/RXR heterodimer —
+  vertical arm rising off the DNA at x145 (helix centreline y642), then a horizontal arm to
+  x190 pointing away from the dimer.
+- Nucleus: “transcriptional output” → “transcriptional **outputs**”, and the list is now
+  open-ended: `ABCA1●● · TET2 · …`.
 
 **v93 / v60 — 2026-10-01**
 
