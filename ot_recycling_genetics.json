@@ -1,0 +1,348 @@
+{
+ "VPS35": {
+  "max": 3.506,
+  "top": [
+   {
+    "disease": "late-onset Parkinson disease",
+    "mendel": 3.506
+   },
+   {
+    "disease": "Parkinson disease",
+    "mendel": 1.401
+   }
+  ],
+  "ids": "ENSG00000069329"
+ },
+ "VPS26A": {
+  "max": 0.0,
+  "top": [],
+  "ids": "ENSG00000122958"
+ },
+ "VPS26B": {
+  "max": 0.0,
+  "top": [],
+  "ids": "ENSG00000151502"
+ },
+ "VPS29": {
+  "max": 0.0,
+  "top": [],
+  "ids": "ENSG00000111237"
+ },
+ "VPS35L": {
+  "max": 2.045,
+  "top": [
+   {
+    "disease": "Ritscher-Schinzel syndrome",
+    "mendel": 2.045
+   }
+  ],
+  "ids": "ENSG00000103544"
+ },
+ "VPS26C": {
+  "max": 0.438,
+  "top": [
+   {
+    "disease": "neurodevelopmental disorder",
+    "mendel": 0.438
+   }
+  ],
+  "ids": "ENSG00000157538"
+ },
+ "SNX1": {
+  "max": 0.0,
+  "top": [],
+  "ids": "ENSG00000028528"
+ },
+ "SNX2": {
+  "max": 0.0,
+  "top": [],
+  "ids": "ENSG00000205302"
+ },
+ "SNX3": {
+  "max": 0.0,
+  "top": [],
+  "ids": "ENSG00000112335"
+ },
+ "SNX5": {
+  "max": 0.0,
+  "top": [],
+  "ids": "ENSG00000089006"
+ },
+ "SNX6": {
+  "max": 0.0,
+  "top": [],
+  "ids": "ENSG00000129515"
+ },
+ "SNX14": {
+  "max": 4.879,
+  "top": [
+   {
+    "disease": "autosomal recessive spinocerebellar ataxia 20",
+    "mendel": 4.879
+   },
+   {
+    "disease": "neurodevelopmental disorder",
+    "mendel": 0.486
+   }
+  ],
+  "ids": "ENSG00000135317"
+ },
+ "SNX17": {
+  "max": 0.303,
+  "top": [
+   {
+    "disease": "retinitis pigmentosa",
+    "mendel": 0.303
+   },
+   {
+    "disease": "leukoencephalopathy with vanishing white matter",
+    "mendel": 0.243
+   }
+  ],
+  "ids": "ENSG00000115234"
+ },
+ "SNX27": {
+  "max": 0.896,
+  "top": [
+   {
+    "disease": "Dravet syndrome",
+    "mendel": 0.896
+   }
+  ],
+  "ids": "ENSG00000143376"
+ },
+ "SNX8": {
+  "max": 0.0,
+  "top": [],
+  "ids": "ENSG00000106266"
+ },
+ "WASHC1": {
+  "max": 0.0,
+  "top": [],
+  "ids": "ENSG00000181404"
+ },
+ "WASHC2A": {
+  "max": 0.0,
+  "top": [],
+  "ids": "ENSG00000099290"
+ },
+ "WASHC3": {
+  "max": 0.0,
+  "top": [],
+  "ids": "ENSG00000120860"
+ },
+ "WASHC4": {
+  "max": 1.461,
+  "top": [
+   {
+    "disease": "autosomal recessive non-syndromic intellectual disability",
+    "mendel": 1.461
+   }
+  ],
+  "ids": "ENSG00000136051"
+ },
+ "WASHC5": {
+  "max": 4.133,
+  "top": [
+   {
+    "disease": "hereditary spastic paraplegia 8",
+    "mendel": 4.133
+   },
+   {
+    "disease": "Ritscher-Schinzel syndrome 1",
+    "mendel": 2.946
+   }
+  ],
+  "ids": "ENSG00000164961"
+ },
+ "CCDC22": {
+  "max": 3.646,
+  "top": [
+   {
+    "disease": "Ritscher-Schinzel syndrome",
+    "mendel": 3.646
+   },
+   {
+    "disease": "non-syndromic X-linked intellectual disability",
+    "mendel": 0.76
+   }
+  ],
+  "ids": "ENSG00000101997"
+ },
+ "CCDC93": {
+  "max": 0.0,
+  "top": [],
+  "ids": "ENSG00000125633"
+ },
+ "COMMD1": {
+  "max": 0.0,
+  "top": [],
+  "ids": "ENSG00000173163"
+ },
+ "TBC1D5": {
+  "max": 0.0,
+  "top": [],
+  "ids": "ENSG00000131374"
+ },
+ "RAB7A": {
+  "max": 3.818,
+  "top": [
+   {
+    "disease": "Charcot-Marie-Tooth disease type 2B",
+    "mendel": 3.818
+   },
+   {
+    "disease": "Charcot-Marie-Tooth disease type 2",
+    "mendel": 0.608
+   }
+  ],
+  "ids": "ENSG00000075785"
+ },
+ "RAB11A": {
+  "max": 0.608,
+  "top": [
+   {
+    "disease": "neurodevelopmental disorder",
+    "mendel": 0.608
+   },
+   {
+    "disease": "microcephaly",
+    "mendel": 0.608
+   }
+  ],
+  "ids": "ENSG00000103769"
+ },
+ "RAB11B": {
+  "max": 3.707,
+  "top": [
+   {
+    "disease": "neurodevelopmental disorder with ataxic gait, absent speech, and decreased cortical white matter",
+    "mendel": 3.707
+   }
+  ],
+  "ids": "ENSG00000185236"
+ },
+ "RAB29": {
+  "max": 0.0,
+  "top": [],
+  "ids": "ENSG00000117280"
+ },
+ "RAB39B": {
+  "max": 4.347,
+  "top": [
+   {
+    "disease": "early-onset parkinsonism-intellectual disability syndrome",
+    "mendel": 4.347
+   },
+   {
+    "disease": "non-syndromic X-linked intellectual disability",
+    "mendel": 2.813
+   }
+  ],
+  "ids": "ENSG00000155961"
+ },
+ "RAB10": {
+  "max": 0.0,
+  "top": [],
+  "ids": "ENSG00000084733"
+ },
+ "EHD1": {
+  "max": 0.0,
+  "top": [],
+  "ids": "ENSG00000110047"
+ },
+ "DNAJC13": {
+  "max": 1.332,
+  "top": [
+   {
+    "disease": "Parkinson disease",
+    "mendel": 1.332
+   },
+   {
+    "disease": "late-onset Parkinson disease",
+    "mendel": 1.225
+   }
+  ],
+  "ids": "ENSG00000138246"
+ },
+ "LRRK2": {
+  "max": 4.001,
+  "top": [
+   {
+    "disease": "late-onset Parkinson disease",
+    "mendel": 4.001
+   },
+   {
+    "disease": "Parkinson disease",
+    "mendel": 2.172
+   }
+  ],
+  "ids": "ENSG00000188906"
+ },
+ "VPS13A": {
+  "max": 4.061,
+  "top": [
+   {
+    "disease": "VPS13A-related neurodegenerative disease",
+    "mendel": 4.061
+   },
+   {
+    "disease": "vascular dementia",
+    "mendel": 0.182
+   }
+  ],
+  "ids": "ENSG00000197969"
+ },
+ "VPS13C": {
+  "max": 3.053,
+  "top": [
+   {
+    "disease": "young-onset Parkinson disease",
+    "mendel": 3.053
+   },
+   {
+    "disease": "Parkinson disease",
+    "mendel": 0.819
+   }
+  ],
+  "ids": "ENSG00000129003"
+ },
+ "VPS13D": {
+  "max": 3.957,
+  "top": [
+   {
+    "disease": "autosomal recessive cerebellar ataxia-saccadic intrusion syndrome",
+    "mendel": 3.957
+   },
+   {
+    "disease": "autosomal recessive cerebellar ataxia",
+    "mendel": 0.559
+   }
+  ],
+  "ids": "ENSG00000048707"
+ },
+ "GAK": {
+  "max": 0.0,
+  "top": [],
+  "ids": "ENSG00000178950"
+ },
+ "SH3GL2": {
+  "max": 0.0,
+  "top": [],
+  "ids": "ENSG00000107295"
+ },
+ "RETREG1": {
+  "max": 2.422,
+  "top": [
+   {
+    "disease": "hereditary sensory and autonomic neuropathy type 2",
+    "mendel": 2.422
+   },
+   {
+    "disease": "hereditary sensory and autonomic neuropathy",
+    "mendel": 1.824
+   }
+  ],
+  "ids": "ENSG00000154153"
+ }
+}

@@ -87,8 +87,8 @@ not state.
 
 | | version | what it is |
 |---|---|---|
-| Atlas | **v91** | `apoe_endocytosis_atlas.html` |
-| Tour | **v58** | `apoe_tour.html`, 9 stops |
+| Atlas | **v92** | `apoe_endocytosis_atlas.html` |
+| Tour | **v59** | `apoe_tour.html`, 9 stops |
 
 Republishing the same file path keeps the URL, so the artifact version number is the figure's
 real version history; git records the source that produced each one.
@@ -102,6 +102,17 @@ real version history; git records the source that produced each one.
   "Lysosome exocytosis" label at x541-615 — two stacked labels, neither beside the thing it
   named. Now anchored `start` at (680,215): 16.5 units clear of the endosome's outer edge,
   block centre 3.7 units above the circle centre.
+
+**v92 / v59 — 2026-10-01**
+
+- Retromer moved from the recycling endosome **onto the recycling tubule** emanating from the
+  early endosome, which is where it acts — retromer with its SNX-BAR partners tubulates the
+  endosome and that tubule *is* the retrieval carrier. Coat beads measure 1.7–2.7 units from
+  the tubule centreline, inside its 5.5 half-width.
+- Its tooltip now carries a 40-gene comparative sweep, `ot_recycling_genetics.json`. **Nine
+  genes outscore VPS35** (3.506): SNX14 4.879 (SCAR20), RAB39B 4.347, WASHC5 4.133 (SPG8),
+  VPS13A 4.061, LRRK2 4.001, VPS13D 3.957, RAB7A 3.818, RAB11B 3.707, CCDC22 3.646. And the
+  retromer **core** is genetically silent: VPS26A, VPS26B, VPS29 and the SNX-BARs all 0.000.
 
 **v91 / v58 — 2026-10-01**
 
