@@ -364,8 +364,8 @@ function drawA(){
   const gX=hitGroup(svg,"exo");
   memCircle(gX,205,262,24,LUM);particle(gX,198,258,8);particle(gX,214,268,6);
   lab(gX,240,258,"exo");
-  carrow(svg,"M 244 322 Q 232 305 220 294","",0,0);
-  carrow(svg,"M 214 234 Q 222 210 236 196","exocytosis",150,205,"end");
+  carrow(svg,"M 233.5 308.2 Q 228.9 302.7 224.3 298.1","",0,0);
+  carrow(svg,"M 218.1 223.2 Q 222.6 212.8 228.5 204.8","exocytosis",150,205,"end");
   // plasma membrane: secretory pore (x≈250), lysosomal pore (x≈430), clathrin pit (x≈700)
   const memD="M -10 130 H 222 C 227 130 229 134 227 141 A 30 30 0 1 0 273 141 C 271 134 273 130 278 130 "+
              "H 402 C 406 130 406 136 406 150 A 24 24 0 0 0 454 150 C 454 136 454 130 458 130 "+
@@ -412,7 +412,7 @@ function drawA(){
   for(let i=0;i<4;i++)el("path",{d:`M ${490+i*11} 123 q 5 -10 0 -20 q -5 -10 0 -20`,stroke:css("--hspg"),"stroke-width":2,fill:"none","stroke-linecap":"round"},svg);
   txt(svg,506,158,"HSPG",{class:"mono","font-size":10.5,"text-anchor":"middle"});
   particle(svg,506,72,12);
-  carrow(svg,"M 412 58 Q 460 56 490 66","binds",440,48);
+  carrow(svg,"M 412 58 Q 447 56.5 472.5 61.5","binds",440,48);
   // receptors
   const gR=hitGroup(svg,"receptors");
   const rT=(g,sym,body)=>protTip(g,sym,body);
@@ -425,7 +425,7 @@ function drawA(){
   rT(gS2,"SORL1 (SORLA)","Mosaic Vps10p-domain receptor with a β-propeller, LDLR class-A repeats and one membrane span. It binds APOE and APP and retromer-recycles APP away from amyloidogenic processing. SORL1 is an AD GWAS consensus locus.");
   recY(gR,850,176,0,recCol);
   particle(svg,850,141,11);
-  carrow(svg,"M 522 88 Q 548 66 578 100","hands off",566,70,"start");
+  carrow(svg,"M 522 88 Q 543.2 70 567.1 89.4","hands off",566,70,"start");
   lab(gR,730,-14,"receptors","middle");
   // SORT1 (sortilin): Vps10p-domain receptor, single TM, beta-propeller head
   let gS1=el("g",{},svg);
@@ -494,12 +494,12 @@ function drawA(){
   particle(gE2,882,386,9);
   [-75,-30,70].forEach(ph=>{const t=ph*Math.PI/180;recY(gE2,880+48*Math.cos(t),372+48*Math.sin(t),ph-90,recCol)});
   lab(gE2,938,362,"early");
-  carrow(svg,"M 916 292 Q 908 306 898 318","uncoats",922,312,"start");
+  carrow(svg,"M 916 292 Q 910.2 302.2 903.3 311.3","uncoats",922,312,"start");
   // recycling: short tubule, budded vesicle, return to membrane
   memCircle(gC,640,222,19,LUM);recY(gC,640,240,0,recCol);
   lab(gC,612,270,"recycling","end");
-  carrow(svg,"M 764 312 Q 712 282 664 236","buds",716,300,"middle");
-  carrow(svg,"M 626 202 Q 606 182 598 150","receptor returns",600,198,"end");
+  carrow(svg,"M 757.8 308.3 Q 712.4 281.2 670.1 241.7","buds",716,300,"middle");
+  carrow(svg,"M 618.3 193.3 Q 604.4 175.4 598 150","receptor returns",600,198,"end");
   // late endosome
   const gL=hitGroup(svg,"late");gL.setAttribute("transform","translate(-5 -46)");
   memCircle(gL,760,524,46,LUM);
@@ -507,7 +507,7 @@ function drawA(){
   particle(gL,779,507,7);whorl(gL,778,542,10);apoeFree(gL,758,520,30);apoeFree(gL,762,534,-40);
   bmpGlyph(gL,729,522,-20);bmpGlyph(gL,752,557,10);bmpGlyph(gL,764,492,-8);
   lab(gL,818,524,"late");
-  carrow(svg,"M 874 424 Q 852 452 798 460","matures",872,452,"start");
+  carrow(svg,"M 863.4 434.8 Q 845.3 449.9 814.4 456.9","matures",872,452,"start");
   // lysosome
   const gY=hitGroup(svg,"lysosome");gY.setAttribute("transform","translate(50 -51)");
   memCircle(gY,560,566,42,LYS);
@@ -517,7 +517,7 @@ function drawA(){
   fibAbeta(gY,561,539,16,-8);fibTau(gY,573,596,16,-22);
   lab(gY,560,652,"lysosome","middle");
   let gAL=el("g",{transform:"translate(50 -51)"},svg);abcGlyph(gAL,583.3,525.7,30,.45,css("--abca"));geneTxt(gAL,592,516,"ABCA1",{"font-size":9.5});protTip(gAL,"ABCA1 on the lysosome",ABCA1_TIP);
-  carrow(svg,"M 708 488 Q 684 508 658 513","",0,0);
+  carrow(svg,"M 695.2 497.5 Q 682.3 506 668.8 510.2","",0,0);
   // ER tubules reaching out from the peripheral ER to two contact sites on the lysosome
   const gM=hitGroup(svg,"mcs");gM.setAttribute("transform","translate(50 -51)");
   // tethers bridging the ~8 px gap (ER VAPA to lysosomal STARD3 / ORP1L)
@@ -527,19 +527,21 @@ function drawA(){
   el("rect",{x:514,y:580,width:10,height:14,rx:3,fill:css("--abca"),transform:"rotate(-10 519 587)"},gM);
   // cholesterol crossing the contact into the ER tubules
   [[494,568],[482,571],[508,618],[497,626]].forEach(([x,y])=>el("circle",{cx:x,cy:y,r:2.4,fill:css("--chol")},gM));
-  carrow(svg,"M 536 505 Q 500 510 464 519","cholesterol",433,497);
+  carrow(svg,"M 508.2 509.5 Q 486.1 513.5 464 519","cholesterol",433,497);
   lab(hitGroup(svg,"mcs"),506,660,"mcs");
   drawMTOR(svg);
-  // endo-lysosomal exocytosis: lysosome-derived vesicle -> plasma membrane pore at x≈430
+  // endo-lysosomal exocytosis: lysosome-derived vesicle -> plasma membrane pore at x≈430.
+  // Vesicle sits at (505,340), on the midpoint of its own route from the lysosome (610,515)
+  // to the pore, rather than below it; 126 units of clearance to the nearest structure.
   const gZ=hitGroup(svg,"lysexo");
-  memCircle(gZ,530,390,25,LYS);
-  whorl(gZ,538,398,7,2.2);fibAbeta(gZ,523,379,13,-10,2.2);fibTau(gZ,519,396,12,20,2.2);
-  bmpGlyph(gZ,545,381,8,.85);
+  memCircle(gZ,505,340,25,LYS);
+  whorl(gZ,513,348,7,2.2);fibAbeta(gZ,498,329,13,-10,2.2);fibTau(gZ,494,346,12,20,2.2);
+  bmpGlyph(gZ,520,331,8,.85);
   fibTau(gZ,431,160,13,-12,2.4);fibAbeta(gZ,423,142,13,-35,2.4);fibAbeta(gZ,438,122,14,-60,2.6);fibTau(gZ,448,104,14,-40,2.6);
   [[442,148],[426,110]].forEach(([x,y])=>el("circle",{cx:x,cy:y,r:2.3,fill:css("--ink2"),opacity:.5},gZ));
-  lab(gZ,566,384,"lysexo");
-  carrow(svg,"M 588 478 Q 566 450 548 422","",0,0);
-  carrow(svg,"M 520 362 Q 468 290 432 190","",0,0);
+  lab(gZ,541,334,"lysexo");
+  carrow(svg,"M 578.9 465 Q 555.4 430.4 526 376.3","",0,0);
+  carrow(svg,"M 485.4 302.9 Q 457.6 243 433.6 193.3","",0,0);
   { const gB=el("g",{class:"hit",tabindex:0,role:"button","aria-label":"Cholesterol and BMP accumulation"},svg);
     el("circle",{cx:702,cy:549,r:3.6,fill:css("--chol")},gB);
     bmpGlyph(gB,716,548,0,1.1);
