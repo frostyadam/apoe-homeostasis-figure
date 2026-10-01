@@ -83,6 +83,42 @@ not state.
   turned every uncategorised gene glyph near-black. A retry must leave the fallback grey and
   restyle only genes that already have a category.
 
+## Published versions
+
+| | version | what it is |
+|---|---|---|
+| Atlas | **v79** | `apoe_endocytosis_atlas.html` |
+| Tour | **v46** | `apoe_tour.html`, 9 stops |
+
+Republishing the same file path keeps the URL, so the artifact version number is the figure's
+real version history; git records the source that produced each one.
+
+### Changelog
+
+**v79 / v46 — 2026-10-01**
+
+- Removed the duplicate antibody. Therapeutic hypothesis 1 was drawn twice; the approaching copy
+  at (483,49) and its two-line label are gone, and the engaged drawing keeps it. The deleted
+  tooltip's unique content (steric intent, the LDLR K_d series with ref [10], the blood-brain
+  barrier liability) was merged into the survivor rather than dropped.
+- Raised the "Golgi apparatus" label to y341, level with the left end of the top cisterna, and
+  moved the ER-to-Golgi arrow onto the outer flank of the ER exit-site tubule it belongs to. The
+  label move is what freed the band the arrow now occupies.
+- Shortened the APOE mRNA from a 12-degree to an 8-degree arc (70.6 -> 47.1 units).
+- Gave every direction arrow the same clearance as the scission arrow: **12.5 units** from a
+  structure's outer edge (stroke centreline plus half the stroke width). Twelve of sixteen arrows
+  were trimmed by exact de Casteljau subdivision, five of which had an endpoint *inside* a
+  membrane. The ER-to-Golgi arrow is the one exception, at 8.9, because its corridor is only
+  ~21 units wide.
+- Recentred the exocytic lysosome to (505,340), on the midpoint of its own route.
+- Replaced the LXR/RXR agonist glyph with **chemical reprogramming** in the nucleus, and removed
+  the sterol structure diagrams.
+
+**Reverted, deliberately:** an evidence-weight colour gradient. See Known issues — `catCol` feeds
+shape `fill`, so changing the no-category fallback from grey to ink blackened every uncategorised
+gene glyph. The ancestry tiering built for it survives in `ancestry_tier.json` and is recorded as
+Alhazen claim `scsynth-1bbdb48be256`.
+
 ## Sharing and reuse
 
 This repo is **public**. The two Artifact links above are *private* pages, so they will not
