@@ -87,8 +87,8 @@ not state.
 
 | | version | what it is |
 |---|---|---|
-| Atlas | **v84** | `apoe_endocytosis_atlas.html` |
-| Tour | **v51** | `apoe_tour.html`, 9 stops |
+| Atlas | **v85** | `apoe_endocytosis_atlas.html` |
+| Tour | **v52** | `apoe_tour.html`, 9 stops |
 
 Republishing the same file path keeps the URL, so the artifact version number is the figure's
 real version history; git records the source that produced each one.
@@ -102,6 +102,19 @@ real version history; git records the source that produced each one.
   "Lysosome exocytosis" label at x541-615 — two stacked labels, neither beside the thing it
   named. Now anchored `start` at (680,215): 16.5 units clear of the endosome's outer edge,
   block centre 3.7 units above the circle centre.
+
+**v85 / v52 — 2026-10-01**
+
+- Chemical reprogramming now names two transcriptional outputs below the response element:
+  **ABCA1** (plum + teal and sienna dots — AD GWAS locus, Open Targets AD, Mendelian CNS) and
+  **TET2** (ink). Placed at root y694/709, the only free band in the nucleus by a clearance
+  sweep (27.3 units clear).
+- TET2 carries **no** evidence category and that is deliberate: not an AD GWAS locus, absent
+  from the LC expression universe so it can never take red or blue, and its Mendelian evidence
+  is wholly haematological/immunological (immunodeficiency 75, MDS, clonal haematopoiesis), so
+  the neoplasm/nervous-system filter excludes it. It is catalogued with
+  `why="therapeutic hypothesis readout"` via a new `HYPOTHESIS_LABELS` set, and the tooltip and
+  figcaption both state that its ink colour means a named prediction, not a result.
 
 **v84 / v51 — 2026-10-01**
 

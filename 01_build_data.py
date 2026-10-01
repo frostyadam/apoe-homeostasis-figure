@@ -50,6 +50,14 @@ NODE_GENES.update({"er":["HSPA5","CANX","SEC61A1"],"golgi":["GOLGA2","GORASP1","
                    "vatp":["ATP6V1A","ATP6V0D1","ATP6V0A1"],"slc":["SLC38A9"],"ragulator":["LAMTOR1","LAMTOR2","LAMTOR3"],
                    "rag":["RRAGA","RRAGB","RRAGC","RRAGD"],"flcn":["FLCN","FNIP1"],"rheb":["RHEB"],"mtorc1":["MTOR","RPTOR","MLST8"],"tsc":["TSC1","TSC2"]})
 EXTRA_GENES=["ABCA1"]   # drawn as a membrane glyph; values shown in its tooltip only
+# Genes drawn only because a therapeutic hypothesis names them, with no evidence of their own.
+# TET2 is the DNA demethylase shown as a transcriptional output of the chemical-reprogramming
+# hypothesis. It carries NONE of this figure's categories: not an AD GWAS consensus locus, not
+# in the LC expression universe at all (so it can never take red or blue), and its Mendelian
+# evidence is entirely haematological/immunological (immunodeficiency 75 3.285, myelodysplastic
+# syndrome 1.382, clonal haematopoiesis 0.559) with no nervous-system disease, so the mendel
+# category correctly excludes it. It renders in ink.
+HYPOTHESIS_LABELS={"TET2"}
 # Named exceptions: label-only genes shown on a step whose GO set does not contain them.
 # BIN1 (amphiphysin 2, a BAR-domain protein at clathrin-coated pits) is annotated to
 # endocytosis GO:0006897 but not to the clathrin-specific terms that define the pit step.
@@ -233,7 +241,7 @@ anc=json.load(open(f"{H}/ancestry_tier.json"))
 # (nothing external cited anywhere in the figure).
 EXTERNAL={"APOE","APOC1","APOC2","PLTP","CD36","LRP1","DHCR24","CLU"}
 KEEP_PATHWAY={"NPC1","NPC2"}|{g for k in ("vatp","slc","ragulator","rag","flcn","rheb","mtorc1","tsc") for g in NODE_GENES[k]}|{"TM6SF1"}
-labelled=sorted({g for gl in NODE_GENES.values() for g in gl}|{"ABCA1","ABCA7","CD36","GPIHBP1","TM6SF1","SORT1","DHCR24","MVK","APOC1","APOC2","CLU","PLTP","ACAT2","APOD"})
+labelled=sorted({g for gl in NODE_GENES.values() for g in gl}|{"ABCA1","ABCA7","CD36","GPIHBP1","TM6SF1","SORT1","DHCR24","MVK","APOC1","APOC2","CLU","PLTP","ACAT2","APOD"}|HYPOTHESIS_LABELS)
 genecat={}
 for g in labelled:
     de=g in pool5 and pool5[g]["fdr"]<0.05
@@ -242,7 +250,7 @@ for g in labelled:
     cats=[c for c,ok in (("gwas",g in gw),("ot",ot),("mendel",g in MENDEL),
                          ("up",de and pool5[g]["lf"]>0),("dn",de and pool5[g]["lf"]<0)) if ok]
     a=otnd.get(g,{}); ndgen=max(a.get("genetic_association",0),a.get("genetic_literature",0))
-    why=("" if g in USER_REMOVE else "evidence" if cats else "neurodegeneration genetics" if ndgen>=0.1 else "mTORC1 / NPC pathway" if g in KEEP_PATHWAY else "")
+    why=("" if g in USER_REMOVE else "evidence" if cats else "neurodegeneration genetics" if ndgen>=0.1 else "mTORC1 / NPC pathway" if g in KEEP_PATHWAY else "therapeutic hypothesis readout" if g in HYPOTHESIS_LABELS else "")
     av=anc.get(g,{})
     strong=bool(({"up","dn"} & set(cats)) and av.get("concordant") and g in EXTERNAL)
     genecat[g]=dict(cats=cats,keep=bool(why),why=why,cis=g in CIS,gwas_tier=gw.get(g),ot_ad=OT_AD.get(g),
