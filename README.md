@@ -87,8 +87,8 @@ not state.
 
 | | version | what it is |
 |---|---|---|
-| Atlas | **v97** | `apoe_endocytosis_atlas.html` |
-| Tour | **v64** | `apoe_tour.html`, 9 stops |
+| Atlas | **v98** | `apoe_endocytosis_atlas.html` |
+| Tour | **v65** | `apoe_tour.html`, 9 stops |
 
 Republishing the same file path keeps the URL, so the artifact version number is the figure's
 real version history; git records the source that produced each one.
@@ -102,6 +102,36 @@ real version history; git records the source that produced each one.
   "Lysosome exocytosis" label at x541-615 — two stacked labels, neither beside the thing it
   named. Now anchored `start` at (680,215): 16.5 units clear of the endosome's outer edge,
   block centre 3.7 units above the circle centre.
+
+**v98 / v65 — 2026-10-01**
+
+- Red cell redrawn as the **oblique view** of a discocyte — ellipse, central depression, soft
+  highlight — rather than a cross-section, to match the textbook plate. Sized a little larger
+  than the lipoparticles beside it (rx 18 against their r 12–15). `discPath()`, the Evans–Fung
+  cross-section helper, is removed from this template as dead code; it still lives in the RDW
+  figure.
+- **SCARB1 written out** in full rather than SR-BI.
+- **Both receptors now use this figure's original CD36 silhouette** — two membrane spans and a
+  large extracellular loop — scaled to 0.24 and sunk into the rim. That is correct for both, not
+  just convenient: SR-BI and CD36 are both class B scavenger receptors with exactly that
+  topology. They are placed on the *unrotated* rim so the pair straddles the depression
+  symmetrically; rotating their positions with the cell slid one down the flank and read as a
+  mistake rather than as perspective.
+- **Checked whether SCARB1 and CD36 are the only way red cells interact with APOE lipoparticles.
+  They are not, in three respects, and the tooltip now says so:**
+  1. **Neither is an APOE receptor.** SCARB1/SR-BI binds HDL and takes up cholesteryl ester
+     selectively; CD36 binds oxidised LDL, long-chain fatty acids and fibrillar amyloid-β.
+     Nothing on the red cell surface binds APOE as such.
+  2. **The dominant interaction is receptor-independent.** The mature erythrocyte has no
+     LDL-receptor-family uptake and no reactivity to lipid-free apolipoprotein — it is the
+     standard negative control for receptor-mediated lipid efflux. Free cholesterol exchanges
+     with HDL bidirectionally, t½ ≈ 3 h, with no net transfer until LCAT esterifies it
+     (doi:10.1074/jbc.271.4.2023).
+  3. **They are not the only lipid-handling proteins on the membrane.** ABCA1 and ABCG2 are both
+     quantifiable on red cell membranes by flow cytometry (doi:10.1038/s41598-021-82417-8),
+     though erythrocyte ABCA1 shows no apolipoprotein-mediated efflux activity, consistent
+     with (2). So the two drawn are the two with an established lipoprotein-binding role on
+     erythroid cells, not an exhaustive list — the figure's "no APOE receptor" line stands.
 
 **v97 / v64 — 2026-10-01**
 
