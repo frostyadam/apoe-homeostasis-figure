@@ -87,8 +87,8 @@ not state.
 
 | | version | what it is |
 |---|---|---|
-| Atlas | **v99** | `apoe_endocytosis_atlas.html` |
-| Tour | **v66** | `apoe_tour.html`, 9 stops |
+| Atlas | **v101** | `apoe_endocytosis_atlas.html` |
+| Tour | **v68** | `apoe_tour.html`, 9 stops |
 
 Republishing the same file path keeps the URL, so the artifact version number is the figure's
 real version history; git records the source that produced each one.
@@ -102,6 +102,31 @@ real version history; git records the source that produced each one.
   "Lysosome exocytosis" label at x541-615 — two stacked labels, neither beside the thing it
   named. Now anchored `start` at (680,215): 16.5 units clear of the endosome's outer edge,
   block centre 3.7 units above the circle centre.
+
+**v101 / v68 — 2026-10-01**
+
+- **APOD removed** — glyph, label, tooltip, figcaption sentence, tour note, and from the
+  `labelled` gene set in `01_build_data.py` (genecat 77 → 76; it is also gone from the heatmap).
+  Its case rested on two legs: CSF fractionation putting the bulk of APOD on APOE-containing
+  particles, and a European-ancestry-only increase at the 99.4th percentile of all 8,151 tested
+  genes. Cut because that is thin for a place on the particle — APOD is not structurally an
+  apolipoprotein, does not bind APOE (absent from APOE's 179 IntAct partners; STRING's edge is
+  text-mining with experimental support 0.000), has no LDLR or LRP1 binding in any source, is a
+  perivascular-fibroblast and mural-cell gene rather than a glial one in human brain, and its
+  pooled effect is null (+0.10, FDR 0.4–0.98) with no ERC replication. The `[12]` footnote now
+  records the removal and these reasons, next to the earlier PTGDS→APOD substitution.
+- **`APOE lipoparticles` title** moved to y 23, midway between the APOC1 (−2) and APOC2 (48)
+  baselines; bbox lands at y 8–27, 7 units clear above and 8 below.
+- **Tour stop 3 reframed** from `[10,−36,482,145]` to `[0,−36,476,145]`. `fit()` pads the box to
+  the master aspect ratio, so the old box produced a frame of x 10–492 while the "APOE mRNA by
+  cell type" block starts at **x 5** — four units were clipped. The new frame is x 0–476,
+  y −36–295.5, verified to contain all eight elements of the block. 476 rather than 482 keeps the
+  right edge short of the erythrocyte group at x 480, so the frame no longer ends on a sliver of
+  a cell.
+- **Erythrocyte notes re-homed from stop 3 to stop 4.** Moving the cell to x 540 and then
+  narrowing stop 3 left stop 3's caption describing something outside its own frame. Stop 4's
+  frame is x 470–884, which contains the cell and its caption, so the clause and all five notes
+  moved there (stop 4 now carries 9 notes).
 
 **v99 / v66 — 2026-10-01**
 

@@ -268,7 +268,7 @@ anc=json.load(open(f"{H}/ancestry_tier.json"))
 # (nothing external cited anywhere in the figure).
 EXTERNAL={"APOE","APOC1","APOC2","PLTP","CD36","LRP1","DHCR24","CLU"}
 KEEP_PATHWAY={"NPC1","NPC2"}|{g for k in ("vatp","slc","ragulator","rag","flcn","rheb","mtorc1","tsc") for g in NODE_GENES[k]}|{"TM6SF1"}
-labelled=sorted({g for gl in NODE_GENES.values() for g in gl}|{"ABCA1","ABCA7","CD36","GPIHBP1","TM6SF1","SORT1","DHCR24","MVK","APOC1","APOC2","CLU","PLTP","ACAT2","APOD"}|HYPOTHESIS_LABELS|{"DNM1","DNM2"}|set(EAAT_MEMBERS)|set(RETROMER))   # merged-label members stay catalogued
+labelled=sorted({g for gl in NODE_GENES.values() for g in gl}|{"ABCA1","ABCA7","CD36","GPIHBP1","TM6SF1","SORT1","DHCR24","MVK","APOC1","APOC2","CLU","PLTP","ACAT2"}|HYPOTHESIS_LABELS|{"DNM1","DNM2"}|set(EAAT_MEMBERS)|set(RETROMER))   # merged-label members stay catalogued
 # one-line functional summary per gene product, built by 00_build_func.py from UniProt
 # CC FUNCTION (reviewed human entries). Every KEPT label must have one -- asserted below.
 FUNC=json.load(open(f"{H}/gene_function.json"))
