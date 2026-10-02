@@ -87,8 +87,8 @@ not state.
 
 | | version | what it is |
 |---|---|---|
-| Atlas | **v96** | `apoe_endocytosis_atlas.html` |
-| Tour | **v63** | `apoe_tour.html`, 9 stops |
+| Atlas | **v97** | `apoe_endocytosis_atlas.html` |
+| Tour | **v64** | `apoe_tour.html`, 9 stops |
 
 Republishing the same file path keeps the URL, so the artifact version number is the figure's
 real version history; git records the source that produced each one.
@@ -102,6 +102,39 @@ real version history; git records the source that produced each one.
   "Lysosome exocytosis" label at x541-615 — two stacked labels, neither beside the thing it
   named. Now anchored `start` at (680,215): 16.5 units clear of the endosome's outer edge,
   block centre 3.7 units above the circle centre.
+
+**v97 / v64 — 2026-10-01**
+
+- **An erythrocyte, in biconcave cross-section, in the upper left above the "Secretion" title.**
+  A headless occupancy sweep found that corner to be the one genuinely empty block in the top
+  band — 116 × 108 at x 16–132, y −36…72 — so the cell is sized to it (half-width 52, half-height
+  15) and nothing else moved. The outline is generated from the **Evans–Fung** discocyte profile,
+  `z = √(1−u²)(0.2072 + 2.0026u² − 1.1228u⁴)`, compressed to the power 0.6; the raw profile is
+  geometrically faithful but its maximum sits in a narrow band at u ≈ 0.7, so each rim renders as
+  a sphere and the cell reads as a dumbbell.
+- **Why it is here.** The systemic genetics ties APOE lipoprotein handling to red cells: across
+  ten lead variants in lipid-handling genes associated with red cell distribution width, the
+  allele that raises HDL-C also raises RDW in **nine** of them, including **SCARB1** and
+  **CD36** — both already on this figure's receptor list. In SR-BI-null mice raised HDL-C
+  increases the erythrocyte cholesterol-to-phospholipid ratio, lowering deformability and
+  shortening lifespan, which provokes a reticulocytosis — by construction a wider volume
+  distribution — and the red cell defect is **markedly worse when APOE is deleted as well**.
+- **Only two receptors are drawn, which is the point.** A mature erythrocyte has no
+  LDL-receptor-family uptake and no reactivity to lipid-free apolipoprotein; it is the standard
+  negative control for receptor-mediated lipid efflux, so its sterol moves by non-specific
+  exchange (t½ ≈ 3 h) which LCAT then makes net rather than merely balanced. The absence is
+  labelled on the figure ("no APOE receptor") rather than left to be inferred.
+- Two caveats carried in the tooltip, the figcaption and tour stop 3. Red cells are
+  **intravascular**, whereas the rest of the cartoon is a brain cell and its extracellular space;
+  brain APOE particles are astrocyte-derived and largely a separate pool from plasma, though
+  lipid species do exchange at the CSF–blood barrier with APOE genotype affecting that exchange
+  in entorhinal cortex. And SR-BI and CD36 are coloured by **this** figure's evidence code
+  (APOE4-vs-APOE2 and Alzheimer genetics), not by their RDW direction.
+- No new tour stop: stop 3's existing box `[10, −36, 482, 145]` already frames that corner, so
+  it gained the red cell plus five notes instead. New `--rbc` / `--rbc-in` tokens in all three
+  `:root` blocks, and a reusable `discPath()` helper beside the other glyph functions.
+- Companion analysis and four-panel RDW figure: `~/apoe-research/rdw-hdl/`,
+  https://claude.ai/artifact/4uEoS4sCHsmQtBy81ChDfD
 
 **v96 / v63 — 2026-10-01**
 

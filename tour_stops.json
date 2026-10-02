@@ -40,7 +40,7 @@
   },
   {
    "t": "Lipoparticle secretion and maturation",
-   "s": "The vesicle fuses with the membrane and ABCA1 and ABCA7 lipidate APOE. Outside, particles carry APOC1, APOC2 and CLU/APOJ, and PLTP remodels them.",
+   "s": "The vesicle fuses with the membrane and ABCA1 and ABCA7 lipidate APOE. Outside, particles carry APOC1, APOC2 and CLU/APOJ, and PLTP remodels them. Top left is an erythrocyte, the one intravascular compartment on this figure.",
    "box": [
     10,
     -36,
@@ -52,6 +52,13 @@
     "apoe",
     "particle",
     "chol"
+   ],
+   "notes": [
+    "The <b>erythrocyte</b> is here because the systemic genetics ties APOE lipoprotein handling to red cells: across ten lead variants in lipid-handling genes associated with <b>red cell distribution width</b>, the allele that raises HDL-C also raises RDW in <b>nine</b> of them \u2014 including <b>SCARB1</b> and <b>CD36</b>, both already on the receptor list in this figure.",
+    "<b>The route, from mouse genetics:</b> in SR-BI-null mice raised HDL-C increases the erythrocyte cholesterol-to-phospholipid ratio, which lowers deformability and raises osmotic fragility, shortening lifespan and provoking a reticulocytosis \u2014 and a reticulocytosis is by construction a wider volume distribution. The red cell defect is markedly worse when <b>APOE is deleted as well as SR-BI</b>.",
+    "<b>Only two receptors are drawn, and that is the point.</b> A mature erythrocyte has no LDL-receptor-family uptake and no reactivity to lipid-free apolipoprotein; it is the standard negative control for receptor-mediated lipid efflux, so its sterol moves by non-specific exchange (t\u00bd \u2248 3 h), which LCAT then makes net rather than merely balanced.",
+    "<b>Compartment caveat:</b> red cells are intravascular, whereas the rest of this cartoon is a brain cell. Brain APOE particles are astrocyte-derived and largely a separate pool from plasma \u2014 though lipid species do exchange at the CSF\u2013blood barrier, with APOE genotype affecting that exchange in entorhinal cortex.",
+    "SR-BI and CD36 are coloured by <i>this</i> figure's code (APOE4-vs-APOE2 and Alzheimer genetics), not by their RDW direction."
    ]
   },
   {
