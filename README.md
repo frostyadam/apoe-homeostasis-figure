@@ -87,8 +87,8 @@ not state.
 
 | | version | what it is |
 |---|---|---|
-| Atlas | **v101** | `apoe_endocytosis_atlas.html` |
-| Tour | **v68** | `apoe_tour.html`, 9 stops |
+| Atlas | **v102** | `apoe_endocytosis_atlas.html` |
+| Tour | **v69** | `apoe_tour.html`, 9 stops |
 
 Republishing the same file path keeps the URL, so the artifact version number is the figure's
 real version history; git records the source that produced each one.
@@ -102,6 +102,23 @@ real version history; git records the source that produced each one.
   "Lysosome exocytosis" label at x541-615 — two stacked labels, neither beside the thing it
   named. Now anchored `start` at (680,215): 16.5 units clear of the endosome's outer edge,
   block centre 3.7 units above the circle centre.
+
+**v102 / v69 — 2026-10-02** — Tier 1 corrections from the overnight research
+
+- **"20% more total cholesterol, all of it free" → corrected.** The 20% is a *de novo synthesis
+  rate*, not a pool size, and **"all of it free" is withdrawn**: cholesteryl-*ester* accumulation
+  in APOE4 astrocytes has since been reported (Feringa, *Nat Metab* 2025). The paradox itself is
+  now cited as independently replicated and stated as a measured result in TCW 2022 *Cell*.
+- **The plasma p-tau217 claim in TSC is withdrawn.** Its source is an unreplicated preprint in
+  which TSC versus Alzheimer's reaches only **p = 0.071**, and p-tau217 in TSC has a single record
+  in the literature. The tauopathy claim is now scoped to **"a subset of adults with TSC"** —
+  penetrance in the stronger neuropathology paper is **3 of 11** — and Olney 2017 (PMID 28828560)
+  is added as the index TSC1–frontotemporal-dementia case.
+- **The two BMP numbers were challenged as untraceable and turned out to be traceable** — they
+  are in this project's own `metabolomics/MEMO.md` and `phase18.md`, abstracted from Miranda 2022
+  Extended Data, which a literature-only search could not see. Both now carry that provenance in
+  the caption, and the r = +0.725 is made precise: it is **BMP(20:4/20:4), p = 0.0015, 16 mice**,
+  not total BMP.
 
 **v101 / v68 — 2026-10-01**
 
