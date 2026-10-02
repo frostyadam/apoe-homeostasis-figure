@@ -87,8 +87,8 @@ not state.
 
 | | version | what it is |
 |---|---|---|
-| Atlas | **v98** | `apoe_endocytosis_atlas.html` |
-| Tour | **v65** | `apoe_tour.html`, 9 stops |
+| Atlas | **v99** | `apoe_endocytosis_atlas.html` |
+| Tour | **v66** | `apoe_tour.html`, 9 stops |
 
 Republishing the same file path keeps the URL, so the artifact version number is the figure's
 real version history; git records the source that produced each one.
@@ -102,6 +102,38 @@ real version history; git records the source that produced each one.
   "Lysosome exocytosis" label at x541-615 — two stacked labels, neither beside the thing it
   named. Now anchored `start` at (680,215): 16.5 units clear of the endosome's outer edge,
   block centre 3.7 units above the circle centre.
+
+**v99 / v66 — 2026-10-01**
+
+- **Erythrocyte and the "APOE lipoparticles" title trade places.** The title now sits in the
+  upper-left corner the cell vacated; the cell moves into the top band's middle white space.
+- Caption cut to one word, **"erythrocyte"**. The second line, "no APOE receptor", is **removed**.
+- **Two claims retracted after being challenged, and the retraction is recorded in the tooltip
+  rather than quietly dropped:**
+  - *"no LDL-receptor-family uptake"* — never checked. The source behind it (Czarnecka &
+    Yokoyama) showed erythrocytes lack reactivity to *lipid-free apolipoproteins*, which is the
+    ABCA1/apoA-I pathway, not the LDLR family. Searching found nothing either way, and a
+    text-search negative is no evidence of absence. The surviving claim is the narrow one: no
+    reactivity to lipid-free apolipoprotein, and no APOE-*specific* receptor demonstrated.
+  - *"no endocytosis"* — **false.** Mature red cells form cholesterol- and flotillin/stomatin-rich
+    endovesicles, and the authors state it happens by "simple (non-receptor-mediated) mechanical
+    perturbation"; *Plasmodium* exploits the same capacity
+    (doi:10.1182/blood-2007-04-083873).
+- **XK–VPS13A now named in the tooltip** as the lipid axis a receptor-centric framing misses. XK
+  is a lipid scramblase that complexes with the bridge-like lipid transporter VPS13A via VPS13A's
+  PH domain (doi:10.1242/jcs.260227); losing either causes acanthocytosis — McLeod syndrome and
+  chorea-acanthocytosis — so **bulk lipid transport, not lipoprotein uptake, is what most
+  directly sets red cell shape** (doi:10.1159/000521417). It moves lipid between membranes
+  (ER→plasma membrane) and between leaflets, with **no evidence it engages HDL**. Note that its
+  ER–PM contacts form only on erythroid differentiation and are abolished in XK knockouts
+  (doi:10.1177/25152564231215133), and a mature red cell has no ER — so what the complex does in
+  the circulating cell is unresolved.
+- Placement note: the cell is centred at x 540, not at the title's old x 396. An occupancy sweep
+  **counting shapes as well as text** shows the hole the title left is only 68 units tall
+  (x 300–616, y −36…32) because the lipidates/binds particle chain runs beneath it, and the cell
+  plus caption needs more. x 464–616 is clear to y 56. A text-only probe had passed the x 396
+  placement, where the caption in fact overlapped a lipoparticle — the same blind spot recorded
+  in the project's render-verification note.
 
 **v98 / v65 — 2026-10-01**
 

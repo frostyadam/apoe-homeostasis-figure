@@ -352,7 +352,11 @@ function drawA(){
   // Both receptors use the ORIGINAL CD36 silhouette from this figure -- two membrane spans
   // and a large extracellular loop -- which is correct for both, because SCARB1/SR-BI and
   // CD36 are both class B scavenger receptors with exactly that topology.
-  {const RX=74, RY=20, RA=18, RB=13, TILT=-18;
+  // Centred at x540 rather than at the title's old x396: an occupancy sweep that counts SHAPES
+  // as well as text shows the hole left by the title is only 68 units tall (x300-616, y-36..32)
+  // because the lipidates/binds particle chain sits under it, and the caption needs more than
+  // that. x464-616 is clear down to y56, so the cell sits in the right half of the same gap.
+  {const RX=540, RY=6, RA=18, RB=13, TILT=-18;
    const gRB=el("g",{},svg);
    const cell=el("g",{transform:`rotate(${TILT} ${RX} ${RY})`},gRB);
    el("ellipse",{cx:RX,cy:RY,rx:RA,ry:RB,fill:css("--rbc")},cell);
@@ -380,12 +384,11 @@ function drawA(){
      const py=RY-RB*Math.sqrt(Math.max(0,1-(dx/RA)**2))+2.5;
      sbGlyph(gRB,RX+dx,py,0.24,catCol(gene));
    });
-   geneTxt(gRB,52,4,"SCARB1",{"font-size":9.5,"text-anchor":"end"});
-   geneTxt(gRB,96,4,"CD36",{"font-size":9.5});
-   el("path",{d:"M 53.5 1 L 64 2",stroke:css("--muted"),"stroke-width":.9},gRB);
-   el("path",{d:"M 94.5 1 L 84 2",stroke:css("--muted"),"stroke-width":.9},gRB);
-   txt(svg,RX,48,"erythrocyte, in plasma",{"font-size":10,"text-anchor":"middle",class:"muted"});
-   txt(svg,RX,64,"no APOE receptor",{"font-size":9,"text-anchor":"middle",class:"muted"});
+   geneTxt(gRB,RX-22,RY-16,"SCARB1",{"font-size":9.5,"text-anchor":"end"});
+   geneTxt(gRB,RX+22,RY-16,"CD36",{"font-size":9.5});
+   el("path",{d:`M ${RX-20.5} ${RY-19} L ${RX-10} ${RY-18}`,stroke:css("--muted"),"stroke-width":.9},gRB);
+   el("path",{d:`M ${RX+20.5} ${RY-19} L ${RX+10} ${RY-18}`,stroke:css("--muted"),"stroke-width":.9},gRB);
+   txt(svg,RX,RY+28,"erythrocyte",{"font-size":10,"text-anchor":"middle",class:"muted"});
    protTip(gRB,"The red cell \u2014 and what it does NOT have",
      "Drawn because the systemic genetics ties APOE lipoprotein handling to red cells: across ten "
     +"lead variants in lipid-handling genes associated with red cell distribution width, the allele "
@@ -396,15 +399,16 @@ function drawA(){
     +"volume distribution. The red cell defect is markedly worse when APOE is deleted as well as SR-BI. "
     +"<b>NEITHER OF THESE IS AN APOE RECEPTOR.</b> SCARB1 (SR-BI) binds HDL and takes up cholesteryl "
     +"ester selectively; CD36 binds oxidised LDL, long-chain fatty acids and fibrillar amyloid-\u03b2. "
-    +"Nothing on the red cell surface binds APOE as such, and the mature erythrocyte has no "
-    +"LDL-receptor-family uptake and <b>no reactivity to lipid-free apolipoprotein</b> \u2014 it is the "
-    +"standard negative control for receptor-mediated lipid efflux. The dominant interaction with "
+    +"No APOE-specific receptor has been demonstrated on the red cell surface, and the mature "
+    +"erythrocyte has <b>no reactivity to lipid-free apolipoprotein</b> \u2014 it is the standard "
+    +"negative control for receptor-mediated lipid efflux. (RETRACTED from an earlier version of this "
+    +"note: that red cells carry no LDL-receptor-family protein at all, and that they do no endocytosis. Neither was checked and the second is false \u2014 mature red cells form cholesterol- and flotillin-rich endovesicles, by non-receptor-mediated mechanical perturbation, which is the route Plasmodium exploits.) The dominant interaction with "
     +"APOE-bearing particles is therefore NON-receptor exchange of free cholesterol, bidirectional with "
     +"HDL at a half-time of about three hours and with no net transfer until LCAT esterifies the "
     +"cholesterol it delivers. <b>Nor are these the only lipid-handling proteins on the membrane:</b> "
     +"ABCA1 and ABCG2 are both quantifiable on red cell membranes by flow cytometry, so the two drawn "
     +"here are the two with an established lipoprotein-binding role on erythroid cells, not an "
-    +"exhaustive list. Both are drawn with the same silhouette because SR-BI and CD36 are both class B "
+    +"exhaustive list \u2014 and lipoprotein binding is not the only lipid axis at this membrane. XK, a lipid scramblase, forms a complex with the bridge-like lipid transporter VPS13A; losing either causes acanthocytosis (McLeod syndrome and chorea-acanthocytosis), so bulk lipid transport, not lipoprotein uptake, is what most directly sets red cell shape. That system moves lipid between membranes and between leaflets, with no evidence it engages HDL. Both are drawn with the same silhouette because SR-BI and CD36 are both class B "
     +"scavenger receptors, two membrane spans and a large extracellular loop. COMPARTMENT: red cells "
     +"are intravascular, whereas the rest of this cartoon is a brain cell and its extracellular space; "
     +"brain APOE particles are astrocyte-derived and largely a separate pool from plasma, though lipid "
@@ -595,7 +599,7 @@ function drawA(){
   }
   // particle journey
   particle(svg,298,78,12);particle(svg,396,56,13);
-  txt(svg,396,-14,"APOE lipoparticles",{"font-size":12,"font-weight":600,"text-anchor":"middle"});
+  txt(svg,74,-14,"APOE lipoparticles",{"font-size":12,"font-weight":600,"text-anchor":"middle"});
   carrow(svg,"M 313 74 L 378 60","",0,0);
   for(let i=0;i<4;i++)el("path",{d:`M ${490+i*11} 123 q 5 -10 0 -20 q -5 -10 0 -20`,stroke:css("--hspg"),"stroke-width":2,fill:"none","stroke-linecap":"round"},svg);
   txt(svg,506,158,"HSPG",{class:"mono","font-size":10.5,"text-anchor":"middle"});
@@ -1050,7 +1054,7 @@ function nodeTip(k){
 const STOPS=[
   {t:"APOE homeostasis", s:"The whole cell. Synthesis and secretion on the left, uptake and lysosomal traffic on the right. Gene names appear only where there is disease or APOE-dependent evidence.", box:[0,-36,1100,766], side:"right", glyphs:["apoe", "particle", "chol"]},
   {t:"Lipoparticle biogenesis", s:"APOE is inserted into the ER as it is translated. Alongside it the mevalonate enzymes end at DHCR24, which makes cholesterol from desmosterol. The first particle forms at the Golgi with ABCA1.", box:[102,330,367,256], side:"right", glyphs:["apoe", "particle", "chol"]},
-  {t:"Lipoparticle secretion and maturation", s:"The vesicle fuses with the membrane and ABCA1 and ABCA7 lipidate APOE. Outside, particles carry APOC1, APOC2 and CLU/APOJ, and PLTP remodels them. Top left is an erythrocyte, the one intravascular compartment on this figure.", box:[10,-36,482,145], side:"right", glyphs:["apoe", "particle", "chol"], notes:["The <b>erythrocyte</b> is here because the systemic genetics ties APOE lipoprotein handling to red cells: across ten lead variants in lipid-handling genes associated with <b>red cell distribution width</b>, the allele that raises HDL-C also raises RDW in <b>nine</b> of them \u2014 including <b>SCARB1</b> and <b>CD36</b>, both already on the receptor list in this figure.", "<b>The route, from mouse genetics:</b> in SR-BI-null mice raised HDL-C increases the erythrocyte cholesterol-to-phospholipid ratio, which lowers deformability and raises osmotic fragility, shortening lifespan and provoking a reticulocytosis \u2014 and a reticulocytosis is by construction a wider volume distribution. The red cell defect is markedly worse when <b>APOE is deleted as well as SR-BI</b>.", "<b>Only two receptors are drawn, and that is the point.</b> A mature erythrocyte has no LDL-receptor-family uptake and no reactivity to lipid-free apolipoprotein; it is the standard negative control for receptor-mediated lipid efflux, so its sterol moves by non-specific exchange (t\u00bd \u2248 3 h), which LCAT then makes net rather than merely balanced.", "<b>Compartment caveat:</b> red cells are intravascular, whereas the rest of this cartoon is a brain cell. Brain APOE particles are astrocyte-derived and largely a separate pool from plasma \u2014 though lipid species do exchange at the CSF\u2013blood barrier, with APOE genotype affecting that exchange in entorhinal cortex.", "SR-BI and CD36 are coloured by <i>this</i> figure's code (APOE4-vs-APOE2 and Alzheimer genetics), not by their RDW direction."]},
+  {t:"Lipoparticle secretion and maturation", s:"The vesicle fuses with the membrane and ABCA1 and ABCA7 lipidate APOE. Outside, particles carry APOC1, APOC2 and CLU/APOJ, and PLTP remodels them. Top left is an erythrocyte, the one intravascular compartment on this figure.", box:[10,-36,482,145], side:"right", glyphs:["apoe", "particle", "chol"], notes:["The <b>erythrocyte</b> is here because the systemic genetics ties APOE lipoprotein handling to red cells: across ten lead variants in lipid-handling genes associated with <b>red cell distribution width</b>, the allele that raises HDL-C also raises RDW in <b>nine</b> of them \u2014 including <b>SCARB1</b> and <b>CD36</b>, both already on the receptor list in this figure.", "<b>The route, from mouse genetics:</b> in SR-BI-null mice raised HDL-C increases the erythrocyte cholesterol-to-phospholipid ratio, which lowers deformability and raises osmotic fragility, shortening lifespan and provoking a reticulocytosis \u2014 and a reticulocytosis is by construction a wider volume distribution. The red cell defect is markedly worse when <b>APOE is deleted as well as SR-BI</b>.", "<b>Only two receptors are drawn, and that is the point.</b> A mature erythrocyte has no reactivity to lipid-free apolipoprotein; it is the standard negative control for receptor-mediated lipid efflux, so its sterol moves by non-specific exchange (t\u00bd \u2248 3 h), which LCAT then makes net rather than merely balanced.", "<b>Compartment caveat:</b> red cells are intravascular, whereas the rest of this cartoon is a brain cell. Brain APOE particles are astrocyte-derived and largely a separate pool from plasma \u2014 though lipid species do exchange at the CSF\u2013blood barrier, with APOE genotype affecting that exchange in entorhinal cortex.", "SR-BI and CD36 are coloured by <i>this</i> figure's code (APOE4-vs-APOE2 and Alzheimer genetics), not by their RDW direction."]},
   {t:"Lipoparticle receptors", s:"HSPG captures the particle and hands it to a receptor. Each receptor is filled with its evidence colour.", box:[470,-36,414,288], side:"right", glyphs:["particle"], notes:["The series above ranks the isoforms by LDLR affinity. <b>APOE3</b> is the reference (Cys112, Arg158).", "<b>APOE2</b> is <b>R158C</b> (Arg158\u2192Cys). <b>APOE4</b> is <b>C112R</b> (Cys112\u2192Arg).", "<b>E3-Cc</b> is <b>APOE3-Christchurch</b>, <b>R136S</b> (Arg136\u2192Ser), on an APOE3 backbone \u2014 a protective variant.", "Residue numbers are for the mature protein; add 18 for precursor numbering."]},
   {t:"Receptor-mediated endocytosis", s:"PICALM and BIN1 drive internalisation. The neck undergoes scission, then the coat uncoats. Cargo legend at top right.", box:[626.4,-10.4,473.66,329.91], side:"right", glyphs:["particle", "abeta"], notes:["<b>Therapeutic hypothesis 1</b> \u2014 an <b>anti-APOE4 mAb</b>, drawn ENGAGED rather than approaching: both paratopes on the particle surface, the Fc trailing, and the route to the clathrin pit dashed and barred. The intent is steric \u2014 occupy the APOE surface that HSPG and the LDLR family read, so the particle is never internalised.", "It is a <b>hypothesis, not a result</b>: nothing in our data speaks to it, it must cross the blood-brain barrier or be given intrathecally, and isoform selectivity is unsolved \u2014 APOE3 and APOE4 differ by C112R, which is not surface-exposed on the lipidated particle.", "<b>E3-Cc</b> is <b>APOE3-Christchurch</b>, <b>R136S</b> (Arg136\u2192Ser), on an APOE3 backbone. APOE2 is R158C, APOE4 is C112R.", "<b>LDLR K<sub>d</sub></b> on lipidated nanodiscs by SPR: E2 <b>800 nM</b> \u00b7 E3 <b>16 nM</b> \u00b7 E4 <b>9 nM</b>.", "E3-Cc has <b>no published K<sub>d</sub></b>; it binds at <b>41%</b> of E3 in a fibroblast assay.", "The E4 step is ~<b>1.8-fold</b> by SPR, but runs with our finding that <b>APOE4 lipoparticles accumulate intracellularly</b> more than APOE3 \u2014 plausibly extra receptor engagement or slower recycling."]},
   {t:"Early endosome", s:"Mildly acidic, and still holding APOE. A vesicle buds off to recycle receptors; the rest matures onward.", box:[680.4,169,419.6,292.2], side:"right", glyphs:["apoe", "particle"]},
