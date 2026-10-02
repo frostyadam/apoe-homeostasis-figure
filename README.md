@@ -87,8 +87,8 @@ not state.
 
 | | version | what it is |
 |---|---|---|
-| Atlas | **v95** | `apoe_endocytosis_atlas.html` |
-| Tour | **v62** | `apoe_tour.html`, 9 stops |
+| Atlas | **v96** | `apoe_endocytosis_atlas.html` |
+| Tour | **v63** | `apoe_tour.html`, 9 stops |
 
 Republishing the same file path keeps the URL, so the artifact version number is the figure's
 real version history; git records the source that produced each one.
@@ -102,6 +102,26 @@ real version history; git records the source that produced each one.
   "Lysosome exocytosis" label at x541-615 — two stacked labels, neither beside the thing it
   named. Now anchored `start` at (680,215): 16.5 units clear of the endosome's outer edge,
   block centre 3.7 units above the circle centre.
+
+**v96 / v63 — 2026-10-01**
+
+- **Retromer tooltip reframed — the previous wording misled about VPS35.** It opened "AND VPS35
+  IS NOT THE STRONGEST CANDIDATE IN THIS MACHINERY" and then listed the nine higher scorers,
+  which in a box titled *Retromer* reads as doubting VPS35's Parkinson credentials. The sweep
+  does not support that. Cross-tabulating the 40 genes by complex: **none of the nine is a
+  retromer subunit** — SNX14 is a non-BAR sorting nexin, RAB39B/RAB7A/RAB11B are recycling Rabs,
+  WASHC5 is WASH, CCDC22 is CCC, LRRK2 is an unrelated kinase, and VPS13A/VPS13D are lipid-bridge
+  proteins related only by nomenclature. And **VPS35 is the only retromer subunit with any
+  monogenic CNS disease** (VPS26A, VPS26B, VPS29 all 0.000), so for naming retromer in a
+  neurodegeneration context it is unique, not merely adequate. D620N/PARK17 is a replicated
+  autosomal-dominant allele and the only retromer-to-Parkinson link there is. The box now says
+  the burden is spread *outside* the retromer core, which is the actual finding.
+- Added the caveat that these are Open Targets **evidence-accumulation** scores, not effect
+  sizes, so the ranking partly tracks how long a gene has been studied, and a 0.000 can mean
+  absent curation rather than absent disease. This box is +529 chars as a result; it still
+  carries one `Caveat:` sentence, and the net across the eight trimmed boxes is −2,547.
+- Alhazen: correction claim added to `scinv-6808f3d27a90` withdrawing the "VPS35 is the wrong
+  representative" clause of `scsynth-9443e2e35a54` while leaving its scored finding standing.
 
 **v95 / v62 — 2026-10-01**
 
@@ -173,6 +193,8 @@ real version history; git records the source that produced each one.
   genes outscore VPS35** (3.506): SNX14 4.879 (SCAR20), RAB39B 4.347, WASHC5 4.133 (SPG8),
   VPS13A 4.061, LRRK2 4.001, VPS13D 3.957, RAB7A 3.818, RAB11B 3.707, CCDC22 3.646. And the
   retromer **core** is genetically silent: VPS26A, VPS26B, VPS29 and the SNX-BARs all 0.000.
+  **Reframed in v96 — see that entry.** None of the nine is a retromer subunit, so the sweep
+  is about the machinery, not about VPS35's standing as a Parkinson gene.
 
 **v91 / v58 — 2026-10-01**
 
